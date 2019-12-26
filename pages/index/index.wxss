@@ -1,0 +1,199 @@
+/**index.wxss**/
+/* home-bg是背景图，层级-1 */
+.container {
+  position: relative;
+  width: 100%;
+  height: 1376rpx;
+}
+
+.img-home-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1376rpx;
+  z-index: -1;
+}
+
+/* banner 层级 2 1 0 -1 */
+
+
+.banner-con {
+  position: absolute;
+  top: 242rpx;
+  left: 51rpx;
+}
+
+.banner-wrap {
+  position: relative;
+  width: 648rpx;
+  height: 310rpx;
+}
+
+.banner-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.banner-img-page1,
+.banner-img-page2,
+.banner-img-page3 {
+  position: absolute;
+  width: 99.5%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: -1rpx;
+  border-radius: 30rpx;
+  background-color: #eaddb3;
+  filter: drop-shadow(5rpx 5rpx 5rpx #967958);
+  z-index: 1;
+}
+
+.banner-img-page2 {
+  bottom: -6rpx;
+  z-index: 0;
+}
+
+.banner-img-page3 {
+  bottom: -9rpx;
+  z-index: -1;
+}
+
+/* role-info */
+.role-info-wrap {
+  position: absolute;
+  top: 586rpx;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-right: 51rpx;
+  box-sizing: border-box;
+  color: #881606;
+  font-size: 22rpx;
+  font-weight: bold;
+}
+
+/* 日历 */
+.calendar-con {
+  position: absolute;
+  top: 605rpx;
+  left: 0;
+  width: 100%;
+}
+
+.calendar-wrap {
+  position: relative;
+  width: 100%;
+  padding: 0 51rpx;
+  box-sizing: border-box;
+}
+
+.calendar-header {
+  width: 648rpx;
+  height: 117rpx;
+  background-color: transparent;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #e7cdb1;
+}
+
+.text-big-month {
+  font-size: 68rpx;
+  color: #4c0e05;
+  font-weight: bolder;
+}
+
+.date-detail-wrap {
+  display: flex;
+  flex-direction: column;
+  margin-left: 18rpx;
+}
+
+.text-mid-eng-month {
+  font-size: 33rpx;
+  color: #85473e;
+  font-weight: bolder;
+  margin-bottom: 7rpx;
+}
+
+.text-year {
+  font-size: 18rpx;
+  color: #2e0803;
+  font-weight: bolder;
+}
+
+.img-half-head {
+  position: absolute;
+  top: 34rpx;
+  right: 51rpx;
+  width: 148rpx;
+  height: 83rpx;
+}
+
+.week-wrap {
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+}
+
+.text-week {
+  flex: 1 0 14.28%;
+  font-size: 22rpx;
+  color: #2e0803;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.text-color {
+  color: #941907;
+}
+
+.swiper-wrap {
+  width: 648rpx;
+  height: 276rpx;
+}
+
+.swiper-item {
+  width: 100%;
+}
+
+.calendar-main {
+  width: 100%;
+  height: 276rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.text-day-con {
+  font-size: 22rpx;
+  text-align: center;
+  flex: 1 0 14.28%;
+  height: 38rpx;
+  line-height: 38rpx;
+}
+
+
+
+/* 當前月 */
+.day-active {
+  color: #2e0803;
+}
+/* 不是当前月 */
+.day-unactive {
+  color: rgba(133, 71, 62, 0.5);
+
+}
+.is-saturday-or-sunday {
+  color: #941907;
+}
+.test {
+  color:red;
+}

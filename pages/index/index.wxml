@@ -1,0 +1,65 @@
+<!--index.wxml-->
+<view class="container">
+	<!-- 背景图 -->
+	<image class="img-home-bg" src="../../images/home_bg.png"></image>
+	<!-- banner图 -->
+	<view class="banner-con">
+		<view class="banner-wrap">
+			<image class="banner-img" src="../../images/banner_img.png">
+			</image>
+			<view class="banner-img-page1"></view>
+			<view class="banner-img-page2"></view>
+			<view class="banner-img-page3"></view>
+		</view>
+	</view>
+	<view class="role-info-wrap">
+		xx大区，xx角色 【切换角色】
+	</view>
+	<!-- 日历 -->
+	<view class="calendar-con">
+		<view class="calendar-wrap">
+			<view class="calendar-header">
+				<text class="text-big-month">{{12}}月</text>
+				<view class="date-detail-wrap">
+					<text class="text-mid-eng-month">DECEMBER</text>
+					<text class="text-year">2019年 己亥(猪年)</text>
+				</view>
+			</view>
+			<image class="img-half-head" src="../../images/head.png"></image>
+			<view class="week-wrap">
+				<block wx:for="{{week}}" wx:key="index">
+					<view class="text-week {{item.color?'text-color':''}}">{{item.name}}</view>
+				</block>
+			</view>
+			<swiper class="swiper-wrap" autoplay="{{swiperOption.autoplay}}" interval="{{swiperOption.interval}}" duration="{{swiperOption.duration}}">
+				<swiper-item class="swiper-item">
+					<view class="calendar-main">
+						<view class="text-day-con" wx:for="{{days}}" wx:key="index">
+							<block wx:if="{{item.month==month}}">
+								<view wx:if="{{item.week==0||item.week==6}}" class="is-saturday-or-sunday">
+									{{item.date}}
+								</view>
+								<view wx:else class="day-active">
+									{{item.date}}
+								</view>
+							</block>
+							<block wx:else>
+								<view class="day-unactive">
+									{{item.date}}
+								</view>
+							</block>
+						</view>
+					</view>
+				</swiper-item>
+			</swiper>
+		</view>
+	</view>
+
+	<!-- <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view> -->
+</view>
