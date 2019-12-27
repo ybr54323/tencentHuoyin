@@ -34,9 +34,40 @@ Page({
     }],
     year: '',
     month: '',
-    days: [],
-    nowLi: ''
+    days: "",
+    swiperList: ["0", "1", "2"],
+    current: {
+      index: 1,
+      month: new Date().getMonth() + 1
+    },
+
+    nowLi: '',
+    index: 1
   },
+  test(e) {
+    const obj = getCurrentPages()[0].data;
+    console.log(obj)
+    switch (e.detail.current) {
+      //往前滑动
+      case obj.index - 1:
+        let temp = obj.swiperList;
+
+        temp.unshift("-1");
+        temp[obj.index] = "0"
+
+        getCurrentPages()[0].setData({
+          swiperList: temp,
+        })
+        // e.detail = 
+        console.log(obj.swiperList)
+        console.log(obj.index)
+
+        break;
+    }
+  },
+  //需要一个方法获取当月日历该怎么显示
+
+
   //事件处理函数
   bindViewTap: function () {
     wx.navigateTo({
@@ -53,22 +84,19 @@ Page({
     })
     this.pushDays();
   },
-  pushDays() {
+  pushDays(year, month) {
+
+    if (month == 0) {
+      
+    }
     let days = [];
-    const _this = this;
-    let {
-      year,
-      month
-    } = {
-      ..._this.data
-    };
     //当前月
-    for (let i = 1; i <= this.getDays(this.data.year, this.data.month); i++) {
+    for (let i = 1; i <= this.getDays(year, month); i++) {
       //获取是周几
       let now = new Date();
       now.setFullYear(year);
       //月是0-11
-      now.setMonth(month - 1);
+      now.setMonth(month);
       now.setDate(i);
       let week = now.getDay();
       days.push({
@@ -79,18 +107,18 @@ Page({
       })
     }
     //下个月
-    for (let i = 1; i <= 42 - this.getDays(this.data.year, this.data.month) - this.getWeek(this.data.year, this.data.month); i++) {
-      // 如果是12(month=11)月的话,插入明年的日对象
-      if (month == 12) {
-        var nextYear = year + 1;
+    for (let i = 1; i <= 42 - this.getDays(year, month) - this.getWeek(year, month); i++) {
+      // 如果是12月(month=11)月的话,插入明年的日对象
+      if (month >= 11) {
+        // var nextYear = year + 1;
         let now = new Date();
-        now.setFullYear(nextYear);
-        now.setMonth(0);
+        now.setFullYear(year);
+        now.setMonth(month + 1);
         now.setDate(i)
         let week = now.getDay();
         days.push({
-          year: nextYear,
-          month: 1,
+          year: year + 1,
+          month: 13 - month,
           week,
           date: i
         })
@@ -98,37 +126,36 @@ Page({
         // 否则就是插入今年下个月的
         let now = new Date();
         now.setFullYear(year);
-        now.setMonth(month);
+        now.setMonth(month + 1);
         now.setDate(i);
         let week = now.getDay(i);
         days.push({
           year,
-          month: month - 1,
+          month: month + 1,
           week,
           date: i
         })
       }
     }
     //上个月
-    for (let i = 1; i <= this.getWeek(this.data.year, this.data.month); i++) {
+    for (let i = 1; i <= this.getWeek(year, month); i++) {
       // 当前是一月的情况
-      if (month == 1) {
+      if (month == 0) {
         let prevYear = year - 1;
         let now = new Date();
         now.setFullYear(prevYear);
         now.setMonth(11);
         let week = now.getDay();
         days.unshift({
-          prevYear,
-          month: 12,
+          year: prevYear,
+          month: 11,
           week,
           date: i
         })
       } else {
         let now = new Date();
         now.setFullYear(year);
-        //注意是-2
-        now.setMonth(month - 2);
+        now.setMonth(month - 1);
         let week = now.getDay(i);
         days.push({
           year,
@@ -139,9 +166,7 @@ Page({
         days.unshift(i);
       }
     }
-    this.setData({
-      days
-    })
+    return days;
   },
   //得到当前年这个月分有多少天
   getDays(Y, M) {
@@ -158,7 +183,12 @@ Page({
     return week;
   },
   onLoad: function () {
-    this.getDate();
+    // 0-13月 19年1月至20年2月
+    var tempList = [];
+    for (let i = 0; i <= 13; i++) {
+      tempList.push(this.pushDays(2019, i));
+    }
+    console.log(tempList);
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
