@@ -1,20 +1,103 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
+    //模拟用户/玩家数据
+    mock: {
+      playerInfo: {
+        schedules: [{
+          id: 1,
+          title: "宇智波佐助【疾风传咒印】登场",
+          beginDate: "2019-11-29-5",
+          endDate: "2019-12-13-5",
+          message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
+        }, {
+          id: 2,
+          title: "宇智波佐助【疾风传咒印】登场",
+          beginDate: "2019-11-29-5",
+          endDate: "2019-12-13-5",
+          message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
+        }, {
+          id: 2,
+          title: "宇智波佐助【疾风传咒印】登场",
+          beginDate: "2019-11-29-5",
+          endDate: "2019-12-13-5",
+          message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
+        }, {
+          id: 2,
+          title: "宇智波佐助【疾风传咒印】登场",
+          beginDate: "2019-11-29-5",
+          endDate: "2019-12-13-5",
+          message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
+
+        }]
+      },
+    },
+    playerInfo: {
+      schedules: [{
+        id: 1,
+        title: "宇智波佐助【疾风传咒印】登场",
+        beginDate: "2019-11-29-5",
+        endDate: "2019-12-13-5",
+        message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
+      }, {
+        id: 2,
+        title: "宇智波佐助【疾风传咒印】登场",
+        beginDate: "2019-11-29-5",
+        endDate: "2019-12-13-5",
+        message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
+      }, {
+        id: 2,
+        title: "宇智波佐助【疾风传咒印】登场",
+        beginDate: "2019-11-29-5",
+        endDate: "2019-12-13-5",
+        message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
+      }, {
+        id: 2,
+        title: "宇智波佐助【疾风传咒印】登场",
+        beginDate: "2019-11-29-5",
+        endDate: "2019-12-13-5",
+        message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
+
+      }]
+    },
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    //页面的大 月份
+    month: new Date().getMonth(),
+    //年
+    year: new Date().getFullYear(),
+    //月份英文名
+    monthEnglishName: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    // swiper参数
     swiperOption: {
       vertical: false,
       autoplay: false,
       interval: 2000,
-      duration: 500
+      duration: 500,
+      //当前月份,参数
+      current: {
+        index: 1,
+        month: new Date().getMonth()
+      },
     },
-    mock: [1, 2, 3, 4],
+    // 日历的周日至周六
     week: [{
       name: "日",
       color: true,
@@ -32,163 +115,44 @@ Page({
       name: "六",
       color: true,
     }],
-    year: '',
-    month: '',
-    days: "",
-    swiperList: ["0", "1", "2"],
-    current: {
-      index: 1,
-      month: new Date().getMonth() + 1
-    },
-
     nowLi: '',
-    index: 1
+    index: 1,
+    // 月份列表
+    monthList: [],
   },
-  test(e) {
-    const obj = getCurrentPages()[0].data;
-    console.log(obj)
-    switch (e.detail.current) {
-      //往前滑动
-      case obj.index - 1:
-        let temp = obj.swiperList;
-
-        temp.unshift("-1");
-        temp[obj.index] = "0"
-
-        getCurrentPages()[0].setData({
-          swiperList: temp,
-        })
-        // e.detail = 
-        console.log(obj.swiperList)
-        console.log(obj.index)
-
-        break;
+  /**
+   * 插入2019年1月至2020年2月所有的日期对象
+   */
+  initCalendar() {
+    let monthList = [];
+    for (let m = 0; m < 14; m++) {
+      monthList.push(this.initMonthDays(m));
     }
-  },
-  //需要一个方法获取当月日历该怎么显示
-
-
-  //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  //初始化日期，日历填充日期
-  getDate() {
-    let now = new Date();
+    // 当前月份的所有日程,
+    let totalMonthSchedule = app.globalData.mock.totalMonthSchedule
+    for (let i = 0; i < totalMonthSchedule.length; i++) {
+      if (totalMonthSchedule[i].month >= 0) {
+        totalMonthSchedule[i].schedules.forEach(schedule => {
+          //遍历当前月份的所有日期
+          for (let j = 0; j < monthList[totalMonthSchedule[i].month].length; j++) {
+            // 日期对上了，就绑定活动信息到对应的日期
+            if (monthList[totalMonthSchedule[i].month][j].date == schedule.date) {
+              // 将日程插入到日期的总日程数组
+              monthList[totalMonthSchedule[i].month][j].schedules.push(schedule);
+            }
+          }
+        })
+        // monthList[totalMonthSchedule[i].month]
+      }
+    }
     this.setData({
-      year: now.getFullYear(),
-      // 0-11
-      month: now.getMonth() + 1,
+      monthList
     })
-    this.pushDays();
-  },
-  pushDays(year, month) {
-
-    if (month == 0) {
-      
-    }
-    let days = [];
-    //当前月
-    for (let i = 1; i <= this.getDays(year, month); i++) {
-      //获取是周几
-      let now = new Date();
-      now.setFullYear(year);
-      //月是0-11
-      now.setMonth(month);
-      now.setDate(i);
-      let week = now.getDay();
-      days.push({
-        year,
-        month,
-        week,
-        date: i
-      })
-    }
-    //下个月
-    for (let i = 1; i <= 42 - this.getDays(year, month) - this.getWeek(year, month); i++) {
-      // 如果是12月(month=11)月的话,插入明年的日对象
-      if (month >= 11) {
-        // var nextYear = year + 1;
-        let now = new Date();
-        now.setFullYear(year);
-        now.setMonth(month + 1);
-        now.setDate(i)
-        let week = now.getDay();
-        days.push({
-          year: year + 1,
-          month: 13 - month,
-          week,
-          date: i
-        })
-      } else {
-        // 否则就是插入今年下个月的
-        let now = new Date();
-        now.setFullYear(year);
-        now.setMonth(month + 1);
-        now.setDate(i);
-        let week = now.getDay(i);
-        days.push({
-          year,
-          month: month + 1,
-          week,
-          date: i
-        })
-      }
-    }
-    //上个月
-    for (let i = 1; i <= this.getWeek(year, month); i++) {
-      // 当前是一月的情况
-      if (month == 0) {
-        let prevYear = year - 1;
-        let now = new Date();
-        now.setFullYear(prevYear);
-        now.setMonth(11);
-        let week = now.getDay();
-        days.unshift({
-          year: prevYear,
-          month: 11,
-          week,
-          date: i
-        })
-      } else {
-        let now = new Date();
-        now.setFullYear(year);
-        now.setMonth(month - 1);
-        let week = now.getDay(i);
-        days.push({
-          year,
-          month: month - 1,
-          week,
-          date: i
-        })
-        days.unshift(i);
-      }
-    }
-    return days;
-  },
-  //得到当前年这个月分有多少天
-  getDays(Y, M) {
-    let day = new Date(Y, M, 0).getDate()
-    return day;
-  },
-  //得到当前年，这个月的一号是周几
-  getWeek(Y, M) {
-    let now = new Date()
-    now.setFullYear(Y)
-    now.setMonth(M - 1)
-    now.setDate(1);
-    let week = now.getDay();
-    return week;
   },
   onLoad: function () {
-    // 0-13月 19年1月至20年2月
-    var tempList = [];
-    for (let i = 0; i <= 13; i++) {
-      tempList.push(this.pushDays(2019, i));
-    }
-    console.log(tempList);
+    // 生成2019年1月至2020年2月的所有日期对象
+    this.initCalendar();
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -223,5 +187,109 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+  /**
+   * 
+   * @param {d} e 跳转内页
+   */
+  toInner() {
+    wx.navigateTo({
+      url: '../inner/inner', //跳转的路径
+    })
+  },
+  /**
+   * 监控滑动，改变页面上的月份，月份英文名，年份
+   */
+  changeMonth(e) {
+    // index对应0-13，对应19年1月至2020年2月
+    const index = e.detail.current;
+    if (index <= 11) {
+      this.setData({
+        month: index,
+        year: 2019,
+      })
+      return
+    } else {
+      //2020年了
+      this.setData({
+        month: index - 12,
+        year: 2020,
+      })
+    }
+  },
+  /**
+   * @param {*} m int 0-13，可生成19年1月到2020年2月所有月份所有日期对象，生成带有查询参数(date,month,year,week)的日期对象
+   */
+  initMonthDays(m) {
+    if (isNaN(m)) {
+      throw new Error("initMonthDays m 必须为数字");
+    }
+    m = parseInt(m)
+    if (m < 0 || m > 13) {
+      throw new Error("initMonthDays m 取值正确,m: ", m);
+    }
+    return pushDays(m);
+    /**
+     * 
+     * @param int 0-13 (19年1月->20年2月) 例如1月就传 m=0
+     */
+    function getDaysNum(m) {
+      return new Date(2019, m + 1, 0).getDate();
+    }
+    /**
+     * @param int 0-13 (19年1月->20年2月) m
+     * 获取当月的1号是星期几，
+     */
+    function getWeekOfTheMonth1st(m) {
+      return new Date(2019, m, 1).getDay();
+    }
+
+    function getWeekOfTheDate(m, d) {
+      return new Date(2019, m, d).getDay();
+    }
+    /**
+     * 插入当月的所有日期
+     */
+    function pushDays() {
+      let daysList = [];
+      // 先获取当月的天数
+      //将这个月多少天加入数组days
+      for (let i = 1; i <= getDaysNum(m); i++) {
+        // 日期带上相关的参数
+        // schedule 当天的日程列表
+        daysList.push({
+          date: i,
+          month: m,
+          year: 2019,
+          week: new Date(2019, m, i).getDay(),
+          schedules: []
+        })
+      }
+      //将下个月要显示的天数加入days
+      for (let i = 1; i <= 42 - getDaysNum(m) - getWeekOfTheMonth1st(m); i++) {
+        let nextM = m + 1;
+        daysList.push({
+          date: i,
+          month: nextM,
+          year: 2019,
+          week: new Date(2019, nextM, i).getDay(),
+          schedules: []
+        })
+      }
+      //将上个月要显示的天数加入days
+      for (let i = 0; i < getWeekOfTheMonth1st(m); i++) {
+        var lastMonthDays = getDaysNum(m - 1)
+        let prevM = m - 1
+        daysList.unshift({
+          date: lastMonthDays - i,
+          month: prevM,
+          year: 2019,
+          week: new Date(2019, prevM, lastMonthDays - i).getDay(),
+          schedules: []
+        })
+      }
+      // console.log(...daysList)
+      return daysList;
+    }
+  },
 })

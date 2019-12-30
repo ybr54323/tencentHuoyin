@@ -1,0 +1,15 @@
+<!--pages/inner.wxml-->
+<!-- 内页 -->
+<view class="inner-container bg-img">
+	<view class="back-home-wrap">
+		<view bindtap="backHome" class="back-home-button">返回首页</view>
+		<view class="change-role-button-wrap">
+			<text>xx大区，xx角色</text>
+			<text bindtap="test"> 【切换角色】</text>
+		</view>
+	</view>
+    <view class="schedule-list-wrap">
+        
+    </view>  
+    
+</view>

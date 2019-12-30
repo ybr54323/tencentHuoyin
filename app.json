@@ -1,5 +1,7 @@
 {
     "pages": [
+        "pages/inner/inner",
+
         "pages/index/index",
         "pages/logs/logs"
     ],

@@ -1,0 +1,51 @@
+/* pages/inner.wxss */
+
+.inner-container {
+    position: relative;
+    width: 100%;
+    height: 1208rpx;
+    max-height: 1208rpx;
+    overflow: scroll;
+    background-size: 100% 1208rpx;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+
+.back-home-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 102rpx;
+    background-color: rgb(217, 178, 112, 0.6);
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-left: 52rpx;
+    padding-right: 45rpx;
+    align-items: center;
+}
+
+.back-home-button {
+    /* position: absolute;
+    color:#881606;
+    left: 52rpx;
+    top: 23rpx; */
+    color: #fff;
+    line-height: 48rpx;
+    text-align: center;
+    font-size: 24rpx;
+    width: 168rpx;
+    height: 48rpx;
+    background-color: rgba(209, 93, 76, 0.8);
+    border-width: 3px;
+    border-color: rgb(122, 33, 11);
+    border-style: solid;
+    opacity: 0.6;
+    border-radius: 40rpx;
+}
+
+.change-role-button-wrap {
+    font-size: 22rpx;
+    color: #881606;
+}

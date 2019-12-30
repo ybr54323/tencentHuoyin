@@ -1,7 +1,8 @@
 <!--index.wxml-->
-<view class="container">
-	<!-- 背景图 -->
-	<image class="img-home-bg" src="../../images/home_bg.png"></image>
+<view class="index-container bg-img">
+	<!-- title	 -->
+	<view class="index-title img-index-title">
+	</view>
 	<!-- banner图 -->
 	<view class="banner-con">
 		<view class="banner-wrap">
@@ -19,10 +20,10 @@
 	<view class="calendar-con">
 		<view class="calendar-wrap">
 			<view class="calendar-header">
-				<text class="text-big-month">{{12}}月</text>
+				<text class="text-big-month">{{month + 1}}月</text>
 				<view class="date-detail-wrap">
-					<text class="text-mid-eng-month">DECEMBER</text>
-					<text class="text-year">2019年 己亥(猪年)</text>
+					<text class="text-mid-eng-month">{{monthEnglishName[month]}}</text>
+					<text class="text-year">{{year}}年 {{year==2019?"己亥":"庚子"}}({{year==2019?"猪年":"鼠年"}})</text>
 				</view>
 			</view>
 			<image class="img-half-head" src="../../images/head.png"></image>
@@ -31,21 +32,21 @@
 					<view class="text-week {{item.color?'text-color':''}}">{{item.name}}</view>
 				</block>
 			</view>
-			<swiper current="{{index}}" bindchange="" class="swiper-wrap" autoplay="{{swiperOption.autoplay}}" interval="{{swiperOption.interval}}" duration="{{swiperOption.duration}}">
-				<swiper-item class="swiper-item" wx:for="{{swiperList}}" wx:key="index">
-					<view class="calendar-main" :key="index">
-						<view class="text-day-con" wx:for="{{days}}" wx:key="index">
-							<block wx:if="{{item.month==month}}">
-								<view wx:if="{{item.week==0||item.week==6}}" class="is-saturday-or-sunday">
-									{{item.date}}
+			<swiper current="{{swiper.current.month}}" bindchange="changeMonth" class="swiper-wrap" autoplay="{{swiperOption.autoplay}}" interval="{{swiperOption.interval}}" duration="{{swiperOption.duration}}">
+				<swiper-item class="swiper-item" wx:for="{{monthList}}" wx:key="index">
+					<view class="calendar-main">
+						<view class="text-day-con" wx:for="{{item}}" wx:for-item="date">
+							<block wx:if="{{date.month==month}}">
+								<view wx:if="{{date.week==0||date.week==6}}" class="is-saturday-or-sunday">
+									{{date.date}}
 								</view>
 								<view wx:else class="day-active">
-									{{item.date}}
+									{{date.date}}
 								</view>
 							</block>
 							<block wx:else>
 								<view class="day-unactive">
-									{{item.date}}
+									{{date.date}}
 								</view>
 							</block>
 						</view>
@@ -53,8 +54,24 @@
 				</swiper-item>
 			</swiper>
 		</view>
-	</view>
 
+	</view>
+	<!-- 日程列表 -->
+	<view class="schedule-con">
+		<view class="no-schedule-wrap" wx:if="{{playerInfo.schedules.length == 0}}">
+		</view>
+		<view class="schedule-wrap" wx:else>
+			<!-- 绑定事件 点击跳转到内页 -->
+			<view bindtap="toInner" class="schedule-box" wx:for="{{playerInfo.schedules}}" wx:key="id">
+				<view class="schedule-title">{{item.title}}</view>
+				<view class="schedule-date">
+					活动时间:{{ item.beginDate}} 至 {{ item.endDate}}
+				</view>
+				<view class="box-border-bottom"></view>
+				<view class="box-border-bottom"></view>
+			</view>
+		</view>
+	</view>
 	<!-- <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
