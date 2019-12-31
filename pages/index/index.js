@@ -5,6 +5,7 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
+    bindRole: false,
     //模拟用户/玩家数据
     mock: {
       playerInfo: {
@@ -130,8 +131,11 @@ Page({
     }
     // 当前月份的所有日程,
     let totalMonthSchedule = app.globalData.mock.totalMonthSchedule
+    // 遍历所有日程
     for (let i = 0; i < totalMonthSchedule.length; i++) {
+      // 获取到有日程的月份的月份month
       if (totalMonthSchedule[i].month >= 0) {
+        // 遍历有日程的月份的日程数组
         totalMonthSchedule[i].schedules.forEach(schedule => {
           //遍历当前月份的所有日期
           for (let j = 0; j < monthList[totalMonthSchedule[i].month].length; j++) {
@@ -180,6 +184,12 @@ Page({
       })
     }
   },
+  // 打开绑定角色界面
+  handleOpenRoleBind() {
+    this.setData({
+      bindRole: !this.data.bindRole
+    })
+  },
   getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -187,6 +197,19 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  handleDateTap(e) {
+    let y, m, d;
+    // 当前点击的日期对象
+    let paramObj = e.currentTarget.dataset;
+    try {
+      y = paramObj.year;
+      m = paramObj.month;
+      d = paramObj.date;
+    } catch (error) {
+      console.warn(error.message);
+    }
+    console.warn(y, m, d);
   },
   /**
    * 
@@ -212,7 +235,7 @@ Page({
     } else {
       //2020年了
       this.setData({
-        month: index - 12,
+        month: index,
         year: 2020,
       })
     }
@@ -262,6 +285,7 @@ Page({
           month: m,
           year: 2019,
           week: new Date(2019, m, i).getDay(),
+          id: new Date(2019, m, i).getTime(),
           schedules: []
         })
       }
@@ -273,6 +297,7 @@ Page({
           month: nextM,
           year: 2019,
           week: new Date(2019, nextM, i).getDay(),
+          id: new Date(2019, nextM, i).getTime(),
           schedules: []
         })
       }
@@ -285,6 +310,7 @@ Page({
           month: prevM,
           year: 2019,
           week: new Date(2019, prevM, lastMonthDays - i).getDay(),
+          id: new Date(2019, prevM, lastMonthDays - i).getTime(),
           schedules: []
         })
       }

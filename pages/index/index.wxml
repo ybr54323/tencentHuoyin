@@ -1,5 +1,7 @@
 <!--index.wxml-->
 <view class="index-container bg-img">
+	<!-- 绑定角色组件 -->
+	<bind-role wx:if="{{bindRole}}"></bind-role>
 	<!-- title	 -->
 	<view class="index-title img-index-title">
 	</view>
@@ -13,16 +15,16 @@
 			<view class="banner-img-page3"></view>
 		</view>
 	</view>
-	<view class="role-info-wrap">
+	<view class="role-info-wrap" bindtap="handleOpenRoleBind">
 		xx大区，xx角色 【切换角色】
 	</view>
 	<!-- 日历 -->
 	<view class="calendar-con">
 		<view class="calendar-wrap">
 			<view class="calendar-header">
-				<text class="text-big-month">{{month + 1}}月</text>
+				<text class="text-big-month">{{month>=12?month-11:month + 1}}月</text>
 				<view class="date-detail-wrap">
-					<text class="text-mid-eng-month">{{monthEnglishName[month]}}</text>
+					<text class="text-mid-eng-month">{{month>=12?monthEnglishName[month-12]:monthEnglishName[month]}}</text>
 					<text class="text-year">{{year}}年 {{year==2019?"己亥":"庚子"}}({{year==2019?"猪年":"鼠年"}})</text>
 				</view>
 			</view>
@@ -32,18 +34,29 @@
 					<view class="text-week {{item.color?'text-color':''}}">{{item.name}}</view>
 				</block>
 			</view>
-			<swiper current="{{swiper.current.month}}" bindchange="changeMonth" class="swiper-wrap" autoplay="{{swiperOption.autoplay}}" interval="{{swiperOption.interval}}" duration="{{swiperOption.duration}}">
+			<swiper current="{{swiperOption.current.month}}" bindchange="changeMonth" class="swiper-wrap" autoplay="{{swiperOption.autoplay}}" interval="{{swiperOption.interval}}" duration="{{swiperOption.duration}}">
 				<swiper-item class="swiper-item" wx:for="{{monthList}}" wx:key="index">
 					<view class="calendar-main">
-						<view class="text-day-con" wx:for="{{item}}" wx:for-item="date">
+						<view bindtap="handleDateTap" data-year="{{date.year}}" data-month="{{date.month}}" data-date="{{date.date}}" class="text-day-con" wx:for="{{item}}" wx:for-item="date" wx:key="id">
+							<!-- 是当前月 -->
 							<block wx:if="{{date.month==month}}">
-								<view wx:if="{{date.week==0||date.week==6}}" class="is-saturday-or-sunday">
-									{{date.date}}
-								</view>
-								<view wx:else class="day-active">
-									{{date.date}}
+								<!-- 周六或者周日 class:is-saturday-or-sunday 平时 day-active -->
+								<view class="{{date.week==0||date.week==6?'is-saturday-or-sunday':'day-active'}}">
+									<!-- 当天有日程，特别标记 -->
+									<block wx:if="{{date.schedules.length>0}}">
+										<!-- 遍历当天的日程，找出对应的type，有优先级 213 通过改z-index来实现到优先级 -->
+										<block wx:for="{{date.schedules}}" wx:key="index">
+											<view class="{{item.type==1?'big-activity':''||item.type==2?'mile-stone':''||item.type==3?'daily':''}}">
+												{{date.date}}
+											</view>
+										</block>
+									</block>
+									<view wx:else>
+										{{date.date}}
+									</view>
 								</view>
 							</block>
+							<!-- 不是当前月 class: day-unactive-->
 							<block wx:else>
 								<view class="day-unactive">
 									{{date.date}}
