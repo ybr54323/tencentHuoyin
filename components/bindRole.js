@@ -112,19 +112,22 @@ Component({
       this.triggerEvent('closeBindRole', myEventDetail, myEventOption);
     },
     handleSelect(e) {
-      console.log(e.currentTarget);
+      
       let {
         type,
         id,
         name
       } = e.currentTarget.dataset;
       console.log(type, id, name);
+      let selectMenu = this.data.selectMenu;
+      selectMenu[type].status = 0;
       let userSelected = this.data.userSelected;
       userSelected[type].name = name;
       userSelected[type].id = id;
       userSelected[type].name = name;
       this.setData({
         userSelected,
+        selectMenu
       })
     }
   }

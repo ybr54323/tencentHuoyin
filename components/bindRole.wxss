@@ -89,6 +89,7 @@
   left: 0;
   width: 100%;
   background-color: rgb(212, 193, 147);
+  box-shadow: 2px 2px 5px #85473e;
 }
 
 .select-item {

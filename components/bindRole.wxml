@@ -13,7 +13,7 @@
         {{userSelected[index].name||item.placeHolder}}
         <view class="down-arrow"></view>
         <view class="{{item.status==0?'unactive':'active'&&'select-down-list'}}">
-          <view class="select-item" wx:for="{{item.selections}}" wx:for-item="selection" bindtap="handleSelect" data-type="{{item.type}}" data-id="{{selection.id}}" data-name="{{selection.name}}">
+          <view class="select-item" wx:for="{{item.selections}}" wx:for-item="selection" catchtap="handleSelect" data-type="{{item.type}}" data-id="{{selection.id}}" data-name="{{selection.name}}">
             {{selection.name}}
           </view>
         </view>
