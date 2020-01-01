@@ -1,28 +1,28 @@
 <!--components/bindRole.wxml-->
 
 <view class="bind-role-container">
-	<view class="img-bind-role bind-role-wrap">
-		<!-- 关闭按钮 -->
-		<view class="button-close-bind-role" bindtap="handleCloseBindRole">X</view>
-		<view class="text-bind-role-title">
-			请绑定角色
-		</view>
-		<view class="select-row-wrap" wx:for="{{selectMenu}}" wx:key="index" data-type="{{index}}" bindtap="handleOpenMenu">
-			<view class="select-label">{{item.label}}</view>
-			<view class="select-box">
-				{{item.placeHolder}}
-				<view class="down-arrow"></view>
-				<view class="{{item.status==0?'unactive':'active'||true?'select-down-list':''}}">
-					<view class="select-item" wx:for="{{item.selections}}" wx:for-item="selection">
-						{{selection}}
-					</view>
-				</view>
-			</view>
-		</view>
-		<view class="button-confirm">
-			确定
-		</view>
+  <view class="img-bind-role bind-role-wrap">
+    <!-- 关闭按钮 -->
+    <view class="button-close-bind-role" bindtap="handleCloseBindRole">X</view>
+    <view class="text-bind-role-title">
+      请绑定角色
+    </view>
+    <view class="select-row-wrap" wx:for="{{selectMenu}}" wx:key="index" data-type="{{index}}" bindtap="handleOpenMenu">
+      <view class="select-label">{{item.label}}</view>
+      <view class="select-box">
+        {{userSelected[index].name||item.placeHolder}}
+        <view class="down-arrow"></view>
+        <view class="{{item.status==0?'unactive':'active'&&'select-down-list'}}">
+          <view class="select-item" wx:for="{{item.selections}}" wx:for-item="selection" bindtap="handleSelect" data-type="{{item.type}}" data-id="{{selection.id}}" data-name="{{selection.name}}">
+            {{selection.name}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="button-confirm">
+      确定
+    </view>
 
-	</view>
+  </view>
 
 </view>

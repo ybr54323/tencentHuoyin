@@ -3,6 +3,7 @@
 const app = getApp()
 Page({
   data: {
+    app: app,
     motto: 'Hello World',
     userInfo: {},
     bindRole: false,
@@ -95,7 +96,7 @@ Page({
       //当前月份,参数
       current: {
         index: 1,
-        month: new Date().getMonth()
+        month: new Date().getFullYear() == 2019 ? new Date().getMonth() : new Date().getMonth() + 12
       },
     },
     // 日历的周日至周六
@@ -153,7 +154,13 @@ Page({
       monthList
     })
   },
-  onLoad: function () {
+  // 处理swiper的current值
+  handleSwiperCurrent() {
+    let m = this.month;
+    let y = this.year;
+    return m == 2019 ? m : m + 12;
+  },
+  onLoad: function() {
     // 生成2019年1月至2020年2月的所有日期对象
     this.initCalendar();
 
@@ -189,8 +196,14 @@ Page({
     this.setData({
       bindRole: !this.data.bindRole
     })
+    console.log(this.data.bindRole)
   },
-  getUserInfo: function (e) {
+  handleCloseBindRole() {
+    this.setData({
+      bindRole: !this.data.bindRole
+    })
+  },
+  getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -286,7 +299,8 @@ Page({
           year: 2019,
           week: new Date(2019, m, i).getDay(),
           id: new Date(2019, m, i).getTime(),
-          schedules: []
+          schedules: [],
+          currentMonth: true
         })
       }
       //将下个月要显示的天数加入days

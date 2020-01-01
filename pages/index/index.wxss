@@ -72,6 +72,7 @@
 /* role-info */
 .role-info-wrap {
   position: absolute;
+  z-index: 2;
   top: 586rpx;
   display: flex;
   justify-content: flex-end;
