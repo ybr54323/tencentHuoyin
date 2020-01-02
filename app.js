@@ -1,7 +1,15 @@
 const util = require('./utils/util');
 //app.js
 App({
-  onLaunch: function () {
+  onLaunch: function() {
+    for (let i=0;i<14;i++) {
+      this.globalData.totalActList.push({
+        year:2019,
+        month: i,
+        actList:[]
+      })
+    }
+    // 获取json
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -38,7 +46,9 @@ App({
   },
   globalData: {
     userInfo: null,
-    // 模拟数据
+    totalActList: [
+      
+    ],
     mock: {
       // 0-13月（19年1月至2020年2月所有月份）的活动总列表，每次请求特定月份，会在totalMonthSchedule数组的对应位置（0-13）插入特定月份的所有活动
       totalMonthSchedule: [{

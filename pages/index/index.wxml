@@ -40,17 +40,17 @@
       <swiper current="{{swiperOption.current.month}}" bindchange="changeMonth" class="swiper-wrap" autoplay="{{swiperOption.autoplay}}" interval="{{swiperOption.interval}}" duration="{{swiperOption.duration}}">
         <swiper-item class="swiper-item" wx:for="{{monthList}}" wx:key="index">
           <view class="calendar-main">
-            <view bindtap="handleDateTap" data-year="{{date.year}}" data-month="{{date.month}}" data-date="{{date.date}}" class="text-day-con" wx:for="{{item}}" wx:for-item="date" wx:key="id">
+            <view bindtap="handleDateTap" data-year="{{date.year}}" data-month="{{date.month}}" data-date="{{date.date}}" class="text-day-con" wx:for="{{item}}" wx:for-item="date" wx:key="timestamp">
               <!-- 是当前月 -->
               <block wx:if="{{date.currentMonth==true}}">
                 <!-- 周末 class:is-saturday-or-sunday 非周末 day-active -->
                 <view class="{{date.week==0||date.week==6?'is-saturday-or-sunday':'day-active'}}">
                   <!-- 当天有日程，特别标记 -->
-                  <block wx:if="{{date.schedules.length>0}}">
+                  <block wx:if="{{date.actList.length>0}}">
                     <!-- 遍历当天的日程，找出对应的type，有优先级 213 通过改z-index来实现到优先级 -->
-                    <block wx:for="{{date.schedules}}" wx:key="index">
-                      <view class="{{item.type==1?'big-activity':''||item.type==2?'mile-stone':''||item.type==3?'daily':''}}">
-                        {{date.date}}
+                    <block wx:for="{{date.actList}}" wx:for-item="act" wx:key="index">
+                      <view class="{{act.importance==1?'big-activity':''||act.importance==2?'mile-stone':''||act.importance==3?'daily':''}}">
+                        {{act.date}}
                       </view>
                     </block>
                   </block>
@@ -78,7 +78,7 @@
     </view>
     <view class="schedule-wrap" wx:else>
       <!-- 绑定事件 点击跳转到内页 -->
-      <view bindtap="toInner" class="schedule-box" wx:for="{{playerInfo.schedules}}" wx:key="id">
+      <view bindtap="toInner" class="schedule-box" wx:for="{{playerInfo.schedules}}" wx:key="index">
         <view class="schedule-title">{{item.title}}</view>
         <view class="schedule-date">
           活动时间:{{ item.beginDate}} 至 {{ item.endDate}}

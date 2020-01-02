@@ -8,36 +8,6 @@ Page({
     userInfo: {},
     bindRole: false,
     //模拟用户/玩家数据
-    mock: {
-      playerInfo: {
-        schedules: [{
-          id: 1,
-          title: "宇智波佐助【疾风传咒印】登场",
-          beginDate: "2019-11-29-5",
-          endDate: "2019-12-13-5",
-          message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
-        }, {
-          id: 2,
-          title: "宇智波佐助【疾风传咒印】登场",
-          beginDate: "2019-11-29-5",
-          endDate: "2019-12-13-5",
-          message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
-        }, {
-          id: 2,
-          title: "宇智波佐助【疾风传咒印】登场",
-          beginDate: "2019-11-29-5",
-          endDate: "2019-12-13-5",
-          message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
-        }, {
-          id: 2,
-          title: "宇智波佐助【疾风传咒印】登场",
-          beginDate: "2019-11-29-5",
-          endDate: "2019-12-13-5",
-          message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
-
-        }]
-      },
-    },
     playerInfo: {
       schedules: [{
         id: 1,
@@ -65,6 +35,7 @@ Page({
         message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
       }]
     },
+    actList: [],
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     //页面的大 月份
@@ -129,6 +100,81 @@ Page({
     for (let m = 0; m < 14; m++) {
       monthList.push(this.initMonthDays(m));
     }
+    const _this = this;
+    wx.request({
+      url: `https://hyrz.qq.com/zlkdatasys/data_zlk_nlhdlb.json`,
+      data: '',
+      header: {},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: function(res) {
+        let actList = res.data.actlist_02[0].actassets_54;
+        actList.forEach(act => {
+          //
+          let actTime = act.acttime_de;
+          let detail = act.detail_21;
+          let endDateObj = new Date(act.enddate_99);
+          let importance = act.importance_35;
+          let picture = act.picture_28;
+          let startDateObj = new Date(act.startdate_ec);
+          let title = act.title_02;
+          //
+          let year = startDateObj.getFullYear();
+          let month = year > 2019 ? startDateObj.getMonth() + 12 : startDateObj.getMonth();
+          let date = startDateObj.getDate();
+          let startTimestamp = startDateObj.getTime();
+          let endtimeStamp = endDateObj.getTime();
+
+          let obj = {
+            //
+            actTime,
+            detail,
+            endDateObj,
+            importance,
+            picture,
+            startDateObj,
+            title,
+            //
+            year,
+            month,
+            date,
+            startTimestamp,
+            endtimeStamp,
+          };
+          console.log(obj);
+
+          let tal = app.globalData.totalActList;
+          
+          tal[month].actList.push(obj);
+
+          getApp().globalData.totalActList = tal;
+
+          let monthList = _this.data.monthList;
+
+          let monthDateList = monthList[month];
+
+          for (let i = 0; i < monthDateList.length; i++) {
+            let item = monthDateList[i];
+            if (item.month == month && item.date == date) {
+              console.log('ddddddd');
+              item.actList.push(obj);
+              break;
+            }
+          }
+          _this.setData({
+            monthList
+          })
+        })
+      },
+      fail: function(res) {
+        console.log(res)
+      },
+      complete: function(res) {
+        // console.log(res)
+      },
+    })
+
     // 当前月份的所有日程,
     let totalMonthSchedule = app.globalData.mock.totalMonthSchedule
     // 遍历所有日程
@@ -163,32 +209,6 @@ Page({
     // 生成2019年1月至2020年2月的所有日期对象
     this.initCalendar();
 
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
   },
   // 打开绑定角色界面
   handleOpenRoleBind() {
@@ -200,14 +220,6 @@ Page({
   handleCloseBindRole() {
     this.setData({
       bindRole: !this.data.bindRole
-    })
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
     })
   },
   handleDateTap(e) {
@@ -222,6 +234,11 @@ Page({
       console.warn(error.message);
     }
     console.warn(y, m, d);
+
+    wx.navigateTo({
+      url: `../inner/inner?year=${y}&month=${m}&date=${d}`,
+      
+    })
   },
   /**
    * 
@@ -297,9 +314,10 @@ Page({
           month: m,
           year: 2019,
           week: new Date(2019, m, i).getDay(),
-          id: new Date(2019, m, i).getTime(),
+          timestamp: new Date(2019, m, i).getTime(),
           schedules: [],
-          currentMonth: true
+          currentMonth: true,
+          actList: []
         })
       }
       //将下个月要显示的天数加入days
@@ -310,8 +328,10 @@ Page({
           month: nextM,
           year: 2019,
           week: new Date(2019, nextM, i).getDay(),
-          id: new Date(2019, nextM, i).getTime(),
-          schedules: []
+          timestamp: new Date(2019, nextM, i).getTime(),
+          schedules: [],
+          actList: []
+
         })
       }
       //将上个月要显示的天数加入days
@@ -323,8 +343,9 @@ Page({
           month: prevM,
           year: 2019,
           week: new Date(2019, prevM, lastMonthDays - i).getDay(),
-          id: new Date(2019, prevM, lastMonthDays - i).getTime(),
-          schedules: []
+          timestamp: new Date(2019, prevM, lastMonthDays - i).getTime(),
+          schedules: [],
+          actList: []
         })
       }
       // console.log(...daysList)
