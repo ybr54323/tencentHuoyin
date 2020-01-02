@@ -49,3 +49,99 @@
     font-size: 22rpx;
     color: #881606;
 }
+
+.schedule-list-wrap {
+    width: 100%;
+    max-height: 1020rpx;
+    overflow: scroll;
+    position: absolute;
+    top: 102rpx;
+
+}
+
+.schedule-item-wrap {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 31rpx 56rpx;
+    background-color: transparent;
+}
+
+.text-schedule-title {
+    color: #881606;
+    font-size: 26rpx;
+    margin-bottom: 10rpx;
+}
+
+.text-schedule-time {
+    font-size: 22rpx;
+    color: #4c0e05;
+    margin-bottom: 20rpx;
+}
+
+.text-schedule-detail {
+    font-size: 20rpx;
+    color: #772418;
+    margin-bottom: 20rpx;
+}
+
+.book-schedule-wrap {
+    height: 38rpx;
+    line-height: 38rpx;
+}
+
+.book-schedule-button {
+    width: 127rpx;
+    height: 38rpx;
+    line-height: 38rpx;
+    background-image: linear-gradient(to bottom, #bd761b, #bd761b 50%, #d68d1f 50%, #d68d1f 100%);
+    border-radius: 20rpx;
+    font-size: 20rpx;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+}
+
+.descrition {
+    margin-left: 13rpx;
+    font-size: 18rpx;
+    color: #85473e;
+}
+
+/* 有海报的日程活动 */
+.text-schedule-big-title {
+    font-size: 100rpx;
+    color: #4c0e05;
+    margin-bottom: 17rpx;
+
+}
+
+.text-schedule-big-time {
+    font-size: 22rpx;
+    color: #4c0e05;
+    height: 50rpx;
+    border-bottom: 1px solid #d0ab8a;
+    margin-bottom: 33rpx;
+}
+
+.img-schedule-poster {
+    width: 654rpx;
+    max-width: 654rpx;
+    max-height: 379rpx;
+
+}
+
+.text-schedule-sub-title {
+    font-size: 30rpx;
+    color: #881606;
+    margin-bottom: 18rpx;
+
+}
+
+.text-schedule-detail-btw {
+    color: #dd5207;
+    font-size: 22rpx;
+    display: inline-block;
+    padding-bottom: 2rpx;
+    border-bottom: 1px solid #dd5207;
+    margin-bottom: 28rpx;
+}

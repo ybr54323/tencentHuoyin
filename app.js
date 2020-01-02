@@ -38,7 +38,6 @@ App({
   },
   globalData: {
     userInfo: null,
-    bindRole: false,
     // 模拟数据
     mock: {
       // 0-13月（19年1月至2020年2月所有月份）的活动总列表，每次请求特定月份，会在totalMonthSchedule数组的对应位置（0-13）插入特定月份的所有活动

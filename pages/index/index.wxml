@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="index-container bg-img">
+<view class="index-container img-bg">
   <!-- 绑定角色组件 -->
   <bind-role bind:closeBindRole="handleCloseBindRole" wx:if="{{bindRole}}"></bind-role>
   <!-- title	 -->

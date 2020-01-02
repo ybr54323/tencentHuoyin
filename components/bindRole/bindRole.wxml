@@ -3,7 +3,7 @@
 <view class="bind-role-container">
   <view class="img-bind-role bind-role-wrap">
     <!-- 关闭按钮 -->
-    <view class="button-close-bind-role" bindtap="handleCloseBindRole">X</view>
+    <view class="button-close-bind-role" catchtap="handleCloseBindRole">X</view>
     <view class="text-bind-role-title">
       请绑定角色
     </view>
@@ -22,7 +22,5 @@
     <view class="button-confirm">
       确定
     </view>
-
   </view>
-
 </view>

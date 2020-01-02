@@ -296,7 +296,9 @@
   font-size: 32rpx;
   color: #881606;
   font-weight: bolder;
-
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .schedule-date {
@@ -304,6 +306,9 @@
   font-size: 20rpx;
   color: #85473e;
   font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .box-border-bottom {

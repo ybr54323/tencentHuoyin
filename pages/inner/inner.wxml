@@ -1,6 +1,6 @@
 <!--pages/inner.wxml-->
 <!-- 内页 -->
-<view class="inner-container bg-img">
+<view class="inner-container img-bg">
 	<view class="back-home-wrap">
 		<view bindtap="backHome" class="back-home-button">返回首页</view>
 		<view class="change-role-button-wrap">
@@ -8,8 +8,66 @@
 			<text bindtap="test"> 【切换角色】</text>
 		</view>
 	</view>
-    <view class="schedule-list-wrap">
-        
-    </view>  
-    
+	<view class="schedule-list-wrap">
+		<!-- 无图的schedule -->
+		<view class="schedule-item-wrap">
+			<view class="text-schedule-title">
+				天天送好礼
+			</view>
+			<view class="text-schedule-time">
+				活动时间: 11月29日05:00至12月 13日05:00
+			</view>
+			<!-- 详细detail可以切换是否显示 -->
+			<view class="text-schedule-detail">
+				活动开启后，学员可选择心愿礼物，礼物分为超级心愿礼物、高级心愿礼物和其他心愿礼物。每日登录领取礼券，消耗礼券摇铃可随机获得一个心愿礼物;每个心愿礼物只能获得一次，已获得的礼物不会重复获得。
+			</view>
+			<view class="book-schedule-wrap">
+				<view class="book-schedule-button">
+					预约提醒
+				</view>
+				<text class="descrition">活动开启前10分钟提醒</text>
+			</view>
+		</view>
+		<!-- 有图的schedule -->
+		<view class="schedule-item-wrap">
+			<block>
+				<view class="text-schedule-title">
+					天天送好礼
+				</view>
+				<view class="text-schedule-time">
+					活动时间: 11月29日05:00至12月 13日05:00
+				</view>
+				<view class="book-schedule-wrap">
+					<view class="book-schedule-button">
+						预约提醒
+					</view>
+					<text class="descrition">活动开启前10分钟提醒</text>
+				</view>
+			</block>
+			<block>
+				<view class="text-schedule-big-title">
+					木叶情报
+				</view>
+				<view class="text-schedule-big-time">
+					2019年12月25日 星期六
+				</view>
+				<image src="../../images/banner_img.png" class="img-schedule-poster">
+				</image>
+				<view class="text-schedule-sub-title">
+					宇智波佐助【疾风传咒印】登场
+				</view>
+				<view class="text-schedule-detail">
+					宇智波佐助自儿时便被称为“天才忍者”。其以第一名的成绩毕业于忍者学校。与漩涡鸣人、春野樱共同组成了第七班。终结谷一役，佐助为了获得更强大的力量向鼬复仇，叛逃木叶。 </view>
+				<view class="text-schedule-detail-btw">
+					获取方式清前往游戏内查看
+				</view>
+				<view class="book-schedule-wrap">
+					<view class="book-schedule-button">
+						预约提醒
+					</view>
+					<text class="descrition">活动开启前10分钟提醒</text>
+				</view>
+			</block>
+		</view>
+	</view>
 </view>
