@@ -1,18 +1,15 @@
-<view class="student-file-container img-stu-fil-bg">
-
+<view class="student-file-container">
+	<image class="img-student-file-bg" src="../../images/student_file_bg.png"></image>
 	<view class="student-file-title-wrap">
-		<view class="line"></view>
-		<view class="student-filt-title img-stu-fil-title">
+		<view class="student-filt-title">
 		</view>
-		<view class="middle-line"></view>
 		<view class="user-info-wrap">
-			<image class="img-user-avator" src="../../images/user_avator.png"></image>
+			<image class="img-user-avator" src="{{userInfo.avatarUrl}}"></image>
 			<view class="user-name">
-				玩家名称名称名称
+				{{userInfo.nickName}}
 			</view>
 		</view>
 	</view>
-
 	<view class="student-file-main-warp">
 		<image class="img-student-file-banner" src="../../images/banner_img.png"></image>
 		<view class="name">宇智波佐助 【疾风传诅咒】</view>
@@ -20,29 +17,15 @@
 		<view class="date">Wednesday,December 25,2019</view>
 		<view class="circal-date">
 			<text class="text-week">Wed</text>
-			<text class="text-mm-dd">12月25</text>
-		</view>
-	</view>
-	<view class="qrcode-wrap">
-		<view class="left-box">
-			<view class="game-descrition">
-				正版火影忍者格斗手游，还原原作故事
-				预创忍术格斗系统，尽兴体验酣畅淋漓的格斗连招
-			</view>
-			<view class="game-log-wrap">
-				<image class="img-game-logo" src="../../images/user_avator.png"></image>
-				<view class="text-fight-again">火之意志格斗重燃</view>
-			</view>
-		</view>
-		<view class="qrcode-box-box">
-			<image class="img-qrcode" src="../../images/user_avator.png"></image>
+			<text class="text-mm-dd">12月25日</text>
 		</view>
 	</view>
 	<view class="download-poster-wrap">
-		<view class="button-download-poster1">
-			长按生成海报保存至手机[图片]
+		<view bindtap="handlePhotoSaved" class="button-download-poster1">
+			保存
 		</view>
 	</view>
-	<view class="button-back-home" bindtap="handleBackHome"></view>
-
+	<view class="button-back-home" bindtap="handleBackHome">
+	</view>
 </view>
+<painter customStyle='position: absolute; top: -9999rpx;' palette="{{template}}" bind:imgOK="onImgOK" widthPixels="1000" />

@@ -174,27 +174,6 @@ Page({
         // console.log(res)
       },
     })
-
-    // 当前月份的所有日程,
-    let totalMonthSchedule = app.globalData.mock.totalMonthSchedule
-    // 遍历所有日程
-    for (let i = 0; i < totalMonthSchedule.length; i++) {
-      // 获取到有日程的月份的月份month
-      if (totalMonthSchedule[i].month >= 0) {
-        // 遍历有日程的月份的日程数组
-        totalMonthSchedule[i].schedules.forEach(schedule => {
-          //遍历当前月份的所有日期
-          for (let j = 0; j < monthList[totalMonthSchedule[i].month].length; j++) {
-            // 日期对上了，就绑定活动信息到对应的日期
-            if (monthList[totalMonthSchedule[i].month][j].date == schedule.date) {
-              // 将日程插入到日期的总日程数组
-              monthList[totalMonthSchedule[i].month][j].schedules.push(schedule);
-            }
-          }
-        })
-        // monthList[totalMonthSchedule[i].month]
-      }
-    }
     this.setData({
       monthList
     })

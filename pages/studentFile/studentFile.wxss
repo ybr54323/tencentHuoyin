@@ -11,21 +11,22 @@
 
 }
 
+.img-student-file-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
 .student-file-title-wrap {
     position: relative;
-    border-bottom: 1px solid #702005;
-    border-top: 8px solid #702005;
+    /* border-bottom: 1px solid #702005; */
+    /* border-top: 8px solid #702005; */
     height: 158rpx;
-
 }
 
-.line {
-    margin-top: 5rpx;
-    position: absolute;
-    width: 100%;
-    background-color: #702005;
-    height: 1px;
-}
 
 .student-filt-title {
     width: 432rpx;
@@ -37,20 +38,12 @@
     margin-right: 44rpx;
 }
 
-.middle-line {
-    width: 2px;
-    background-color: #dcc0a3;
-    height: 102rpx;
-    display: inline-block;
-    margin-right: 28rpx;
-    transform: translateY(-15rpx);
-}
 
 .user-info-wrap {
     width: 175rpx;
     height: 150rpx;
     display: inline-block;
-
+    margin-left: 20rpx;
 }
 
 .img-user-avator {
@@ -78,7 +71,6 @@
     position: relative;
     padding-bottom: 39rpx;
     max-height: 659rpx;
-    border-bottom: 1px solid #702005;
 }
 
 .img-student-file-banner {
@@ -87,6 +79,10 @@
 }
 
 .name {
+    max-width: 523rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-size: 34rpx;
     color: #4c0e05;
     margin-top: 26rpx;
@@ -94,6 +90,10 @@
 }
 
 .sub-name {
+    max-width: 523rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     margin-bottom: 38rpx;
     font-size: 24rpx;
     color: #4c0e05;
@@ -101,6 +101,10 @@
 }
 
 .date {
+    max-width: 523rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-size: 20rpx;
     color: #4c0e05;
 }
@@ -112,7 +116,6 @@
     width: 150rpx;
     height: 150rpx;
     border-radius: 50%;
-    border: 1px solid #dcc0a3;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -131,76 +134,30 @@
 
 }
 
-.qrcode-wrap {
-    padding-top: 37rpx;
-    background-color: transparent;
-    max-height: 197rpx;
-}
-
-.left-box {
-    max-width: 508rpx;
-    width: 508rpx;
-    max-height: 100%;
-    display: inline-block;
-}
-
-.game-descrition {
-    font-size: 22rpx;
-    color: #4c0e05;
-    padding-bottom: 19rpx;
-
-}
-
-.game-log-wrap {
-    width: 100%;
-    max-height: 88rpx;
-    display: flex;
-    justify-content: space-between;
-
-}
-
-.img-game-logo {
-    max-width: 144rpx;
-    max-height: 88rpx;
-}
-
-.text-fight-again {
-    width: 112rpx;
-    padding-top: 20rpx;
-    font-size: 28rpx;
-    color: #4c0e05;
-}
-
-.qrcode-box-box {
-    margin-left: 16rpx;
-    width: 160rpx;
-    height: 160rpx;
-    display: inline-block;
-}
-
-.img-qrcode {
-    max-width: 100%;
-    max-height: 100%;
-}
 
 .download-poster-wrap {
     text-align: center;
     max-width: 684rpx;
     width: 683rpx;
+    margin-top: 29rpx;
     box-sizing: border-box;
-    padding-left: 144rpx;
-    position: relative;
+    position: absolute;
+    bottom: 58rpx;
 }
 
 .button-download-poster1 {
-    height: 137rpx;
-    max-width: 419rpx;
+    width: 281rpx;
+    height: 51rpx;
     text-align: center;
-    color: #4c0e05;
+    color: #fff;
     box-sizing: border-box;
-    padding: 0 36rpx;
-    font-size: 22rpx;
-    line-height: 137rpx;
+    font-size: 24rpx;
+    line-height: 51rpx;
+    text-align: center;
+    border-radius: 20rpx;
+    background-image: linear-gradient(to bottom, #bc741b, #bc741b 50%, #d98e1f 50%, #d98e1f 100%);
+    margin-left: 50%;
+    transform: translateX(-50%);
 }
 
 .button-back-home {
