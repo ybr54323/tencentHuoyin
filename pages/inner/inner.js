@@ -8,6 +8,32 @@ Page({
   data: {
     //模拟用户/玩家数据,活动数据
     todayActList: [],
+    // 里程碑，获得忍者或者记录什么的
+    mileStoneList: [{
+      name: 'test',
+    }, {
+      name: 'test1'
+    }],
+    // 弹窗状态
+    bindRole: false,
+    // 记录弹窗显示状态
+    showRecord: true,
+
+  },
+  handleOpenBindRole() {
+    this.setData({
+      bindRole: true
+    })
+  },
+  handleCloseBindRole() {
+    this.setData({
+      bindRole: false
+    })
+  },
+  handleCloseRecord() {
+    this.setData({
+      showRecord: false
+    })
   },
   backHome() {
     wx.navigateTo({

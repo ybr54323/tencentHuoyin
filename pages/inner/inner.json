@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "bind-role": "../../components/bindRole/bindRole"
+  }
 }

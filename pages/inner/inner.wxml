@@ -1,11 +1,52 @@
 <!-- 活动内页 -->
 <view class="inner-container img-bg">
+  <!-- 玩家记录弹窗 -->
+  <view class="record-container" wx:if="{{showRecord==true&&mileStoneList.length>0}}">
+    <view class="record-wrap">
+      <view class="button-close-bind-role" catchtap="handleCloseRecord">X</view>
+      <block wx:if="{{mileStoneList.length==1}}">
+        <image class="img-record-bg" src="../../images/record_bg.png"></image>
+        <view class="record-text-wrap">
+          <view class="text-record-date">2019年12月14日</view>
+          <view class="text-record-detail">XXX成功招募宇智波佐助[疾风传咒印]，这是你招募的第192个忍者。</view>
+        </view>
+        <view class="button-check">
+          查看详情
+        </view>
+      </block>
+      <block wx:if="{{mileStoneList.length>1}}">
+        <image class="img-record-list-bg" src="../../images/record_bg2.png"></image>
+        <view class="record-list-wrap">
+          <view class="record-list-text-wrap">
+            <view class="text-record-date">2019年12月14日</view>
+            <view class="text-record-detail">XXX成功招募宇智波佐助[疾风传咒印]，这是你招募的第192个忍者。</view>
+            <view class="button-list-check">
+              查看详情
+            </view>
+            <view class="box-border-bottom"></view>
+          </view>
+          <view class="record-list-text-wrap">
+            <view class="text-record-date">2019年12月14日</view>
+            <view class="text-record-detail">XXX成功招募宇智波佐助[疾风传咒印]，这是你招募的第192个忍者。</view>
+            <view class="button-list-check">
+              查看详情
+            </view>
+            <view class="box-border-bottom"></view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 绑定角色弹窗 -->
+  <bind-role bind:closeBindRole="handleCloseBindRole" wx:if="{{bindRole}}"></bind-role>
+  <!-- 无活动显示狗图 -->
+  <image wx:if="{{todayActList.length==0}}" class="img-no-activity" src="../../images/no_activity.png"></image>
   <!-- 顶栏 -->
   <view class="back-home-wrap">
     <view bindtap="backHome" class="back-home-button">返回首页</view>
     <view class="change-role-button-wrap">
       <text>xx大区，xx角色</text>
-      <text bindtap="test"> 【切换角色】</text>
+      <text bindtap="handleOpenBindRole"> 【切换角色】</text>
     </view>
   </view>
   <!-- 活动列表 -->
@@ -13,8 +54,8 @@
     <!-- 活动的importance 为0 普通活动，没带图的，为1就是大活动，带活动介绍图 -->
     <block wx:for="{{todayActList}}" wx:key="index">
       <block wx:if="{{item.importance==0}}">
-        <view class="schedule-item-wrap" data-index="{{index}}" bindtap="handleOpenDetail">
-          <view class="trigger-button img-arrow {{item.show==false?'reverse':''}}">
+        <view class="schedule-item-wrap">
+          <view class="trigger-button img-arrow {{item.show==false?'reverse':''}}" data-index="{{index}}" bindtap="handleOpenDetail">
           </view>
           <view class="text-schedule-title">
             {{item.title}}
@@ -27,8 +68,8 @@
             {{item.detail}}
           </view>
           <view class="book-schedule-wrap">
-            <view class="book-schedule-button">
-              预约提醒
+            <view class="book-schedule-button {{item.order==true?'order':''}}">
+              {{item.order==true?'已预约':'预约提醒'}}
             </view>
             <text class="descrition">活动开启前10分钟提醒</text>
           </view>
@@ -36,8 +77,8 @@
       </block>
       <!-- 大活动 -->
       <block wx:if="{{item.importance==1}}">
-        <view class="schedule-item-wrap" data-index="{{index}}" bindtap="handleOpenDetail">
-          <view class="trigger-button img-arrow {{item.show==false?'reverse':''}}">
+        <view class="schedule-item-wrap">
+          <view class="trigger-button img-arrow {{item.show==false?'reverse':''}}" data-index="{{index}}" bindtap="handleOpenDetail">
           </view>
           <block wx:if="{{item.show==false}}">
             <view class="text-schedule-title">
@@ -46,12 +87,6 @@
             <view class="text-schedule-time">
               {{item.actTime}}
             </view>
-            <!-- <view class="book-schedule-wrap">
-              <view class="book-schedule-button">
-                预约提醒
-              </view>
-              <text class="descrition">活动开启前10分钟提醒</text>
-            </view> -->
           </block>
           <block wx:if="{{item.show==true}}">
             <view class="text-schedule-big-title">
@@ -72,15 +107,13 @@
             </view>
           </block>
           <view class="book-schedule-wrap">
-            <view class="book-schedule-button">
-              预约提醒
+            <view class="book-schedule-button {{item.order==true?'order':''}}">
+              {{item.order==true?'已预约':'预约提醒'}}
             </view>
             <text class="descrition">活动开启前10分钟提醒</text>
           </view>
         </view>
       </block>
     </block>
-    <!-- 有图的schedule -->
-
   </view>
 </view>

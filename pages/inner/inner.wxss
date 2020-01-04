@@ -11,6 +11,114 @@
   background-repeat: no-repeat;
 }
 
+.img-no-activity {
+  position: absolute;
+  width: 658rpx;
+  height: 567rpx;
+  top: 313rpx;
+  right: 0;
+}
+
+.record-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.record-wrap {
+  position: absolute;
+  width: 662rpx;
+  z-index: 3;
+}
+
+.button-check {
+  position: absolute;
+  bottom: 94rpx;
+  left: 231rpx;
+  width: 199rpx;
+  line-height: 44rpx;
+  height: 44rpx;
+  border-radius: 20rpx;
+  background-image: linear-gradient(#bb741b, #bb741b 50%, #d78d1f 50%, #d78d1f 100%);
+  color: #fff;
+  text-align: center;
+  font-size: 25rpx;
+}
+
+.button-close-bind-role {
+  position: absolute;
+  top: -50rpx;
+  right: 80rpx;
+  color: #f0e8ce;
+  font-size: 40rpx;
+  text-align: center;
+}
+
+.record-text-wrap {
+  position: absolute;
+  max-width: 443rpx;
+  top: 104rpx;
+  left: 94rpx;
+  color: #7c2415;
+  font-size: 24rpx;
+}
+
+.img-record-list-bg {
+  width: 662rpx;
+  height: 637rpx;
+}
+
+.record-list-wrap {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  max-height: 543rpx;
+  overflow: scroll;
+  padding-top: 77rpx;
+  padding-left: 94rpx;
+  box-sizing: border-box;
+}
+
+.record-list-text-wrap {
+  max-width: 460rpx;
+  width: 460rpx;
+  color: #7c2415;
+}
+
+.record-list-text-wrap:not(:first-child) {
+  margin-top: 49rpx;
+}
+
+.button-list-check {
+  margin-left: 137rpx;
+  width: 199rpx;
+  line-height: 44rpx;
+  height: 44rpx;
+  border-radius: 20rpx;
+  background-image: linear-gradient(#bb741b, #bb741b 50%, #d78d1f 50%, #d78d1f 100%);
+  color: #fff;
+  text-align: center;
+  font-size: 25rpx;
+}
+
+.text-record-date {
+  margin-bottom: 19rpx;
+}
+
+.text-record-detail {
+  margin-bottom: 38rpx;
+}
+
+.img-record-bg {
+  width: 100%;
+}
+
 .back-home-wrap {
   position: fixed;
   top: 0;
@@ -24,6 +132,15 @@
   padding-left: 52rpx;
   padding-right: 45rpx;
   align-items: center;
+}
+
+.box-border-bottom {
+  margin-top: 49rpx;
+  width: 100%;
+  height: 3rpx;
+  background-image: linear-gradient(to right, #d8ae75 0%, #d8ae75 50%, transparent 50%);
+  background-size: 14px 1px;
+  background-repeat: repeat-x;
 }
 
 .back-home-button {
@@ -117,6 +234,12 @@
   color: #fff;
   text-align: center;
   display: inline-block;
+}
+
+/* 已经预约 */
+
+.order {
+  background-image: linear-gradient(to bottom, #897154, #897154 50%, #9b825f 50%, #9b825f 100%);
 }
 
 .descrition {
