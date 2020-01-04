@@ -1,10 +1,11 @@
 <!--index.wxml-->
-<view class="index-container img-bg">
+<view class="index-container">
+  <!-- 背景图 -->
+  <image class="img-bg" src="../../images/bg.png"></image>
   <!-- 绑定角色组件 -->
   <bind-role bind:closeBindRole="handleCloseBindRole" wx:if="{{bindRole}}"></bind-role>
   <!-- title	 -->
-  <view class="index-title img-index-title">
-  </view>
+  <image class="index-title" src="../../images/index_title.png"></image>
   <!-- banner图 -->
   <view class="banner-con">
     <view class="banner-wrap">
@@ -49,7 +50,7 @@
                   <block wx:if="{{date.actList.length>0}}">
                     <!-- 遍历当天的日程，找出对应的type，有优先级 213 通过改z-index来实现到优先级 -->
                     <block wx:for="{{date.actList}}" wx:for-item="act" wx:key="index">
-                    <!-- 0普通活动对应daily 1大活动对应big-activity 2对应各种记录？ -->
+                      <!-- 0普通活动对应daily 1大活动对应big-activity 2对应各种记录？ -->
                       <view class="{{act.importance==0?'daily':''||act.importance==1?'big-activity':''||act.importance==2?'mile-stone':''}}">
                         {{act.date}}
                       </view>

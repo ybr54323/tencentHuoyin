@@ -1,3 +1,8 @@
+page {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .student-file-container {
   position: relative;
   width: 100%;
@@ -21,7 +26,7 @@
 
 .user-info-wrap {
   position: absolute;
-  top: 40rpx;
+  top: 50rpx;
   right: 40rpx;
   width: 175rpx;
   height: 150rpx;
@@ -48,10 +53,10 @@
 
 .student-file-main-warp {
   width: 683rpx;
-  /* height: 633rpx; */
+  position: absolute;
+  top: 200rpx;
   box-sizing: border-box;
   padding-top: 44rpx;
-  position: relative;
   padding-bottom: 39rpx;
   max-height: 659rpx;
 }

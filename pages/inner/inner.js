@@ -40,6 +40,12 @@ Page({
       url: '../index/index',
     })
   },
+  // 去学员档案
+  toRecord() {
+    wx.navigateTo({
+      url: '../../pages/studentFile/studentFile',
+    })
+  },
   handleOpenDetail(data) {
     let index = data.currentTarget.dataset.index;
     console.log(index);
@@ -123,7 +129,7 @@ Page({
    */
   onHide: function() {
     this.setData({
-      todayActList: []
+      // todayActList: []
     })
   },
 

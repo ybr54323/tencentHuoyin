@@ -1,5 +1,7 @@
 <!-- 活动内页 -->
 <view class="inner-container img-bg">
+  <!-- 背景图 -->
+  <image class="img-bg" src="../../images/bg.png"></image>
   <!-- 玩家记录弹窗 -->
   <view class="record-container" wx:if="{{showRecord==true&&mileStoneList.length>0}}">
     <view class="record-wrap">
@@ -27,8 +29,8 @@
           </view>
           <view class="record-list-text-wrap">
             <view class="text-record-date">2019年12月14日</view>
-            <view class="text-record-detail">XXX成功招募宇智波佐助[疾风传咒印]，这是你招募的第192个忍者。</view>
-            <view class="button-list-check">
+            <view class="text-record-detail">XXX成功获得超影段位！</view>
+            <view class="button-list-check" bindtap="toRecord">
               查看详情
             </view>
             <view class="box-border-bottom"></view>

@@ -1,4 +1,5 @@
 /**index.wxss**/
+
 .index-container {
   position: relative;
   width: 100%;
@@ -6,6 +7,14 @@
   background-size: 100% 1376rpx;
   background-position: 0 0;
   background-repeat: no-repeat;
+}
+
+.img-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .index-title {
@@ -20,7 +29,6 @@
 }
 
 /* banner 层级 2 1 0 -1 */
-
 
 .banner-con {
   position: absolute;
@@ -44,9 +52,7 @@
   z-index: 2;
 }
 
-.banner-img-page1,
-.banner-img-page2,
-.banner-img-page3 {
+.banner-img-page1, .banner-img-page2, .banner-img-page3 {
   position: absolute;
   width: 99.5%;
   left: 0;
@@ -70,6 +76,7 @@
 }
 
 /* role-info */
+
 .role-info-wrap {
   position: absolute;
   z-index: 2;
@@ -85,6 +92,7 @@
 }
 
 /* 日历 */
+
 .calendar-con {
   position: absolute;
   top: 605rpx;
@@ -187,24 +195,26 @@
   line-height: 38rpx;
 }
 
-
-
 /* 當前月 */
+
 .day-active {
   color: #2e0803;
 }
 
 /* 不是当前月 */
+
 .day-unactive {
   color: rgba(133, 71, 62, 0.5);
 }
 
 /* 周六或者周日 */
+
 .is-saturday-or-sunday {
   color: #941907;
 }
 
 /* 里程碑 优先级最高1 */
+
 .mile-stone {
   z-index: 3;
   width: 38rpx;
@@ -218,10 +228,10 @@
   background-image: linear-gradient(to bottom, #a0350f, #a0350f 50%, #c34512 50%, #c34512 100%);
   color: #fff;
   filter: drop-shadow(5rpx 5rpx 5rpx #967958);
-
 }
 
 /* 大活动 优先级2 */
+
 .big-activity {
   z-index: 2;
   width: 38rpx;
@@ -235,7 +245,6 @@
   background-image: linear-gradient(to bottom, #b57119, #b56f19 50%, #d28b1f 50%, #d28b1f 100%);
   color: #fff;
   filter: drop-shadow(5rpx 5rpx 5rpx #967958);
-
 }
 
 /* 日常 优先级最低 3 */
@@ -253,7 +262,6 @@
   background-image: linear-gradient(to bottom, #3e7e4a, #3e7e4a 50%, #4b9756 50%, #4b9756 100%);
   color: #fff;
   filter: drop-shadow(5rpx 5rpx 5rpx #967958);
-
 }
 
 .schedule-con {
@@ -279,7 +287,6 @@
   height: 100%;
   max-height: 100%;
   overflow: scroll;
-
 }
 
 .schedule-box {
