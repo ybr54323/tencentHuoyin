@@ -1,73 +1,86 @@
-<!--pages/inner.wxml-->
-<!-- 内页 -->
+<!-- 活动内页 -->
 <view class="inner-container img-bg">
-	<view class="back-home-wrap">
-		<view bindtap="backHome" class="back-home-button">返回首页</view>
-		<view class="change-role-button-wrap">
-			<text>xx大区，xx角色</text>
-			<text bindtap="test"> 【切换角色】</text>
-		</view>
-	</view>
-	<view class="schedule-list-wrap">
-		<!-- 无图的schedule -->
-		<view class="schedule-item-wrap">
-			<view class="text-schedule-title">
-				天天送好礼
-			</view>
-			<view class="text-schedule-time">
-				活动时间: 11月29日05:00至12月 13日05:00
-			</view>
-			<!-- 详细detail可以切换是否显示 -->
-			<view class="text-schedule-detail">
-				活动开启后，学员可选择心愿礼物，礼物分为超级心愿礼物、高级心愿礼物和其他心愿礼物。每日登录领取礼券，消耗礼券摇铃可随机获得一个心愿礼物;每个心愿礼物只能获得一次，已获得的礼物不会重复获得。
-			</view>
-			<view class="book-schedule-wrap">
-				<view class="book-schedule-button">
-					预约提醒
-				</view>
-				<text class="descrition">活动开启前10分钟提醒</text>
-			</view>
-		</view>
-		<!-- 有图的schedule -->
-		<view class="schedule-item-wrap">
-			<block>
-				<view class="text-schedule-title">
-					天天送好礼
-				</view>
-				<view class="text-schedule-time">
-					活动时间: 11月29日05:00至12月 13日05:00
-				</view>
-				<view class="book-schedule-wrap">
-					<view class="book-schedule-button">
-						预约提醒
-					</view>
-					<text class="descrition">活动开启前10分钟提醒</text>
-				</view>
-			</block>
-			<block>
-				<view class="text-schedule-big-title">
-					木叶情报
-				</view>
-				<view class="text-schedule-big-time">
-					2019年12月25日 星期六
-				</view>
-				<image src="../../images/banner_img.png" class="img-schedule-poster">
-				</image>
-				<view class="text-schedule-sub-title">
-					宇智波佐助【疾风传咒印】登场
-				</view>
-				<view class="text-schedule-detail">
-					宇智波佐助自儿时便被称为“天才忍者”。其以第一名的成绩毕业于忍者学校。与漩涡鸣人、春野樱共同组成了第七班。终结谷一役，佐助为了获得更强大的力量向鼬复仇，叛逃木叶。 </view>
-				<view class="text-schedule-detail-btw">
-					获取方式清前往游戏内查看
-				</view>
-				<view class="book-schedule-wrap">
-					<view class="book-schedule-button">
-						预约提醒
-					</view>
-					<text class="descrition">活动开启前10分钟提醒</text>
-				</view>
-			</block>
-		</view>
-	</view>
+  <!-- 顶栏 -->
+  <view class="back-home-wrap">
+    <view bindtap="backHome" class="back-home-button">返回首页</view>
+    <view class="change-role-button-wrap">
+      <text>xx大区，xx角色</text>
+      <text bindtap="test"> 【切换角色】</text>
+    </view>
+  </view>
+  <!-- 活动列表 -->
+  <view class="schedule-list-wrap">
+    <!-- 活动的importance 为0 普通活动，没带图的，为1就是大活动，带活动介绍图 -->
+    <block wx:for="{{todayActList}}" wx:key="index">
+      <block wx:if="{{item.importance==0}}">
+        <view class="schedule-item-wrap" data-index="{{index}}" bindtap="handleOpenDetail">
+          <view class="trigger-button img-arrow {{item.show==false?'reverse':''}}">
+          </view>
+          <view class="text-schedule-title">
+            {{item.title}}
+          </view>
+          <view class="text-schedule-time">
+            {{item.actTime}}
+          </view>
+          <!-- 详细detail可以切换是否显示 -->
+          <view wx:if="{{item.show}}" class="text-schedule-detail">
+            {{item.detail}}
+          </view>
+          <view class="book-schedule-wrap">
+            <view class="book-schedule-button">
+              预约提醒
+            </view>
+            <text class="descrition">活动开启前10分钟提醒</text>
+          </view>
+        </view>
+      </block>
+      <!-- 大活动 -->
+      <block wx:if="{{item.importance==1}}">
+        <view class="schedule-item-wrap" data-index="{{index}}" bindtap="handleOpenDetail">
+          <view class="trigger-button img-arrow {{item.show==false?'reverse':''}}">
+          </view>
+          <block wx:if="{{item.show==false}}">
+            <view class="text-schedule-title">
+              {{item.title}}
+            </view>
+            <view class="text-schedule-time">
+              {{item.actTime}}
+            </view>
+            <!-- <view class="book-schedule-wrap">
+              <view class="book-schedule-button">
+                预约提醒
+              </view>
+              <text class="descrition">活动开启前10分钟提醒</text>
+            </view> -->
+          </block>
+          <block wx:if="{{item.show==true}}">
+            <view class="text-schedule-big-title">
+              木叶情报
+            </view>
+            <view class="text-schedule-big-time">
+              {{item.actTime}}
+            </view>
+            <image src="../../images/banner_img.png" class="img-schedule-poster">
+            </image>
+            <view class="text-schedule-sub-title">
+              {{item.title}}
+            </view>
+            <view class="text-schedule-detail">
+              {{item.detail}}</view>
+            <view class="text-schedule-detail-btw">
+              获取方式清前往游戏内查看
+            </view>
+          </block>
+          <view class="book-schedule-wrap">
+            <view class="book-schedule-button">
+              预约提醒
+            </view>
+            <text class="descrition">活动开启前10分钟提醒</text>
+          </view>
+        </view>
+      </block>
+    </block>
+    <!-- 有图的schedule -->
+
+  </view>
 </view>

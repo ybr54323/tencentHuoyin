@@ -1,147 +1,163 @@
 /* pages/inner.wxss */
 
 .inner-container {
-    position: relative;
-    width: 100%;
-    height: 1208rpx;
-    max-height: 1208rpx;
-    overflow: scroll;
-    background-size: 100% 1208rpx;
-    background-position: 0 0;
-    background-repeat: no-repeat;
+  position: relative;
+  width: 100%;
+  height: 1208rpx;
+  max-height: 1208rpx;
+  overflow: scroll;
+  background-size: 100% 1208rpx;
+  background-position: 0 0;
+  background-repeat: no-repeat;
 }
 
 .back-home-wrap {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 102rpx;
-    background-color: rgb(217, 178, 112, 0.6);
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
-    padding-left: 52rpx;
-    padding-right: 45rpx;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 102rpx;
+  background-color: rgb(217, 178, 112, 0.6);
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-left: 52rpx;
+  padding-right: 45rpx;
+  align-items: center;
 }
 
 .back-home-button {
-    /* position: absolute;
+  /* position: absolute;
     color:#881606;
     left: 52rpx;
     top: 23rpx; */
-    color: #fff;
-    line-height: 48rpx;
-    text-align: center;
-    font-size: 24rpx;
-    width: 168rpx;
-    height: 48rpx;
-    background-color: rgba(209, 93, 76, 0.8);
-    border-width: 3px;
-    border-color: rgb(122, 33, 11);
-    border-style: solid;
-    opacity: 0.6;
-    border-radius: 40rpx;
+  color: #fff;
+  line-height: 48rpx;
+  text-align: center;
+  font-size: 24rpx;
+  width: 168rpx;
+  height: 48rpx;
+  background-color: rgba(209, 93, 76, 0.8);
+  border-width: 3px;
+  border-color: rgb(122, 33, 11);
+  border-style: solid;
+  opacity: 0.6;
+  border-radius: 40rpx;
 }
 
 .change-role-button-wrap {
-    font-size: 22rpx;
-    color: #881606;
+  font-size: 22rpx;
+  color: #881606;
 }
 
 .schedule-list-wrap {
-    width: 100%;
-    max-height: 1020rpx;
-    overflow: scroll;
-    position: absolute;
-    top: 102rpx;
-
+  width: 100%;
+  max-height: 1020rpx;
+  overflow: scroll;
+  position: absolute;
+  top: 102rpx;
 }
 
 .schedule-item-wrap {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 31rpx 56rpx;
-    background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 31rpx 56rpx;
+  background-color: transparent;
+  position: relative;
+}
+
+.trigger-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 131rpx;
+  width: 131rpx;
+  max-height: 178rxp;
+  z-index: 2;
+  background-position: 49rpx 36rpx;
+  background-size: 32rpx;
+  background-repeat: no-repeat;
+  transition: all 0.3s;
+}
+
+.reverse {
+  transform: rotate(180deg);
 }
 
 .text-schedule-title {
-    color: #881606;
-    font-size: 26rpx;
-    margin-bottom: 10rpx;
+  color: #881606;
+  font-size: 26rpx;
+  margin-bottom: 10rpx;
 }
 
 .text-schedule-time {
-    font-size: 22rpx;
-    color: #4c0e05;
-    margin-bottom: 20rpx;
+  font-size: 22rpx;
+  color: #4c0e05;
+  margin-bottom: 20rpx;
 }
 
 .text-schedule-detail {
-    font-size: 20rpx;
-    color: #772418;
-    margin-bottom: 20rpx;
+  font-size: 20rpx;
+  color: #772418;
+  margin-bottom: 20rpx;
 }
 
 .book-schedule-wrap {
-    height: 38rpx;
-    line-height: 38rpx;
+  height: 38rpx;
+  line-height: 38rpx;
 }
 
 .book-schedule-button {
-    width: 127rpx;
-    height: 38rpx;
-    line-height: 38rpx;
-    background-image: linear-gradient(to bottom, #bd761b, #bd761b 50%, #d68d1f 50%, #d68d1f 100%);
-    border-radius: 20rpx;
-    font-size: 20rpx;
-    color: #fff;
-    text-align: center;
-    display: inline-block;
+  width: 127rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  background-image: linear-gradient(to bottom, #bd761b, #bd761b 50%, #d68d1f 50%, #d68d1f 100%);
+  border-radius: 20rpx;
+  font-size: 20rpx;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
 }
 
 .descrition {
-    margin-left: 13rpx;
-    font-size: 18rpx;
-    color: #85473e;
+  margin-left: 13rpx;
+  font-size: 18rpx;
+  color: #85473e;
 }
 
 /* 有海报的日程活动 */
-.text-schedule-big-title {
-    font-size: 100rpx;
-    color: #4c0e05;
-    margin-bottom: 17rpx;
 
+.text-schedule-big-title {
+  font-size: 100rpx;
+  color: #4c0e05;
+  margin-bottom: 17rpx;
 }
 
 .text-schedule-big-time {
-    font-size: 22rpx;
-    color: #4c0e05;
-    height: 50rpx;
-    border-bottom: 1px solid #d0ab8a;
-    margin-bottom: 33rpx;
+  font-size: 22rpx;
+  color: #4c0e05;
+  height: 50rpx;
+  border-bottom: 1px solid #d0ab8a;
+  margin-bottom: 33rpx;
 }
 
 .img-schedule-poster {
-    width: 654rpx;
-    max-width: 654rpx;
-    max-height: 379rpx;
-
+  width: 654rpx;
+  max-width: 654rpx;
+  max-height: 379rpx;
 }
 
 .text-schedule-sub-title {
-    font-size: 30rpx;
-    color: #881606;
-    margin-bottom: 18rpx;
-
+  font-size: 30rpx;
+  color: #881606;
+  margin-bottom: 18rpx;
 }
 
 .text-schedule-detail-btw {
-    color: #dd5207;
-    font-size: 22rpx;
-    display: inline-block;
-    padding-bottom: 2rpx;
-    border-bottom: 1px solid #dd5207;
-    margin-bottom: 28rpx;
+  color: #dd5207;
+  font-size: 22rpx;
+  display: inline-block;
+  padding-bottom: 2rpx;
+  border-bottom: 1px solid #dd5207;
+  margin-bottom: 28rpx;
 }

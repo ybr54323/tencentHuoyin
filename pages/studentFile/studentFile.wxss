@@ -1,171 +1,151 @@
 .student-file-container {
-    position: relative;
-    width: 100%;
-    height: 1208rpx;
-    max-height: 1208rpx;
-    background-position: 0 0;
-    background-repeat: no-repeat;
-    background-size: 100% 1208rpx;
-    padding: 40rpx 33rpx;
-    box-sizing: border-box;
-
+  position: relative;
+  width: 100%;
+  height: 1208rpx;
+  max-height: 1208rpx;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 100% 1208rpx;
+  padding: 40rpx 33rpx;
+  box-sizing: border-box;
 }
 
 .img-student-file-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
-
-.student-file-title-wrap {
-    position: relative;
-    /* border-bottom: 1px solid #702005; */
-    /* border-top: 8px solid #702005; */
-    height: 158rpx;
-}
-
-
-.student-filt-title {
-    width: 432rpx;
-    height: 150rpx;
-    background-position: 0 27rpx;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    display: inline-block;
-    margin-right: 44rpx;
-}
-
 
 .user-info-wrap {
-    width: 175rpx;
-    height: 150rpx;
-    display: inline-block;
-    margin-left: 20rpx;
+  position: absolute;
+  top: 40rpx;
+  right: 40rpx;
+  width: 175rpx;
+  height: 150rpx;
+  display: inline-block;
+  margin-left: 20rpx;
 }
 
 .img-user-avator {
-    width: 88rpx;
-    height: 88rpx;
-    max-width: 88rpx;
-    max-height: 88rpx;
-    margin-top: 19rpx;
-    margin-left: 40rpx;
+  width: 88rpx;
+  height: 88rpx;
+  max-width: 88rpx;
+  max-height: 88rpx;
+  margin-top: 19rpx;
+  margin-left: 40rpx;
 }
 
 .user-name {
-    font-size: 20rpx;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  font-size: 20rpx;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .student-file-main-warp {
-    width: 683rpx;
-    /* height: 633rpx; */
-    box-sizing: border-box;
-    padding-top: 44rpx;
-    position: relative;
-    padding-bottom: 39rpx;
-    max-height: 659rpx;
+  width: 683rpx;
+  /* height: 633rpx; */
+  box-sizing: border-box;
+  padding-top: 44rpx;
+  position: relative;
+  padding-bottom: 39rpx;
+  max-height: 659rpx;
 }
 
 .img-student-file-banner {
-    width: 100%;
-    max-height: 397rpx;
+  width: 100%;
+  max-height: 397rpx;
 }
 
 .name {
-    max-width: 523rpx;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 34rpx;
-    color: #4c0e05;
-    margin-top: 26rpx;
-    margin-bottom: 10rpx;
+  max-width: 523rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 34rpx;
+  color: #4c0e05;
+  margin-top: 26rpx;
+  margin-bottom: 10rpx;
 }
 
 .sub-name {
-    max-width: 523rpx;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-bottom: 38rpx;
-    font-size: 24rpx;
-    color: #4c0e05;
-
+  max-width: 523rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 38rpx;
+  font-size: 24rpx;
+  color: #4c0e05;
 }
 
 .date {
-    max-width: 523rpx;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 20rpx;
-    color: #4c0e05;
+  max-width: 523rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 20rpx;
+  color: #4c0e05;
 }
 
 .circal-date {
-    position: absolute;
-    right: 0;
-    bottom: 39rpx;
-    width: 150rpx;
-    height: 150rpx;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  right: 0;
+  bottom: 39rpx;
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .text-week {
-    font-size: 48rpx;
-    color: #85473e;
-    font-weight: bold;
+  font-size: 48rpx;
+  color: #85473e;
+  font-weight: bold;
 }
 
 .text-mm-dd {
-    font-size: 24rpx;
-    color: #4c0e05;
-
+  font-size: 24rpx;
+  color: #4c0e05;
 }
 
-
 .download-poster-wrap {
-    text-align: center;
-    max-width: 684rpx;
-    width: 683rpx;
-    margin-top: 29rpx;
-    box-sizing: border-box;
-    position: absolute;
-    bottom: 58rpx;
+  text-align: center;
+  max-width: 684rpx;
+  width: 683rpx;
+  margin-top: 29rpx;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 58rpx;
 }
 
 .button-download-poster1 {
-    width: 281rpx;
-    height: 51rpx;
-    text-align: center;
-    color: #fff;
-    box-sizing: border-box;
-    font-size: 24rpx;
-    line-height: 51rpx;
-    text-align: center;
-    border-radius: 20rpx;
-    background-image: linear-gradient(to bottom, #bc741b, #bc741b 50%, #d98e1f 50%, #d98e1f 100%);
-    margin-left: 50%;
-    transform: translateX(-50%);
+  width: 281rpx;
+  height: 51rpx;
+  text-align: center;
+  color: #fff;
+  box-sizing: border-box;
+  font-size: 24rpx;
+  line-height: 51rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  background-image: linear-gradient(to bottom, #bc741b, #bc741b 50%, #d98e1f 50%, #d98e1f 100%);
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 .button-back-home {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    margin-left: 10rpx;
-    width: 170rpx;
-    max-width: 170rpx;
-    height: 137rpx;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-left: 10rpx;
+  width: 170rpx;
+  max-width: 170rpx;
+  height: 137rpx;
 }

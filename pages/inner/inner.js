@@ -8,41 +8,19 @@ Page({
   data: {
     //模拟用户/玩家数据,活动数据
     todayActList: [],
-    mock: {
-      playerInfo: {
-        schedules: [{
-          id: 1,
-          title: "宇智波佐助【疾风传咒印】登场",
-          beginDate: "2019-11-29-5",
-          endDate: "2019-12-13-5",
-          message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
-        }, {
-          id: 2,
-          title: "宇智波佐助【疾风传咒印】登场",
-          beginDate: "2019-11-29-5",
-          endDate: "2019-12-13-5",
-          message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
-        }, {
-          id: 2,
-          title: "宇智波佐助【疾风传咒印】登场",
-          beginDate: "2019-11-29-5",
-          endDate: "2019-12-13-5",
-          message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
-        }, {
-          id: 2,
-          title: "宇智波佐助【疾风传咒印】登场",
-          beginDate: "2019-11-29-5",
-          endDate: "2019-12-13-5",
-          message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
-
-        }],
-
-      },
-    },
   },
   backHome() {
     wx.navigateTo({
       url: '../index/index',
+    })
+  },
+  handleOpenDetail(data) {
+    let index = data.currentTarget.dataset.index;
+    console.log(index);
+    let todayActList = this.data.todayActList;
+    todayActList[index].show ? todayActList[index].show = false : todayActList[index].show = true;
+    this.setData({
+      todayActList,
     })
   },
   /**
@@ -68,15 +46,32 @@ Page({
     console.log(totalActList);
 
     totalActList.forEach((monthActList, index) => {
+      console.log(monthActList);
       monthActList.actList.forEach((act, i) => {
         console.log("t2", t2);
-        console.log("act.endtimeStamp:", act.endtimeStamp);
         console.log("act.startTimestamp:", act.startTimestamp);
-
-        if (act.endtimeStamp >= t2 && act.startTimestamp < t2) {
+        console.log("act.endtimeStamp:", act.endtimeStamp);
+        //注意。。。。为了应付他给我返回开始时间跟结束时间一样的活动，除个2
+        if (act.endtimeStamp >= (t2 / 2) && act.startTimestamp < t2) {
+          act.show = false;
           temp.push(act);
+          console.log(act);
         }
       })
+    })
+    //应付无数据
+    temp.push({
+      actTime: "11月1日23:30至11月5日6:00",
+      date: 31,
+      detail: "文字限制在90个字内",
+      endtimeStamp: 1577773402000,
+      importance: 1,
+      month: 11,
+      picture: "../../images/banner_img.png",
+      startTimestamp: 1577773402000,
+      title: "文字限制在20个字内",
+      year: 2019,
+      show: false,
     })
     this.setData({
       todayActList: temp

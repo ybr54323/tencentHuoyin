@@ -3,9 +3,7 @@
 const app = getApp()
 Page({
   data: {
-    app: app,
-    motto: 'Hello World',
-    userInfo: {},
+    // 控制弹窗是否打开的状态
     bindRole: false,
     //模拟用户/玩家数据
     playerInfo: {
@@ -35,7 +33,6 @@ Page({
         message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
       }]
     },
-    actList: [],
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     //页面的大 月份
@@ -87,13 +84,95 @@ Page({
       name: "六",
       color: true,
     }],
-    nowLi: '',
-    index: 1,
     // 月份列表
     monthList: [],
+
+  },
+
+  // 处理swiper的current值
+  handleSwiperCurrent() {
+    let m = this.month;
+    let y = this.year;
+    return m == 2019 ? m : m + 12;
+  },
+  onLoad: function() {
+    // 生成2019年1月至2020年2月的所有日期对象，只拉一次
+    // 先从缓存中拿
+    let monthList = wx.getStorageSync("monthList");
+    let totalActList = wx.getStorageInfoSync("totalActList");
+    if (monthList instanceof Array && totalActList instanceof Array) {
+      this.setData({
+        monthList,
+      })
+      getApp().globalData.totalActList = totalActList;
+    } else {
+      this.initCalendar()
+    }
+  },
+  // 打开绑定角色界面
+  handleOpenRoleBind() {
+    this.setData({
+      bindRole: !this.data.bindRole
+    })
+    console.log(this.data.bindRole)
+  },
+  handleCloseBindRole() {
+    this.setData({
+      bindRole: !this.data.bindRole
+    })
+  },
+
+  handleDateTap(e) {
+    let y, m, d;
+    // 当前点击的日期对象
+    let paramObj = e.currentTarget.dataset;
+    try {
+      y = paramObj.year;
+      m = paramObj.month;
+      d = paramObj.date;
+    } catch (error) {
+      console.warn(error.message);
+    }
+    console.warn(y, m, d);
+
+    wx.navigateTo({
+      url: `../inner/inner?year=${y}&month=${m}&date=${d}`,
+
+    })
+  },
+  /**
+   * 
+   * @param {d} e 跳转内页
+   */
+  toInner() {
+    wx.navigateTo({
+      url: '../inner/inner',
+    })
+  },
+
+  /**
+   * 监控滑动，改变页面上的月份，月份英文名，年份
+   */
+  changeMonth(e) {
+    // index对应0-13，对应19年1月至2020年2月
+    const index = e.detail.current;
+    if (index <= 11) {
+      this.setData({
+        month: index,
+        year: 2019,
+      })
+      return
+    } else {
+      //2020年了
+      this.setData({
+        month: index,
+        year: 2020,
+      })
+    }
   },
   /**
    * 插入2019年1月至2020年2月所有的日期对象
+   * 并把对应日期的活动插入到monthList上对应的日期，方便生成日历，标识日期，传参数等
    */
   initCalendar() {
     let monthList = [];
@@ -109,7 +188,7 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
-        let actList = res.data.actlist_02[0].actassets_54;
+        let actList = res.data.actassets_54;
         actList.forEach(act => {
           //
           let actTime = act.acttime_de;
@@ -145,9 +224,8 @@ Page({
           console.log(obj);
 
           let tal = app.globalData.totalActList;
-          
-          tal[month].actList.push(obj);
 
+          tal[month].actList.push(obj);
           getApp().globalData.totalActList = tal;
 
           let monthList = _this.data.monthList;
@@ -168,85 +246,28 @@ Page({
         })
       },
       fail: function(res) {
-        console.log(res)
+        wx.showToast({
+          title: res,
+        })
       },
-      complete: function(res) {
-        // console.log(res)
-      },
+      complete: function(res) {},
     })
-    this.setData({
-      monthList
-    })
-  },
-  // 处理swiper的current值
-  handleSwiperCurrent() {
-    let m = this.month;
-    let y = this.year;
-    return m == 2019 ? m : m + 12;
-  },
-  onLoad: function() {
-    // 生成2019年1月至2020年2月的所有日期对象
-    this.initCalendar();
-
-  },
-  // 打开绑定角色界面
-  handleOpenRoleBind() {
-    this.setData({
-      bindRole: !this.data.bindRole
-    })
-    console.log(this.data.bindRole)
-  },
-  handleCloseBindRole() {
-    this.setData({
-      bindRole: !this.data.bindRole
-    })
-  },
-  handleDateTap(e) {
-    let y, m, d;
-    // 当前点击的日期对象
-    let paramObj = e.currentTarget.dataset;
-    try {
-      y = paramObj.year;
-      m = paramObj.month;
-      d = paramObj.date;
-    } catch (error) {
-      console.warn(error.message);
-    }
-    console.warn(y, m, d);
-
-    wx.navigateTo({
-      url: `../inner/inner?year=${y}&month=${m}&date=${d}`,
-      
-    })
-  },
-  /**
-   * 
-   * @param {d} e 跳转内页
-   */
-  toInner() {
-    wx.navigateTo({
-      url: '../inner/inner', //跳转的路径
-    })
-  },
-  /**
-   * 监控滑动，改变页面上的月份，月份英文名，年份
-   */
-  changeMonth(e) {
-    // index对应0-13，对应19年1月至2020年2月
-    const index = e.detail.current;
-    if (index <= 11) {
-      this.setData({
-        month: index,
-        year: 2019,
+    _this.setData({
+      monthList,
+    }, () => {
+      wx.setStorageSync("totalActList", app.globalData.totalActList);
+      wx.setStorage({
+        key: "monthList",
+        data: monthList,
+        success() {},
+        fail(res) {
+          wx.showToast({
+            title: res,
+          })
+        }
       })
-      return
-    } else {
-      //2020年了
-      this.setData({
-        month: index,
-        year: 2020,
-      })
-    }
+    })
+    //缓存
   },
   /**
    * @param {*} m int 0-13，可生成19年1月到2020年2月所有月份所有日期对象，生成带有查询参数(date,month,year,week)的日期对象

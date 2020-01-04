@@ -1,7 +1,9 @@
 const util = require('./utils/util');
 //app.js
 App({
+  
   onLaunch: function () {
+    // 生成一个长度为14的数组来按0-13月（19年1月至20年2月）来存放活动数据
     for (let i = 0; i < 14; i++) {
       this.globalData.totalActList.push({
         year: 2019,
@@ -9,6 +11,9 @@ App({
         actList: []
       })
     }
+   
+
+
     // 获取json
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
