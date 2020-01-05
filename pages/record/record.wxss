@@ -13,6 +13,46 @@
   height: 100%;
 }
 
+.style-switch-wrap {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 805rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+.text-year {
+  position: absolute;
+  left: 187rpx;
+  top: 673rpx;
+  font-size: 32rpx;
+  color: #4c0e05;
+  font-weight: bold;
+}
+
+.text-month {
+  position: absolute;
+  top: 717rpx;
+  left: 65rpx;
+  font-size: 25rpx;
+  color: #4c0e05;
+}
+
+.button-switch-style {
+  width: 216rpx;
+  height: 59rpx;
+  text-align: center;
+  background-color: #cfa668;
+  color: #7d461c;
+  line-height: 59rpx;
+}
+
+.active {
+  background-color: #cc6f2c;
+  color: #fff;
+}
+
 .user-info-wrap {
   position: absolute;
   top: 0;

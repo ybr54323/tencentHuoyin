@@ -11,11 +11,19 @@ Page({
     style: 1,
     userInfo: app.globalData.mock.userInfo,
     word1: "刷新最高连胜纪录!!",
-    word2: "最新纪录14场"
+    word2: "最新纪录14场",
+    year: new Date().getFullYear(),
+    month: new Date().getMonth(),
+    date: new Date().getDate(),
+    week: ["日", "一", "二", "三", "四", "五", "六"][new Date().getDay()]
   },
-  // 判断是否数字
-  isNumber(item) {
-    return 'gggg'
+
+  switch (e) {
+    console.log(e);
+    let style = e.currentTarget.dataset.style;
+    this.setData({
+      style,
+    })
   },
   /**
    * 生命周期函数--监听页面加载
