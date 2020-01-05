@@ -1,0 +1,75 @@
+/* pages/record.wxss */
+
+/* 3种风格 */
+
+.record-container {
+  width: 100%;
+  height: 1207rpx;
+  position: relative;
+}
+
+.img-record-bg {
+  width: 100%;
+  height: 100%;
+}
+
+.user-info-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 240rpx;
+  height: 182rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-user-avator {
+  width: 88rpx;
+  height: 88rpx;
+}
+
+.user-name {
+  margin-top: 12rpx;
+  max-width: 100%;
+  font-size: 20rpx;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-record-style1-wrap {
+  position: absolute;
+  top: 207rpx;
+  left: 45rpx;
+  line-height: 1;
+  width: 43rpx;
+  height: 460rpx;
+  font-size: 40rpx;
+  color: #4c0e05;
+  max-height: 460rpx;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.text-style1 {
+  text-align: center;
+  height: 45rpx;
+}
+
+.big {
+  top: 277rpx;
+  left: 87rpx;
+  width: 105rpx;
+  height: 390rpx;
+  font-weight: bolder;
+  font-size: 53rpx;
+  text-align: center;
+}
+
+.text-number {
+  color: #df4900;
+  font-size: 73rpx;
+}

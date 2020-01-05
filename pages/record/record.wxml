@@ -1,0 +1,47 @@
+<!-- 3种风格的海报 -->
+<wxs module="m1">
+  function isNumber(item) {
+    return isNaN(item)
+  }
+
+  module.exports.isNumber = isNumber;
+</wxs>
+<view class="record-container">
+  <block wx:if="{{style==1}}">
+    <image class="img-record-bg" src="../../images/style1.png" />
+    <view class="user-info-wrap">
+      <image class="img-user-avator" src="{{userInfo.avatarUrl}}"></image>
+      <view class="user-name">
+        {{userInfo.nickName}}
+      </view>
+    </view>
+    <view class="text-record-style1-wrap">
+      <block wx:for="{{word1}}">
+        {{item}}
+      </block>
+    </view>
+    <view class="text-record-style1-wrap big">
+      <!-- <block wx:for="{{word2}}">
+        <block wx:if="{{m1.isNumber(item)==true}}">
+          <text class="text-big">{{item}}</text>
+        </block>
+        <block wx:else>
+          <text class="text-number">{{item}}</text>
+        </block>
+      </block> -->
+      <block wx:for="{{word2}}">
+        <block wx:if="{{m1.isNumber(item)}}">
+          {{item}}
+        </block>
+        <block wx:else>
+          <text class="text-number">{{item}}</text>
+        </block>
+      </block>
+    </view>
+  </block>
+  <block>
+  </block>
+  <block>
+
+  </block>
+</view>

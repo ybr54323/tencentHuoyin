@@ -12,7 +12,7 @@
           <view class="text-record-date">2019年12月14日</view>
           <view class="text-record-detail">XXX成功招募宇智波佐助[疾风传咒印]，这是你招募的第192个忍者。</view>
         </view>
-        <view class="button-check">
+        <view class="button-check" bindtap="toStudentFile">
           查看详情
         </view>
       </block>

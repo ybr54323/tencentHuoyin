@@ -20,6 +20,11 @@ Page({
     showRecord: true,
 
   },
+  toStudentFile() {
+    wx.navigateTo({
+      url: '../../studentFile/studentFile',
+    })
+  },
   handleOpenBindRole() {
     this.setData({
       bindRole: true
