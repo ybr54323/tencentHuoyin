@@ -13,6 +13,7 @@ page {
   background-size: 100% 1208rpx;
   padding: 40rpx 33rpx;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .img-student-file-bg {
@@ -158,9 +159,17 @@ page {
 .button-back-home {
   position: absolute;
   top: 1126rpx;
-  left:670rpx;
+  left: 670rpx;
   max-width: 63rpx;
   font-size: 28rpx;
-  color:#fff6d7;
+  color: #fff6d7;
   font-weight: bold;
+}
+
+.qrcode1, .qrcode2 {
+  position: absolute;
+  top: 908rpx;
+  left: 557rpx;
+  width: 161rpx;
+  height: 161rpx;
 }

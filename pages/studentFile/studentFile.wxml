@@ -1,28 +1,29 @@
 <view class="student-file-container">
-	<image class="img-student-file-bg" src="../../images/student_file_bg.png"></image>
-	<view class="user-info-wrap">
-		<image class="img-user-avator" src="{{userInfo.avatarUrl}}"></image>
-		<view class="user-name">
-			{{userInfo.nickName}}
-		</view>
-	</view>
-	<view class="student-file-main-warp">
-		<image class="img-student-file-banner" src="../../images/banner_img.png"></image>
-		<view class="name">宇智波佐助 【疾风传诅咒】</view>
-		<view class="sub-name">“天之咒印！！疾驰的黑色雷电”</view>
-		<view class="date">Wednesday,December 25,2019</view>
-		<view class="circal-date">
-			<text class="text-week">Wed</text>
-			<text class="text-mm-dd">12月25日</text>
-		</view>
-	</view>
-	<view class="download-poster-wrap">
-		<view bindtap="handlePhotoSaved" class="button-download-poster1">
-			保存
-		</view>
-	</view>
+  <image class="img-student-file-bg" src="../../images/student_file_bg.png"></image>
+  <view class="user-info-wrap">
+    <image class="img-user-avator" src="{{userInfo.avatarUrl}}"></image>
+    <view class="user-name">
+      {{userInfo.nickName}}
+    </view>
+  </view>
+  <view class="student-file-main-warp">
+    <image class="img-student-file-banner" src="../../images/banner_img.png"></image>
+    <view class="name">宇智波佐助 【疾风传诅咒】</view>
+    <view class="sub-name">“天之咒印！！疾驰的黑色雷电”</view>
+    <view class="date">Wednesday,December 25,2019</view>
+    <view class="circal-date">
+      <text class="text-week">Wed</text>
+      <text class="text-mm-dd">12月25日</text>
+    </view>
+  </view>
+  <view class="download-poster-wrap">
+    <view bindtap="handlePhotoSaved" class="button-download-poster1">
+      保存
+    </view>
+  </view>
 </view>
+<image src="../../images/qrcode.png" class="qrcode2" />
 <view class="button-back-home" bindtap="toHome">
-	返回首页
+  返回首页
 </view>
-<painter customStyle='position: absolute; top: -9999rpx;' palette="{{template}}" bind:imgOK="onImgOK" widthPixels="1000" />
+<painter customStyle='position:fixed;top:-9999rpx' palette="{{template}}" bind:imgOK="onImgOK" widthPixels="1000" />

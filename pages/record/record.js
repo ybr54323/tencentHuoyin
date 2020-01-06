@@ -21,8 +21,6 @@ Page({
     month: new Date().getMonth(),
     date: new Date().getDate(),
     week: ["日", "一", "二", "三", "四", "五", "六"][new Date().getDay()],
-    // 监控保存状态，若正在保存不能重复保存
-    saving: false,
     // 风格1-3的图片路径
     image1: "",
     image2: "",
@@ -38,12 +36,13 @@ Page({
     //绘制风格1的海报需要的下标
     index: "",
     //风格3的海报需要的下表
-    index3: ""
+    index3: "",
+    currentTemplate: ""
   },
   // 监控3个style的海报状态，canSave为true才能保存
   onImgOK(e) {
     const _this = this;
-    let style = e.currentTarget.dataset.style
+    let style = parseInt(e.currentTarget.dataset.style);
     let path = e.detail.path
     switch (parseInt(style)) {
       case 1:
@@ -71,7 +70,7 @@ Page({
     let style = this.data.style;
     switch (style) {
       case 1:
-        if (!this.data.canSave1 && this.saving == false) {
+        if (!this.data.canSave1) {
           wx.showToast({
             title: '请请稍再试，海报在生成中',
             icon: "loading"
@@ -82,7 +81,7 @@ Page({
         this.savePhoto(this.data.image1)
         break;
       case 2:
-        if (!this.data.canSave2 && this.saving == false) {
+        if (!this.data.canSave2) {
           wx.showToast({
             title: '请请稍再试，海报在生成中',
             icon: "loading"
@@ -93,7 +92,7 @@ Page({
         this.savePhoto(this.data.image2)
         break;
       case 3:
-        if (!this.data.canSave3 && this.saving == false) {
+        if (!this.data.canSave3) {
           wx.showToast({
             title: '请请稍再试，海报在生成中',
             icon: "loading"
@@ -111,9 +110,7 @@ Page({
       title: '正在保存...',
       mask: true
     })
-    this.setData({
-      saving: true
-    })
+
     wx.saveImageToPhotosAlbum({
       filePath: path,
       success: (res) => {
@@ -121,54 +118,62 @@ Page({
           title: '保存成功',
           icon: 'none'
         })
-        setTimeout(() => {
-          this.setData({
-            visible: false
-          })
-        }, 300)
-        this.setData({
-          saving: false
-        })
+
       },
       fail: (res) => {
         wx.getSetting({
           success: res => {
             let authSetting = res.authSetting
             if (!authSetting['scope.writePhotosAlbum']) {
-              this.setData({
-                isModal: true
-              })
+
             }
           }
         })
         setTimeout(() => {
           wx.hideLoading()
-          this.setData({
-            saving: false
-          })
+
         }, 300)
       }
     })
   },
-
   switch (e) {
     console.log(e);
     let style = parseInt(e.currentTarget.dataset.style);
     this.setData({
-      style,
+      style
     })
+    // switch (style) {
+    //   case 1:
+    //     this.setData({
+    //       currentTemplate: this.data.template1,
+    //       style,
+    //     })
+    //     break;
+    //   case 2:
+    //     this.setData({
+    //       currentTemplate: this.data.template2,
+    //       style,
+    //     })
+    //     break;
+    //   case 3:
+    //     this.setData({
+    //       currentTemplate: this.data.template3,
+    //       style,
+    //     })
+    //     break;
+    // }
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
     const _this = this;
     let nickName = app.globalData.mock.userInfo.nickName;
     let avatarUrl = app.globalData.mock.userInfo.avatarUrl;
@@ -179,6 +184,7 @@ Page({
     this.setData({
       userInfo,
     })
+    // 生成3种风格的海报模版json文件
     //风格1
     let sty1 = new style1().palette();
     console.log(sty1)
@@ -391,9 +397,8 @@ Page({
       template1: sty1
     });
 
-
+    // 风格2
     let sty2 = new style2().palette();
-
     console.log(sty2);
     sty2.views[0].url = "../../images/style2.png"
     //传用户头像图片url
@@ -480,11 +485,12 @@ Page({
         }
       })
     }
+
     this.setData({
       template2: sty2
     });
 
-
+    // 风格3
     let sty3 = new style3().palette();
     console.log(sty3)
 
@@ -617,7 +623,9 @@ Page({
     this.setData({
       template3: sty3
     });
-
+    this.setData({
+      currentTemplate: this.data.template1
+    })
   },
   // 返回首页
   toHome() {
@@ -628,42 +636,42 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

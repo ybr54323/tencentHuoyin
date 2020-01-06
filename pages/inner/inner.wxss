@@ -87,7 +87,7 @@
   left: 94rpx;
   position: absolute;
   max-width: 540rpx;
-  max-height: 530rpx;
+  max-height: 500rpx;
   overflow: scroll;
   box-sizing: border-box;
 }
