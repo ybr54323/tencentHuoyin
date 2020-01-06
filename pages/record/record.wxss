@@ -1,6 +1,10 @@
 /* pages/record.wxss */
 
 /* 3种风格 */
+page {
+  width: 100%;
+  overflow-x: hidden;
+}
 
 .record-container {
   width: 100%;
@@ -90,8 +94,9 @@
   font-size: 40rpx;
   color: #4c0e05;
   max-height: 460rpx;
-  /* display: flex;
-  flex-direction: column; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bolder;
 }
 
 .text-style1 {
@@ -112,4 +117,146 @@
 .text-number {
   color: #df4900;
   font-size: 73rpx;
+}
+
+.button-download-poster {
+  position: absolute;
+  bottom: 58rpx;
+  width: 281rpx;
+  height: 51rpx;
+  text-align: center;
+  color: #fff;
+  box-sizing: border-box;
+  font-size: 24rpx;
+  line-height: 51rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  background-image: linear-gradient(to bottom, #bc741b, #bc741b 50%, #d98e1f 50%, #d98e1f 100%);
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.text-year2 {
+  position: absolute;
+  top: 248rpx;
+  left: 112rpx;
+  font-size: 28rpx;
+  max-width: 378rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #85473e;
+
+}
+
+.text-month2 {
+  position: absolute;
+  top: 286rpx;
+  left: 84rpx;
+  font-size: 28rpx;
+  color: #85473e;
+  max-width: 389rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-date2 {
+  position: absolute;
+  top: 321rpx;
+  left: 81rpx;
+
+  line-height: 1;
+  text-align: center;
+  font-size: 237rpx;
+  color: #85473e;
+}
+
+.text-record2 {
+  position: absolute;
+  top: 597rpx;
+  left: 61rpx;
+  max-width: 319rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #85473e;
+  font-weight: bolder;
+}
+
+.text-sub-record2 {
+  position: absolute;
+  top: 645rpx;
+  left: 61rpx;
+  font-size: 38rpx;
+  color: #4c0e05;
+  line-height: 1;
+  max-width: 330rpx;
+  max-height: 80rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #85473e;
+  font-weight: bolder;
+}
+
+.user-info-wrap3 {
+  position: absolute;
+  top: 645rpx;
+  right: 0;
+  width: 240rpx;
+  height: 182rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-style3-avator {
+  margin-left: 100rpx;
+}
+
+.text-record3 {
+  position: absolute;
+  top: 348rpx;
+  left: 37rpx;
+  max-width: 157rpx;
+
+}
+
+.text-number3 {
+  font-size: 83rpx;
+  color: #df4900;
+
+}
+
+.text-sub-record3 {
+  position: absolute;
+  top: 348rpx;
+  right: 0;
+  color: #571512;
+  font-size: 34rpx;
+  max-width: 204rpx;
+}
+.qrcode3 {
+  position: absolute;
+  top:901rpx;
+  left:37rpx;
+  width: 161rpx;
+  height: 161rpx;
+
+}
+
+.qrcode1,.qrcode2 {
+  position: absolute;
+  top:901rpx;
+  left:557rpx;
+  width: 161rpx;
+  height: 161rpx;
+
+}
+.button-back-home {
+  position: absolute;
+  top: 1126rpx;
+  left:670rpx;
+  max-width: 63rpx;
+  font-size: 28rpx;
+  color:#fff6d7;
+  font-weight: bold;
 }

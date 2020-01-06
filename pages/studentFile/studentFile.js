@@ -1,3 +1,4 @@
+// 学员档案1 忍者海报
 import poster1 from '../../palette/poster1';
 // pages/studentFile/studentFile.js
 Page({
@@ -76,9 +77,9 @@ Page({
     })
   },
   // 回到首页
-  handleBackHome() {
+  toHome() {
     wx.navigateTo({
-      url: '../index/index',
+      url: '../../pages/index/index',
     })
   },
   /**

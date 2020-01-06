@@ -1,121 +1,121 @@
 <!-- 活动内页 -->
 <view class="inner-container img-bg">
-  <!-- 背景图 -->
-  <image class="img-bg" src="../../images/bg.png"></image>
-  <!-- 玩家记录弹窗 -->
-  <view class="record-container" wx:if="{{showRecord==true&&mileStoneList.length>0}}">
-    <view class="record-wrap">
-      <view class="button-close-bind-role" catchtap="handleCloseRecord">X</view>
-      <block wx:if="{{mileStoneList.length==1}}">
-        <image class="img-record-bg" src="../../images/record_bg.png"></image>
-        <view class="record-text-wrap">
-          <view class="text-record-date">2019年12月14日</view>
-          <view class="text-record-detail">XXX成功招募宇智波佐助[疾风传咒印]，这是你招募的第192个忍者。</view>
-        </view>
-        <view class="button-check" bindtap="toStudentFile">
-          查看详情
-        </view>
-      </block>
-      <block wx:if="{{mileStoneList.length>1}}">
-        <image class="img-record-list-bg" src="../../images/record_bg2.png"></image>
-        <view class="record-list-wrap">
-          <view class="record-list-text-wrap">
-            <view class="text-record-date">2019年12月14日</view>
-            <view class="text-record-detail">XXX成功招募宇智波佐助[疾风传咒印]，这是你招募的第192个忍者。</view>
-            <view class="button-list-check">
-              查看详情
-            </view>
-            <view class="box-border-bottom"></view>
-          </view>
-          <view class="record-list-text-wrap">
-            <view class="text-record-date">2019年12月14日</view>
-            <view class="text-record-detail">XXX成功获得超影段位！</view>
-            <view class="button-list-check" bindtap="toRecord">
-              查看详情
-            </view>
-            <view class="box-border-bottom"></view>
-          </view>
-        </view>
-      </block>
-    </view>
-  </view>
-  <!-- 绑定角色弹窗 -->
-  <bind-role bind:closeBindRole="handleCloseBindRole" wx:if="{{bindRole}}"></bind-role>
-  <!-- 无活动显示狗图 -->
-  <image wx:if="{{todayActList.length==0}}" class="img-no-activity" src="../../images/no_activity.png"></image>
-  <!-- 顶栏 -->
-  <view class="back-home-wrap">
-    <view bindtap="backHome" class="back-home-button">返回首页</view>
-    <view class="change-role-button-wrap">
-      <text>xx大区，xx角色</text>
-      <text bindtap="handleOpenBindRole"> 【切换角色】</text>
-    </view>
-  </view>
-  <!-- 活动列表 -->
-  <view class="schedule-list-wrap">
-    <!-- 活动的importance 为0 普通活动，没带图的，为1就是大活动，带活动介绍图 -->
-    <block wx:for="{{todayActList}}" wx:key="index">
-      <block wx:if="{{item.importance==0}}">
-        <view class="schedule-item-wrap">
-          <view class="trigger-button img-arrow {{item.show==false?'reverse':''}}" data-index="{{index}}" bindtap="handleOpenDetail">
-          </view>
-          <view class="text-schedule-title">
-            {{item.title}}
-          </view>
-          <view class="text-schedule-time">
-            {{item.actTime}}
-          </view>
-          <!-- 详细detail可以切换是否显示 -->
-          <view wx:if="{{item.show}}" class="text-schedule-detail">
-            {{item.detail}}
-          </view>
-          <view class="book-schedule-wrap">
-            <view class="book-schedule-button {{item.order==true?'order':''}}">
-              {{item.order==true?'已预约':'预约提醒'}}
-            </view>
-            <text class="descrition">活动开启前10分钟提醒</text>
-          </view>
-        </view>
-      </block>
-      <!-- 大活动 -->
-      <block wx:if="{{item.importance==1}}">
-        <view class="schedule-item-wrap">
-          <view class="trigger-button img-arrow {{item.show==false?'reverse':''}}" data-index="{{index}}" bindtap="handleOpenDetail">
-          </view>
-          <block wx:if="{{item.show==false}}">
-            <view class="text-schedule-title">
-              {{item.title}}
-            </view>
-            <view class="text-schedule-time">
-              {{item.actTime}}
-            </view>
-          </block>
-          <block wx:if="{{item.show==true}}">
-            <view class="text-schedule-big-title">
-              木叶情报
-            </view>
-            <view class="text-schedule-big-time">
-              {{item.actTime}}
-            </view>
-            <image src="../../images/banner_img.png" class="img-schedule-poster">
-            </image>
-            <view class="text-schedule-sub-title">
-              {{item.title}}
-            </view>
-            <view class="text-schedule-detail">
-              {{item.detail}}</view>
-            <view class="text-schedule-detail-btw">
-              获取方式清前往游戏内查看
-            </view>
-          </block>
-          <view class="book-schedule-wrap">
-            <view class="book-schedule-button {{item.order==true?'order':''}}">
-              {{item.order==true?'已预约':'预约提醒'}}
-            </view>
-            <text class="descrition">活动开启前10分钟提醒</text>
-          </view>
-        </view>
-      </block>
-    </block>
-  </view>
+	<!-- 背景图 -->
+	<image class="img-bg" src="../../images/bg.png"></image>
+	<!-- 玩家记录弹窗 -->
+	<view class="record-container" wx:if="{{showRecord==true&&mileStoneList.length>0}}">
+		<view class="record-wrap">
+			<view class="button-close-bind-role" catchtap="handleCloseRecord">X</view>
+			<block wx:if="{{mileStoneList.length==1}}">
+				<image class="img-record-bg" src="../../images/record_bg.png"></image>
+				<view class="record-text-wrap">
+					<view class="text-record-date">2019年12月14日</view>
+					<view class="text-record-detail">XXX成功招募宇智波佐助[疾风传咒印]，这是你招募的第192个忍者。</view>
+				</view>
+				<view class="button-check" bindtap="toStudentFile">
+					查看详情
+				</view>
+			</block>
+			<block wx:if="{{mileStoneList.length>1}}">
+				<image class="img-record-list-bg" src="../../images/record_bg2.png"></image>
+				<view class="record-list-wrap">
+					<view class="record-list-text-wrap">
+						<view class="text-record-date">2019年12月14日</view>
+						<view class="text-record-detail">XXX成功招募宇智波佐助[疾风传咒印]，这是你招募的第192个忍者。</view>
+						<view class="button-list-check" bindtap="toRecord">
+							查看详情
+						</view>
+						<view class="box-border-bottom"></view>
+					</view>
+					<view class="record-list-text-wrap">
+						<view class="text-record-date">2019年12月14日</view>
+						<view class="text-record-detail">XXX成功获得超影段位！</view>
+						<view class="button-list-check" bindtap="toStudentFile">
+							查看详情
+						</view>
+						<view class="box-border-bottom"></view>
+					</view>
+				</view>
+			</block>
+		</view>
+	</view>
+	<!-- 绑定角色弹窗 -->
+	<bind-role bind:closeBindRole="handleCloseBindRole" wx:if="{{bindRole}}"></bind-role>
+	<!-- 无活动显示狗图 -->
+	<image wx:if="{{todayActList.length==0}}" class="img-no-activity" src="../../images/no_activity.png"></image>
+	<!-- 顶栏 -->
+	<view class="back-home-wrap">
+		<view bindtap="backHome" class="back-home-button">返回首页</view>
+		<view class="change-role-button-wrap">
+			<text>xx大区，xx角色</text>
+			<text bindtap="handleOpenBindRole"> 【切换角色】</text>
+		</view>
+	</view>
+	<!-- 活动列表 -->
+	<view class="schedule-list-wrap">
+		<!-- 活动的importance 为0 普通活动，没带图的，为1就是大活动，带活动介绍图 -->
+		<block wx:for="{{todayActList}}" wx:key="index">
+			<block wx:if="{{item.importance==0}}">
+				<view class="schedule-item-wrap">
+					<view class="trigger-button img-arrow {{item.show==false?'reverse':''}}" data-index="{{index}}" bindtap="handleOpenDetail">
+					</view>
+					<view class="text-schedule-title">
+						{{item.title}}
+					</view>
+					<view class="text-schedule-time">
+						{{item.actTime}}
+					</view>
+					<!-- 详细detail可以切换是否显示 -->
+					<view wx:if="{{item.show}}" class="text-schedule-detail">
+						{{item.detail}}
+					</view>
+					<view class="book-schedule-wrap">
+						<view class="book-schedule-button {{item.order==true?'order':''}}">
+							{{item.order==true?'已预约':'预约提醒'}}
+						</view>
+						<text class="descrition">活动开启前10分钟提醒</text>
+					</view>
+				</view>
+			</block>
+			<!-- 大活动 -->
+			<block wx:if="{{item.importance==1}}">
+				<view class="schedule-item-wrap">
+					<view class="trigger-button img-arrow {{item.show==false?'reverse':''}}" data-index="{{index}}" bindtap="handleOpenDetail">
+					</view>
+					<block wx:if="{{item.show==false}}">
+						<view class="text-schedule-title">
+							{{item.title}}
+						</view>
+						<view class="text-schedule-time">
+							{{item.actTime}}
+						</view>
+					</block>
+					<block wx:if="{{item.show==true}}">
+						<view class="text-schedule-big-title">
+							木叶情报
+						</view>
+						<view class="text-schedule-big-time">
+							{{item.actTime}}
+						</view>
+						<image src="../../images/banner_img.png" class="img-schedule-poster">
+						</image>
+						<view class="text-schedule-sub-title">
+							{{item.title}}
+						</view>
+						<view class="text-schedule-detail">
+							{{item.detail}}</view>
+						<view class="text-schedule-detail-btw">
+							获取方式清前往游戏内查看
+						</view>
+					</block>
+					<view class="book-schedule-wrap">
+						<view class="book-schedule-button {{item.order==true?'order':''}}">
+							{{item.order==true?'已预约':'预约提醒'}}
+						</view>
+						<text class="descrition">活动开启前10分钟提醒</text>
+					</view>
+				</view>
+			</block>
+		</block>
+	</view>
 </view>

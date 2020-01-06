@@ -45,6 +45,12 @@ Page({
       url: '../index/index',
     })
   },
+  //去学员档案---获得忍者
+  toStudentFile() {
+    wx.navigateTo({
+      url: '../../pages/record/record',
+    })
+  },
   // 去学员档案
   toRecord() {
     wx.navigateTo({

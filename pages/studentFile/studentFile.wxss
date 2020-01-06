@@ -154,3 +154,13 @@ page {
   max-width: 170rpx;
   height: 137rpx;
 }
+
+.button-back-home {
+  position: absolute;
+  top: 1126rpx;
+  left:670rpx;
+  max-width: 63rpx;
+  font-size: 28rpx;
+  color:#fff6d7;
+  font-weight: bold;
+}
