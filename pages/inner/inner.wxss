@@ -83,15 +83,12 @@
 
 .record-list-wrap {
   overflow-x: hidden;
-
-  top: 0;
-  left: 0;
+  top: 77rpx;
+  left: 94rpx;
   position: absolute;
   max-width: 540rpx;
-  max-height: 545rpx;
+  max-height: 530rpx;
   overflow: scroll;
-  padding-top: 77rpx;
-  padding-left: 94rpx;
   box-sizing: border-box;
 }
 
