@@ -1,6 +1,11 @@
 //index.js
 //获取应用实例
 const app = getApp()
+wx.setEnableDebug({
+
+  enableDebug: true
+
+})
 Page({
   data: {
     // 控制弹窗是否打开的状态
@@ -101,11 +106,17 @@ Page({
     let monthList = wx.getStorageSync("monthList");
     let totalActList = wx.getStorageInfoSync("totalActList");
     if (monthList instanceof Array && totalActList instanceof Array) {
+      wx.showToast({
+        title: '有缓存',
+      })
       this.setData({
         monthList,
       })
       getApp().globalData.totalActList = totalActList;
     } else {
+      wx.showToast({
+        title: '无缓存',
+      })
       this.initCalendar()
     }
   },
@@ -170,11 +181,23 @@ Page({
       })
     }
   },
+  formatTime(date) {
+    var time = date == null ? "" : Date.parse(date.replace(/-/g, '/'));
+    var date = new Date(time);
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    return [year, month, day].map(formatNumber).join('/');
+  },
   /**
    * 插入2019年1月至2020年2月所有的日期对象
    * 并把对应日期的活动插入到monthList上对应的日期，方便生成日历，标识日期，传参数等
    */
   initCalendar() {
+
     let monthList = [];
     for (let m = 0; m < 14; m++) {
       monthList.push(this.initMonthDays(m));
@@ -187,18 +210,37 @@ Page({
       method: 'GET',
       dataType: 'json',
       responseType: 'text',
+      fail(res) {
+        wx.showToast({
+          title: "fail",
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      complete(res) {
+        wx.showToast({
+          title: "complete",
+          icon: 'success',
+          duration: 2000
+        })
+      },
       success: function(res) {
+
+        console.warn(res);
         let actList = res.data.actassets_54;
         actList.forEach(act => {
           //
           let actTime = act.acttime_de;
           let detail = act.detail_21;
-          let endDateObj = new Date(act.enddate_99);
+
+          let endDateObj = new Date(act.enddate_99.replace(/-/g, '/'));
+          console.warn(act.enddate_99.replace(/-/g, '/'))
           let importance = act.importance_35;
           let picture = act.picture_28;
-          let startDateObj = new Date(act.startdate_ec);
+          let startDateObj = new Date(act.startdate_ec.replace(/-/g, '/'));
           let title = act.title_02;
           //
+
           let year = startDateObj.getFullYear();
           let month = year > 2019 ? startDateObj.getMonth() + 12 : startDateObj.getMonth();
           let date = startDateObj.getDate();
@@ -221,11 +263,11 @@ Page({
             startTimestamp,
             endtimeStamp,
           };
-          console.log(obj);
-
+          console.warn(obj);
+          var m = month;
           let tal = app.globalData.totalActList;
-
           tal[month].actList.push(obj);
+
           getApp().globalData.totalActList = tal;
 
           let monthList = _this.data.monthList;
@@ -235,7 +277,6 @@ Page({
           for (let i = 0; i < monthDateList.length; i++) {
             let item = monthDateList[i];
             if (item.month == month && item.date == date) {
-              console.log('ddddddd');
               item.actList.push(obj);
               break;
             }
