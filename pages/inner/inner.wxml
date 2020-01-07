@@ -70,7 +70,7 @@
 						{{item.detail}}
 					</view>
 					<view class="book-schedule-wrap">
-						<view class="book-schedule-button {{item.order==true?'order':''}}">
+						<view data-index="{{index}}" bindtap="handleOrder" class="book-schedule-button {{item.order==true?'order':''}}">
 							{{item.order==true?'已预约':'预约提醒'}}
 						</view>
 						<text class="descrition">活动开启前10分钟提醒</text>
@@ -109,7 +109,7 @@
 						</view>
 					</block>
 					<view class="book-schedule-wrap">
-						<view class="book-schedule-button {{item.order==true?'order':''}}">
+						<view data-index="{{index}}" bindtap="handleOrder" class="book-schedule-button {{item.order==true?'order':''}}">
 							{{item.order==true?'已预约':'预约提醒'}}
 						</view>
 						<text class="descrition">活动开启前10分钟提醒</text>

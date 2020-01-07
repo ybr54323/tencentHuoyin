@@ -1,113 +1,113 @@
 <!-- 3种风格的海报 -->
 <wxs module="m1">
-  function isNumber(item) {
-    return isNaN(item)
-  }
-  module.exports.isNumber = isNumber;
+	function isNumber(item) {
+		return isNaN(item)
+	}
+	module.exports.isNumber = isNumber;
 </wxs>
-
+<!-- //填补底部的红色view块 -->
+<view class="red-bg"></view>
 <view class="record-container">
-  <view class="style-switch-wrap">
-    <view data-style="1" bindtap="switch" class="button-switch-style {{style==1?'active':''}}">风格1</view>
-    <view data-style="2" bindtap="switch" class="button-switch-style {{style==2?'active':''}}">风格2</view>
-    <view data-style="3" bindtap="switch" class="button-switch-style {{style==3?'active':''}}">风格3</view>
-  </view>
-  <!-- 风格 -->
-  <block wx:if="{{style==1}}">
-    <painter data-style="1" customStyle='position: fixed;bottom:-9999rpx' palette="{{template1}}" bind:imgOK="onImgOK" widthPixels="1000" />
-    <image class="img-record-bg" src="../../images/style1.png" />
-    <view class="user-info-wrap">
-      <image class="img-user-avator" src="{{userInfo.avatarUrl}}"></image>
-      <view class="user-name">
-        {{userInfo.nickName}}
-      </view>
-    </view>
-    <view class="text-record-style1-wrap">
-      <block wx:for="{{word1}}" wx:key="index">
-        {{item}}
-      </block>
-    </view>
-    <view class="text-record-style1-wrap big">
-      <block wx:for="{{word2}}" wx:key="index">
-        <block wx:if="{{m1.isNumber(item)}}">
-          {{item}}
-        </block>
-        <block wx:else>
-          <text class="text-number">{{item}}</text>
-        </block>
-      </block>
-    </view>
-    <view class="text-year">
-      {{year}}
-    </view>
-    <view class="text-month">
-      {{month+1}}月{{date}}日 星期{{week}}
-    </view>
-    <image src="../../images/qrcode.png" class="qrcode1" />
-  </block>
-  <block wx:elif="{{style==2}}">
-    <painter data-style="2" customStyle='position: fixed;top: -8000rpx' palette="{{template2}}" bind:imgOK="onImgOK" widthPixels="1000" />
-    <image class="img-record-bg" src="../../images/style2.png" />
-    <view class="user-info-wrap">
-      <image class="img-user-avator" src="{{userInfo.avatarUrl}}"></image>
-      <view class="user-name">
-        {{userInfo.nickName}}
-      </view>
-    </view>
-    <view class="text-year2">
-      {{year==2019?"乙亥年【猪年】":"庚子年【鼠年】"}}
-    </view>
-    <view class="text-month2">
-      {{month+1}}月{{date}}日 星期{{week}}
-    </view>
-    <view class="text-date2">
-      {{date}}
-    </view>
-    <view class="text-record2">
-      {{word1}}
-    </view>
-    <view class="text-sub-record2">
-      <!-- 数字要橙色 -->
-      <block wx:for="{{word2}}" wx:key="index">
-        <block wx:if="{{m1.isNumber(item)}}">
-          {{item}}
-        </block>
-        <block wx:else>
-          <text class="text-number">{{item}}</text>
-        </block>
-      </block>
-    </view>
-    <image src="../../images/qrcode.png" class="qrcode2" />
-  </block>
-  <block wx:elif="{{style==3}}">
-  <painter data-style="3" customStyle='position: fixed;top: -6000rpx' palette="{{template3}}" bind:imgOK="onImgOK" widthPixels="1000" />
-    <image class="img-record-bg" src="../../images/style3.png" />
-    <view class="user-info-wrap3">
-      <image class="img-user-avator img-style3-avator" src="{{userInfo.avatarUrl}}"></image>
-      <view class="user-name">
-        {{userInfo.nickName}}
-      </view>
-    </view>
-    <view class="text-record3">
-      <block wx:for="{{word1}}" wx:key="index">
-        <block wx:if="{{m1.isNumber(item)}}">
-          {{item}}
-        </block>
-        <block wx:else>
-          <text class="text-number3">{{item}}</text>
-        </block>
-      </block>
-    </view>
-    <view class="text-sub-record3">
-      {{word2}}
-    </view>
-    <image src="../../images/qrcode.png" class="qrcode3" />
-  </block>
-  <view bindtap="handleSavePhoto" class="button-download-poster">
-    保存
-  </view>
+	<view class="style-switch-wrap">
+		<view data-style="1" bindtap="switch" class="button-switch-style {{style==1?'active':''}}">风格1</view>
+		<view data-style="2" bindtap="switch" class="button-switch-style {{style==2?'active':''}}">风格2</view>
+		<view data-style="3" bindtap="switch" class="button-switch-style {{style==3?'active':''}}">风格3</view>
+	</view>
+	<!-- 风格 -->
+	<block wx:if="{{style==1}}">
+		<painter data-style="1" customStyle='position: fixed;bottom:-9999rpx' palette="{{template1}}" bind:imgOK="onImgOK" widthPixels="1000" />
+		<image class="img-record-bg" src="../../images/style1.png" />
+		<view class="user-info-wrap">
+			<image class="img-user-avator" src="{{userInfo.avatarUrl}}"></image>
+			<view class="user-name">
+				{{userInfo.nickName}}
+			</view>
+		</view>
+		<view class="text-record-style1-wrap">
+			<block wx:for="{{word1}}" wx:key="index">
+				{{item}}
+			</block>
+		</view>
+		<view class="text-record-style1-wrap big">
+			<block wx:for="{{word2}}" wx:key="index">
+				<block wx:if="{{m1.isNumber(item)}}">
+					{{item}}
+				</block>
+				<block wx:else>
+					<text class="text-number">{{item}}</text>
+				</block>
+			</block>
+		</view>
+		<view class="text-year">
+			{{year}}
+		</view>
+		<view class="text-month">
+			{{month+1}}月{{date}}日 星期{{week}}
+		</view>
+		<image src="../../images/qrcode.png" class="qrcode1" />
+	</block>
+	<block wx:elif="{{style==2}}">
+		<painter data-style="2" customStyle='position: fixed;top: -8000rpx' palette="{{template2}}" bind:imgOK="onImgOK" widthPixels="1000" />
+		<image class="img-record-bg" src="../../images/style2.png" />
+		<view class="user-info-wrap">
+			<image class="img-user-avator" src="{{userInfo.avatarUrl}}"></image>
+			<view class="user-name">
+				{{userInfo.nickName}}
+			</view>
+		</view>
+		<view class="text-year2">
+			{{year==2019?"乙亥年【猪年】":"庚子年【鼠年】"}}
+		</view>
+		<view class="text-month2">
+			{{month+1}}月{{date}}日 星期{{week}}
+		</view>
+		<view class="text-date2">
+			{{date}}
+		</view>
+		<view class="text-record2">
+			{{word1}}
+		</view>
+		<view class="text-sub-record2">
+			<!-- 数字要橙色 -->
+			<block wx:for="{{word2}}" wx:key="index">
+				<block wx:if="{{m1.isNumber(item)}}">
+					{{item}}
+				</block>
+				<block wx:else>
+					<text class="text-number">{{item}}</text>
+				</block>
+			</block>
+		</view>
+		<image src="../../images/qrcode.png" class="qrcode2" />
+	</block>
+	<block wx:elif="{{style==3}}">
+		<painter data-style="3" customStyle='position: fixed;top: -6000rpx' palette="{{template3}}" bind:imgOK="onImgOK" widthPixels="1000" />
+		<image class="img-record-bg" src="../../images/style3.png" />
+		<view class="user-info-wrap3">
+			<image class="img-user-avator img-style3-avator" src="{{userInfo.avatarUrl}}"></image>
+			<view class="user-name">
+				{{userInfo.nickName}}
+			</view>
+		</view>
+		<view class="text-record3">
+			<block wx:for="{{word1}}" wx:key="index">
+				<block wx:if="{{m1.isNumber(item)}}">
+					{{item}}
+				</block>
+				<block wx:else>
+					<text class="text-number3">{{item}}</text>
+				</block>
+			</block>
+		</view>
+		<view class="text-sub-record3">
+			{{word2}}
+		</view>
+		<image src="../../images/qrcode.png" class="qrcode3" />
+	</block>
+	<view bindtap="handleSavePhoto" class="button-download-poster">
+		保存
+	</view>
 </view>
 <view class="button-back-home" bindtap="toHome">
-  返回首页
+	返回首页
 </view>
-

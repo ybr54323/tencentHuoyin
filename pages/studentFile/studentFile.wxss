@@ -144,6 +144,7 @@ page {
   background-image: linear-gradient(to bottom, #bc741b, #bc741b 50%, #d98e1f 50%, #d98e1f 100%);
   margin-left: 50%;
   transform: translateX(-50%);
+  filter: drop-shadow(5rpx 5rpx 5rpx #967958);
 }
 
 .button-back-home {
@@ -166,10 +167,22 @@ page {
   font-weight: bold;
 }
 
-.qrcode1, .qrcode2 {
+.qrcode1,
+.qrcode2 {
   position: absolute;
   top: 908rpx;
   left: 557rpx;
   width: 161rpx;
   height: 161rpx;
+}
+
+.red-bg {
+  width: 100%;
+  height: 100%;
+  background-color: #cb5848;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
 }

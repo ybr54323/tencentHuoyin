@@ -15,7 +15,8 @@ Page({
     // 风格123,初始是1
     style: 1,
     userInfo: app.globalData.mock.userInfo,
-    word1: "刷新最高连胜纪录!!1231231",
+    // 建议这里字数不超过6个字，若要更多，该json文件中的fontsize
+    word1: "刷新最231",
     word2: "最新纪录14场最新纪录14场最新纪录14场",
     year: new Date().getFullYear(),
     month: new Date().getMonth(),
@@ -37,7 +38,6 @@ Page({
     index: "",
     //风格3的海报需要的下表
     index3: "",
-    currentTemplate: ""
   },
   // 监控3个style的海报状态，canSave为true才能保存
   onImgOK(e) {
@@ -67,12 +67,14 @@ Page({
   },
   // 保存图片
   handleSavePhoto() {
+    // 获取当前的style，风格是几号
     let style = this.data.style;
     switch (style) {
+      // 待对应的海报生成完毕
       case 1:
         if (!this.data.canSave1) {
           wx.showToast({
-            title: '请请稍再试，海报在生成中',
+            title: '请请稍再试',
             icon: "loading"
           })
           return;
@@ -83,7 +85,7 @@ Page({
       case 2:
         if (!this.data.canSave2) {
           wx.showToast({
-            title: '请请稍再试，海报在生成中',
+            title: '请请稍再试',
             icon: "loading"
           })
           return;
@@ -94,7 +96,7 @@ Page({
       case 3:
         if (!this.data.canSave3) {
           wx.showToast({
-            title: '请请稍再试，海报在生成中',
+            title: '请请稍再试',
             icon: "loading"
           })
           return;
@@ -142,38 +144,18 @@ Page({
     this.setData({
       style
     })
-    // switch (style) {
-    //   case 1:
-    //     this.setData({
-    //       currentTemplate: this.data.template1,
-    //       style,
-    //     })
-    //     break;
-    //   case 2:
-    //     this.setData({
-    //       currentTemplate: this.data.template2,
-    //       style,
-    //     })
-    //     break;
-    //   case 3:
-    //     this.setData({
-    //       currentTemplate: this.data.template3,
-    //       style,
-    //     })
-    //     break;
-    // }
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     const _this = this;
     let nickName = app.globalData.mock.userInfo.nickName;
     let avatarUrl = app.globalData.mock.userInfo.avatarUrl;
@@ -623,9 +605,6 @@ Page({
     this.setData({
       template3: sty3
     });
-    this.setData({
-      currentTemplate: this.data.template1
-    })
   },
   // 返回首页
   toHome() {
@@ -636,42 +615,42 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

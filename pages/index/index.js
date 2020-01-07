@@ -1,15 +1,21 @@
 //index.js
 //获取应用实例
 const app = getApp()
-wx.setEnableDebug({
+// wx.setEnableDebug({
 
-  enableDebug: true
+//   enableDebug: true
 
-})
+// })
 Page({
   data: {
     // 控制弹窗是否打开的状态
     bindRole: false,
+    // banner轮播
+    bannerList: [
+      "../../images/banner_img.png",
+      "../../images/banner_img.png",
+      "../../images/banner_img.png"
+    ],
     //模拟用户/玩家数据
     playerInfo: {
       schedules: [{
@@ -100,23 +106,17 @@ Page({
     let y = this.year;
     return m == 2019 ? m : m + 12;
   },
-  onLoad: function() {
+  onLoad: function () {
     // 生成2019年1月至2020年2月的所有日期对象，只拉一次
     // 先从缓存中拿
     let monthList = wx.getStorageSync("monthList");
     let totalActList = wx.getStorageInfoSync("totalActList");
     if (monthList instanceof Array && totalActList instanceof Array) {
-      wx.showToast({
-        title: '有缓存',
-      })
       this.setData({
         monthList,
       })
       getApp().globalData.totalActList = totalActList;
     } else {
-      wx.showToast({
-        title: '无缓存',
-      })
       this.initCalendar()
     }
   },
@@ -132,7 +132,7 @@ Page({
       bindRole: !this.data.bindRole
     })
   },
-
+  // 跳转到当天活动列表，y m d 这些参数来从总活动列表里取活动，详细可看inner.js
   handleDateTap(e) {
     let y, m, d;
     // 当前点击的日期对象
@@ -148,7 +148,6 @@ Page({
 
     wx.navigateTo({
       url: `../inner/inner?year=${y}&month=${m}&date=${d}`,
-
     })
   },
   /**
@@ -181,17 +180,7 @@ Page({
       })
     }
   },
-  formatTime(date) {
-    var time = date == null ? "" : Date.parse(date.replace(/-/g, '/'));
-    var date = new Date(time);
-    var year = date.getFullYear();
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
-    var hour = date.getHours();
-    var minute = date.getMinutes();
-    var second = date.getSeconds();
-    return [year, month, day].map(formatNumber).join('/');
-  },
+
   /**
    * 插入2019年1月至2020年2月所有的日期对象
    * 并把对应日期的活动插入到monthList上对应的日期，方便生成日历，标识日期，传参数等
@@ -224,31 +213,46 @@ Page({
           duration: 2000
         })
       },
-      success: function(res) {
+      success: function (res) {
 
         console.warn(res);
         let actList = res.data.actassets_54;
         actList.forEach(act => {
-          //
+          // 活动id，去重
+          let id = act.actid_79;
+          //例如11月1日23:30至11月5日6:00
           let actTime = act.acttime_de;
+          //活动详情
           let detail = act.detail_21;
-
+          //结束的时间 ：2019-12-31T06:23:22.000Z
           let endDateObj = new Date(act.enddate_99.replace(/-/g, '/'));
-          console.warn(act.enddate_99.replace(/-/g, '/'))
+          // console.warn(act.enddate_99.replace(/-/g, '/'))
+          //重要程度
           let importance = act.importance_35;
+          //活动图片
           let picture = act.picture_28;
+          //开始的时间 ：2019-12-31T06:23:22.000Z
           let startDateObj = new Date(act.startdate_ec.replace(/-/g, '/'));
+          // 活动的标题
           let title = act.title_02;
-          //
 
+
+          //为了方便处理添加的字段
+          //年 2019
           let year = startDateObj.getFullYear();
+          //月份 0-13 对应2019年1月至2020年2月
           let month = year > 2019 ? startDateObj.getMonth() + 12 : startDateObj.getMonth();
+          //号 
           let date = startDateObj.getDate();
+          //活动开始的时间戳，后面进入内页需要用到，此条件来从头至尾地从 totalActList 筛选出活动
           let startTimestamp = startDateObj.getTime();
+          // 活动结束的时间戳
           let endtimeStamp = endDateObj.getTime();
 
+          // 生成的活动对象
           let obj = {
             //
+            id,
             actTime,
             detail,
             endDateObj,
@@ -264,14 +268,16 @@ Page({
             endtimeStamp,
           };
           console.warn(obj);
-          var m = month;
+          // 总活动数组
           let tal = app.globalData.totalActList;
+          // 在总活动数组对应的位置（月份）的活动数组 插入活动
           tal[month].actList.push(obj);
-
+          // 改变活动列表
           getApp().globalData.totalActList = tal;
 
+          // 总日历数组
           let monthList = _this.data.monthList;
-
+          //再日历数组对应的位置（月份）的活动数组 插入活动
           let monthDateList = monthList[month];
 
           for (let i = 0; i < monthDateList.length; i++) {
@@ -286,12 +292,12 @@ Page({
           })
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         wx.showToast({
           title: res,
         })
       },
-      complete: function(res) {},
+      complete: function (res) {},
     })
     _this.setData({
       monthList,

@@ -1,8 +1,38 @@
 const util = require('./utils/util');
 //app.js
 App({
-  
+
   onLaunch: function () {
+    // 图片预加载
+    let arr = [
+      "./images/student_file_bg.png",
+      "./images/no_activity.png",
+      "./images/no_schedule.png",
+      "./images/index_title.png",
+      "./images/record_bg2.png",
+      "./images/record_bg.png",
+      "./images/bind_role.png",
+      "./images/bg.png",
+      "./images/style1.png",
+      "./images/style2.png",
+      "./images/style3.png",
+    ]
+    let length = arr.length;
+
+    arr.forEach((src, index) => {
+      wx.getImageInfo({
+        src: src,
+        success: res => {
+          if (index == length - 1) {
+            console.log("预加载完成");
+          }
+        },
+        fail: err => {}
+      })
+    })
+    //图片预加载
+
+
     // 生成一个长度为14的数组来按0-13月（19年1月至20年2月）来存放活动数据
     for (let i = 0; i < 14; i++) {
       this.globalData.totalActList.push({
@@ -11,7 +41,7 @@ App({
         actList: []
       })
     }
-   
+
 
 
     // 获取json
@@ -51,7 +81,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    // 存放所有活动
+    // 重要 存放所有活动的数组
     totalActList: [],
     mock: {
       userInfo: {

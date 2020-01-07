@@ -1,5 +1,10 @@
 /**index.wxss**/
 
+page {
+  width: 100%;
+  overflow-x: hidden;
+
+}
 .index-container {
   position: relative;
   width: 100%;
@@ -52,7 +57,9 @@
   z-index: 2;
 }
 
-.banner-img-page1, .banner-img-page2, .banner-img-page3 {
+.banner-img-page1,
+.banner-img-page2,
+.banner-img-page3 {
   position: absolute;
   width: 99.5%;
   left: 0;
@@ -292,6 +299,7 @@
 .schedule-box {
   position: relative;
   width: 100%;
+  max-width: 100%;
   height: 127rpx;
   box-sizing: border-box;
   padding-left: 53rpx;
@@ -302,6 +310,7 @@
 .schedule-title {
   font-size: 32rpx;
   color: #881606;
+  max-width: 670rpx;
   font-weight: bolder;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -313,6 +322,7 @@
   font-size: 20rpx;
   color: #85473e;
   font-weight: bold;
+  max-width: 670rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -338,4 +348,16 @@
   background-image: linear-gradient(to right, #fff 0%, #fff 50%, transparent 50%);
   background-size: 14px 1px;
   background-repeat: repeat-x;
+}
+
+.banner-swiper-con {
+  position: absolute;
+  top: 242rpx;
+  left: 51rpx;
+  width: 655rpx;
+  height: 361rpx;
+
+}
+.banner-swiper-item {
+
 }
