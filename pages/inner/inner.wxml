@@ -1,7 +1,7 @@
 <!-- 活动内页 -->
+<view class="red-bg"></view>
 <view class="inner-container img-bg">
 	<!-- //填补底部的红色view块 -->
-	<view class="red-bg"></view>
 	<!-- 背景图 -->
 	<image class="img-bg" src="../../images/bg.png"></image>
 	<!-- 玩家记录弹窗 -->

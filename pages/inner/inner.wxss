@@ -135,13 +135,14 @@
   left: 0;
   width: 100%;
   height: 102rpx;
-  background-color: rgb(217, 178, 112, 0.6);
+  background-color: rgba(217, 178, 112,0.6);
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
   padding-left: 52rpx;
   padding-right: 45rpx;
   align-items: center;
+  z-index: 2;
 }
 
 .box-border-bottom {
@@ -231,8 +232,8 @@
 }
 
 .book-schedule-wrap {
-  height: 38rpx;
-  line-height: 38rpx;
+  /* height: 38rpx;
+  line-height: 38rpx; */
 }
 
 .book-schedule-button {
@@ -245,7 +246,7 @@
   color: #fff;
   text-align: center;
   display: inline-block;
-  filter: drop-shadow(5rpx 5rpx 5rpx #967958);
+  /* filter: drop-shadow(5rpx 5rpx 5rpx #967958); */
 }
 
 /* 已经预约 */
@@ -266,6 +267,7 @@
   font-size: 100rpx;
   color: #4c0e05;
   margin-bottom: 17rpx;
+  font-weight: bolder;
 }
 
 .text-schedule-big-time {

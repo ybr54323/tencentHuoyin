@@ -1,5 +1,7 @@
 <!--index.wxml-->
+<view class="red-bg"></view>
 <view class="index-container">
+	<!-- 红色背景 -->
 	<!-- 背景图 -->
 	<image class="img-bg" src="../../images/bg.png"></image>
 	<!-- 绑定角色组件 -->
