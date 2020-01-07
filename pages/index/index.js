@@ -59,9 +59,9 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     //页面的大 月份
-    month: wx.getStorageSync('currentIndex') || new Date().getMonth(),
+
     //年
-    year: new Date().getFullYear(),
+    year: "",
     //月份英文名
     monthEnglishName: [
       "January",
@@ -83,12 +83,12 @@ Page({
       autoplay: false,
       interval: 2000,
       duration: 500,
+      circular: true,
       //当前月份,参数
       current: {
         index: 1,
         //记录上一次点选的月份0-13
-        // month: wx.getStorageSync("currentIndex") || 
-        month: wx.getStorageSync("currentIndex") || (new Date().getFullYear() == 2019 ? new Date().getMonth() : new Date().getMonth() + 12)
+        // month: wx.getStorageSync("currentIndex") || (new Date().getFullYear() == 2019 ? new Date().getMonth() : new Date().getMonth() + 12)
       },
     },
     // 日历的周日至周六
@@ -114,7 +114,7 @@ Page({
 
   },
   // prev next
-  prev: function () {
+  prev: function() {
     // console.log("prev")
     var swiperOption = this.data.swiperOption;
     var month = swiperOption.current.month;
@@ -122,26 +122,21 @@ Page({
     // console.warn(month)
     swiperOption.current.month = month > 0 ? month - 1 : monthList.length - 1;
     //记录上一次切换到的月份
-    getApp().globalData.currentIndex = parseInt(swiperOption.current.month);
     wx.setStorageSync("currentIndex", parseInt(swiperOption.current.month));
-
     //全局同步
     this.setData({
       swiperOption,
     })
   },
 
-  next: function () {
+  next: function() {
     // console.log("next")
     var swiperOption = this.data.swiperOption;
     var month = swiperOption.current.month;
     // console.warn(month)
     var monthList = this.data.monthList;
-
     swiperOption.current.month = month < (monthList.length - 1) ? month + 1 : 0;
     //记录上一次切换到的月份
-    getApp().globalData.currentIndex = parseInt(swiperOption.current.month);
-
     wx.setStorageSync("currentIndex", parseInt(swiperOption.current.month));
     this.setData({
       swiperOption,
@@ -153,7 +148,25 @@ Page({
     let y = this.year;
     return m == 2019 ? m : m + 12;
   },
-  onLoad: function () {
+  onUnload() {
+    wx.clearStorageSync();
+  },
+  onLoad: function() {
+    let swiperOption = this.data.swiperOption;
+    let year;
+    let currentIndex = wx.getStorageSync("currentIndex");
+    if (currentIndex >= 0) {
+      swiperOption.current.month = currentIndex;
+      year = currentIndex > 11 ? 2020 : 2019
+    } else {
+      swiperOption.current.month = (new Date().getFullYear() == 2019 ? new Date().getMonth() : new Date().getMonth() + 12)
+      year = new Date().getFullYear();
+    }
+    this.setData({
+      swiperOption,
+      year
+    })
+
     // 生成2019年1月至2020年2月的所有日期对象，只拉一次
     // 先从缓存中拿
     let monthList = wx.getStorageSync("monthList");
@@ -194,8 +207,6 @@ Page({
     console.warn(y, m, d);
     // let swiperOption = this.data.swiperOption;
     wx.setStorageSync('currentIndex', parseInt(m))
-    getApp().globalData.currentIndex = parseInt(m);
-
     wx.navigateTo({
       url: `../inner/inner?year=${y}&month=${m}&date=${d}`,
     })
@@ -207,9 +218,7 @@ Page({
     let year = dateObje.getFullYear();
     let month;
     month = year == 2019 ? dateObje.getMonth() : dateObje.getMonth() + 12;
-    getApp().globalData.currentIndex = parseInt(month);
     wx.setStorageSync('currentIndex', parseInt(month))
-
     let date = dateObje.getDate();
     wx.navigateTo({
       url: `../inner/inner?year=${2019}&month=${month}&date=${date}`,
@@ -231,17 +240,21 @@ Page({
   changeMonth(e) {
     // index对应0-13，对应19年1月至2020年2月
     const index = e.detail.current;
+    let swiperOption = this.data.swiperOption;
+    swiperOption.current.month = index;
     wx.setStorageSync('currentIndex', parseInt(index))
     if (index <= 11) {
       this.setData({
         month: index,
         year: 2019,
+        swiperOption
       })
     } else {
       //2020年了
       this.setData({
         month: index,
         year: 2020,
+        swiperOption
       })
     }
   },
@@ -290,7 +303,7 @@ Page({
           duration: 2000
         })
       },
-      success: function (res) {
+      success: function(res) {
         console.warn(res);
         let actList = res.data.actassets_54;
         actList.forEach(act => {
@@ -368,12 +381,12 @@ Page({
           })
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         wx.showToast({
           title: res,
         })
       },
-      complete: function (res) {},
+      complete: function(res) {},
     })
     _this.setData({
       monthList,
