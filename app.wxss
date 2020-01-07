@@ -36,3 +36,15 @@ page {
 .img-arrow {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAATCAMAAABfsiZwAAAAeFBMVEUAAAD///92Hg/k0s94IRLr3tvx5+b17u369/Z2Hg92Hg////////////+rdWt4IRL///92Hg92Hg92Hg////92Hg/49PP+/fx2Hg92Hg////92Hg////92Hg+CMCKfYVeWUUWRST2MQTWIOi37+fiaWU7Ho52nbmWTLSiFAAAAHXRSTlMABoHy7Orc0Ls7LiUXD/3ynGdaTy8kxapyRR7CaChb5dUAAACuSURBVCjPfcpXDoMwEEVRh957T4ZOsv8d5oFjK0iG94EYn8vOK58lu5lnkFHeMpHhXbEbE8lAzf27J4pdFbcE1l86AlIE+cEFK46gVfFi+oz9gvzMmWDMNxdc2T+neJitjh8IZhlInqxA3p21B6k4m51tsFxgTXhr+KHhd7RDYTywR7xqgrcKfFrIA86D85Agg2o7AjVjD2eAsYiiGqwMPhSxZE3A6qBeE3zZ5WBf3A0RFfF8AtYAAAAASUVORK5CYII=");
 }
+
+.red-bg {
+  width: 100%;
+  height: 100%;
+  background-color: #cb5848;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  padding-bottom: 40rpx;
+}
