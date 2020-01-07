@@ -641,7 +641,7 @@ Page({
   },
   // 返回首页
   toHome() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../../pages/index/index',
     })
   },

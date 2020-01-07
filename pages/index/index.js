@@ -149,13 +149,16 @@ Page({
     return m == 2019 ? m : m + 12;
   },
   onUnload() {
+    // wx.clearStorageSync();
+  },
+  onHide() {
     wx.clearStorageSync();
   },
   onLoad: function() {
     let swiperOption = this.data.swiperOption;
     let year;
     let currentIndex = wx.getStorageSync("currentIndex");
-    if (currentIndex >= 0) {
+    if (currentIndex) {
       swiperOption.current.month = currentIndex;
       year = currentIndex > 11 ? 2020 : 2019
     } else {
@@ -207,7 +210,7 @@ Page({
     console.warn(y, m, d);
     // let swiperOption = this.data.swiperOption;
     wx.setStorageSync('currentIndex', parseInt(m))
-    wx.navigateTo({
+    wx.redirectTo({
       url: `../inner/inner?year=${y}&month=${m}&date=${d}`,
     })
   },
@@ -220,7 +223,7 @@ Page({
     month = year == 2019 ? dateObje.getMonth() : dateObje.getMonth() + 12;
     wx.setStorageSync('currentIndex', parseInt(month))
     let date = dateObje.getDate();
-    wx.navigateTo({
+    wx.redirectTo({
       url: `../inner/inner?year=${2019}&month=${month}&date=${date}`,
     })
   },
@@ -229,7 +232,7 @@ Page({
    * @param {d} e 跳转内页
    */
   toInner() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../inner/inner',
     })
   },

@@ -25,9 +25,13 @@
   </view>
   <!-- 日历 -->
   <!-- prev -->
-  <image bindtap="prev" class="img-prev-arrow" src="../../images/arrow.png"></image>
+  <view class="prev-warp">
+    <image bindtap="prev" class="img-prev-arrow" src="../../images/arrow.png"></image>
+  </view>
   <!-- next -->
-  <image bindtap="next" class="img-next-arrow" src="../../images/arrow.png"></image>
+  <view class="next-wrap">
+    <image bindtap="next" class="img-next-arrow" src="../../images/arrow.png"></image>
+  </view>
 
   <view class="calendar-con">
     <view class="calendar-wrap">

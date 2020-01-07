@@ -42,20 +42,22 @@ Page({
   },
   // 返回首页
   backHome() {
-    wx.navigateTo({
+    console.log("test")
+    wx.redirectTo({
       url: "../index/index",
     })
   },
   //去学员档案--- 3种风格的那个
   toStudentFile() {
-    wx.navigateTo({
-      url: '../../pages/record/record',
+    console.log("test")
+    wx.redirectTo({
+      url: '../record/record',
     })
   },
   // 去学员档案 获得佐助XXX
   toRecord() {
-    wx.navigateTo({
-      url: '../../pages/studentFile/studentFile',
+    wx.redirectTo({
+      url: '../studentFile/studentFile',
     })
   },
   // 打开活动详情 trigger
@@ -81,7 +83,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     console.log(options);
     let {
       year,
@@ -154,21 +156,21 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
     this.setData({
       // todayActList: []
     })
@@ -177,28 +179,28 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

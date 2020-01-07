@@ -168,7 +168,7 @@
   opacity: 0.6;
   border-radius: 40rpx;
   filter: drop-shadow(5rpx 5rpx 5rpx #967958);
-  z-index: 10;
+  z-index: 10000;
 }
 
 .change-role-button-wrap {
