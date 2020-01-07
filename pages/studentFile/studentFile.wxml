@@ -4,7 +4,7 @@
 	}
 	module.exports.mySubstring = mySubstring;
 </wxs>
-<view class="red-bg"></view>
+<!-- <view class="red-bg"></view> -->
 <view class="student-file-container">
 	<!-- 背景图 -->
 	<image class="img-student-file-bg" src="../../images/student_file_bg.png"></image>

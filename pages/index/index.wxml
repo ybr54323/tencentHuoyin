@@ -32,7 +32,7 @@
 	<view class="calendar-con">
 		<view class="calendar-wrap">
 			<view class="calendar-header">
-				<text class="text-big-month">{{month>=12?month-11:month + 1}}月</text>
+				<text class="text-big-month">{{(month>=12?month-11:month + 1)}}月</text>
 				<view class="date-detail-wrap">
 					<text class="text-mid-eng-month">{{month>=12?monthEnglishName[month-12]:monthEnglishName[month]}}</text>
 					<text class="text-year">{{year}}年 {{year==2019?"己亥":"庚子"}}({{year==2019?"猪年":"鼠年"}})</text>

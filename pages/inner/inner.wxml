@@ -1,5 +1,11 @@
 <!-- 活动内页 -->
-<view class="red-bg"></view>
+<!-- <view class="red-bg"></view> -->
+<wxs module="tool1">
+function myParseInt(month) {
+	return parseInt(month)
+}
+module.exports.myParseInt = myParseInt
+</wxs>
 <view class="inner-container img-bg">
 	<!-- //填补底部的红色view块 -->
 	<!-- 背景图 -->
@@ -11,7 +17,7 @@
 			<block wx:if="{{mileStoneList.length==1}}">
 				<image class="img-record-bg" src="../../images/record_bg.png"></image>
 				<view class="record-text-wrap">
-					<view class="text-record-date">{{year}}年{{month+1}}月{{date}}日</view>
+					<view class="text-record-date">{{year}}年{{tool1.myParseInt(month)+1}}月{{date}}日</view>
 					<view class="text-record-detail">XXX成功招募宇智波佐助[疾风传咒印]，这是你招募的第192个忍者。</view>
 				</view>
 				<view class="button-check" bindtap="toStudentFile">
@@ -22,7 +28,7 @@
 				<image class="img-record-list-bg" src="../../images/record_bg2.png"></image>
 				<view class="record-list-wrap">
 					<view class="record-list-text-wrap">
-						<view class="text-record-date">{{year}}年{{month+1}}月{{date}}日</view>
+						<view class="text-record-date">{{year}}年{{tool1.myParseInt(month)+1}}月{{date}}日</view>
 						<view class="text-record-detail">XXX成功招募宇智波佐助[疾风传咒印]，这是你招募的第192个忍者。</view>
 						<view class="button-list-check" bindtap="toRecord">
 							查看详情
@@ -30,7 +36,7 @@
 						<view class="box-border-bottom"></view>
 					</view>
 					<view class="record-list-text-wrap">
-						<view class="text-record-date">{{year}}年{{month+1}}月{{date}}日</view>
+						<view class="text-record-date">{{year}}年{{tool1.myParseInt(month)+1}}月{{date}}日</view>
 						<view class="text-record-detail">XXX成功获得超影段位！</view>
 						<view class="button-list-check" bindtap="toStudentFile">
 							查看详情

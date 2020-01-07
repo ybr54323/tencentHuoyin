@@ -122,7 +122,7 @@ export default class LastMayday {
             "background": "rgba(0,0,0,0)",
             "width": "370rpx",
             "height": "266.67999999999995rpx",
-            "top": "320rpx",
+            "top": "310rpx",
             "left": "79rpx",
             "rotate": "0",
             "borderRadius": "",

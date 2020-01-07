@@ -13,18 +13,18 @@ Page({
     // banner轮播
     bannerList: [
       "../../images/banner_img.png",
+      "../../images/bind_role.png",
+      "../../images/head.png",
+      "../../images/no_schedule.png",
+      "../../images/record_bg2.png",
       "../../images/banner_img.png",
+      "../../images/record_bg2.png",
       "../../images/banner_img.png",
+      "../../images/record_bg2.png",
       "../../images/banner_img.png",
+      "../../images/record_bg2.png",
       "../../images/banner_img.png",
-      "../../images/banner_img.png",
-      "../../images/banner_img.png",
-      "../../images/banner_img.png",
-      "../../images/banner_img.png",
-      "../../images/banner_img.png",
-      "../../images/banner_img.png",
-      "../../images/banner_img.png",
-      "../../images/banner_img.png",
+      "../../images/record_bg2.png",
       "../../images/banner_img.png"
     ],
     //模拟用户/玩家数据
@@ -59,7 +59,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     //页面的大 月份
-    month: new Date().getMonth(),
+    month: wx.getStorageSync('currentIndex') || new Date().getMonth(),
     //年
     year: new Date().getFullYear(),
     //月份英文名
@@ -86,7 +86,9 @@ Page({
       //当前月份,参数
       current: {
         index: 1,
-        month: getApp().globalData.currentIndex || new Date().getFullYear() == 2019 ? new Date().getMonth() : new Date().getMonth() + 12
+        //记录上一次点选的月份0-13
+        // month: wx.getStorageSync("currentIndex") || 
+        month: wx.getStorageSync("currentIndex") || (new Date().getFullYear() == 2019 ? new Date().getMonth() : new Date().getMonth() + 12)
       },
     },
     // 日历的周日至周六
@@ -119,6 +121,11 @@ Page({
     var monthList = this.data.monthList;
     // console.warn(month)
     swiperOption.current.month = month > 0 ? month - 1 : monthList.length - 1;
+    //记录上一次切换到的月份
+    getApp().globalData.currentIndex = parseInt(swiperOption.current.month);
+    wx.setStorageSync("currentIndex", parseInt(swiperOption.current.month));
+
+    //全局同步
     this.setData({
       swiperOption,
     })
@@ -130,7 +137,12 @@ Page({
     var month = swiperOption.current.month;
     // console.warn(month)
     var monthList = this.data.monthList;
+
     swiperOption.current.month = month < (monthList.length - 1) ? month + 1 : 0;
+    //记录上一次切换到的月份
+    getApp().globalData.currentIndex = parseInt(swiperOption.current.month);
+
+    wx.setStorageSync("currentIndex", parseInt(swiperOption.current.month));
     this.setData({
       swiperOption,
     })
@@ -181,8 +193,9 @@ Page({
     }
     console.warn(y, m, d);
     // let swiperOption = this.data.swiperOption;
-    // swiperOption.current.month = m;
-    getApp().globalData.currentIndex = m;
+    wx.setStorageSync('currentIndex', parseInt(m))
+    getApp().globalData.currentIndex = parseInt(m);
+
     wx.navigateTo({
       url: `../inner/inner?year=${y}&month=${m}&date=${d}`,
     })
@@ -194,6 +207,9 @@ Page({
     let year = dateObje.getFullYear();
     let month;
     month = year == 2019 ? dateObje.getMonth() : dateObje.getMonth() + 12;
+    getApp().globalData.currentIndex = parseInt(month);
+    wx.setStorageSync('currentIndex', parseInt(month))
+
     let date = dateObje.getDate();
     wx.navigateTo({
       url: `../inner/inner?year=${2019}&month=${month}&date=${date}`,
@@ -215,12 +231,12 @@ Page({
   changeMonth(e) {
     // index对应0-13，对应19年1月至2020年2月
     const index = e.detail.current;
+    wx.setStorageSync('currentIndex', parseInt(index))
     if (index <= 11) {
       this.setData({
         month: index,
         year: 2019,
       })
-      return
     } else {
       //2020年了
       this.setData({
