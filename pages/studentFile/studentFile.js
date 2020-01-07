@@ -9,10 +9,28 @@ Page({
   data: {
     image: "",
     template: {},
-    userInfo: {
-    },
+    userInfo: {},
     // 监控页面是否已经加载完，可生成海报
     canSave: false,
+    day: new Date().getDay(),
+    date: new Date().getDate(),
+    year: new Date().getFullYear(),
+    month: new Date().getMonth(),
+    monthEnglishName: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    week: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
   },
   onImgOK(e) {
     this.imagePath = e.detail.path;
@@ -108,23 +126,26 @@ Page({
     console.log(palette)
     palette.views[0].url = "../../images/student_file_bg.png"
     //传用户头像图片url
-    // palette.views[1].url = this.data.userInfo.nickName;
+    palette.views[1].url = this.data.userInfo.avatarUrl;
     //banner图
-    // palette.views[2].url = ""
+    palette.views[2].url = "../../images/banner_img.png";
     //时间，例如 Wednesday,December 25,2019
-    // palette.views[3].text = "";
+    // {{monthEnglishName[month]}},{{week[day]}} {{date}},{{year}}
+    var data = this.data;
+    var timeStr = `${data.monthEnglishName[data.month]}, ${data.week[data.day]} ${data.date}, ${data.year}`
+    palette.views[3].text = timeStr;
     //忍者名,例: 宇智波佐助 【疾风传诅咒】
     // palette.views[4].text = "忍者名字";
     //subtitle 例: “天之咒印！！疾驰的黑色雷电”
     // palette.views[5].text = "“天之咒印！！疾驰的黑色雷电”";
     //星期 例: Wed
-    // palette.views[6].text = "Wed";
+    palette.views[6].text = data.week[data.day].substring(0, 3);
     //mm月dd日 例子: 12月25日
-    // palette.views[7].text = "12月25日";
+    palette.views[7].text = `${(data.month + 1)}月${data.date}日`;
     //传 二维码的url;
     // palette.views[8].text = "";
     //用户名 
-    // palette.views[8].text = "";
+    palette.views[8].text = this.data.userInfo.nickName;
 
     this.setData({
       template: palette

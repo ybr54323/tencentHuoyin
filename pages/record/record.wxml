@@ -90,7 +90,7 @@
 			</view>
 		</view>
 		<view class="text-record3">
-			<block wx:for="{{word1}}" wx:key="index">
+			<block wx:for="{{word3}}" wx:key="index">
 				<block wx:if="{{m1.isNumber(item)}}">
 					{{item}}
 				</block>
@@ -100,7 +100,7 @@
 			</block>
 		</view>
 		<view class="text-sub-record3">
-			{{word2}}
+			{{word1}}
 		</view>
 		<image src="../../images/qrcode.png" class="qrcode3" />
 	</block>

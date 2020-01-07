@@ -81,8 +81,12 @@ App({
   },
   globalData: {
     userInfo: null,
+    // 存放被点击的日历的月份，以控制日历swiper的currentIndex
+    // currentIndex: '',
     // 重要 存放所有活动的数组
     totalActList: [],
+    // 重要 忍者存放的数组
+    ninjaList: [],
     mock: {
       userInfo: {
         nickName: "ybr",

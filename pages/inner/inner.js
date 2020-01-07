@@ -18,7 +18,9 @@ Page({
     bindRole: false,
     // 记录弹窗显示状态
     showRecord: true,
-
+    year: '',
+    month: '',
+    date: ''
   },
   // 打开角色绑定弹窗
   handleOpenBindRole() {
@@ -41,7 +43,7 @@ Page({
   // 返回首页
   backHome() {
     wx.navigateTo({
-      url: '../index/index',
+      url: "../index/index",
     })
   },
   //去学员档案--- 3种风格的那个
@@ -86,6 +88,14 @@ Page({
       month,
       date
     } = options;
+    year = month > 11 ? 2020 : 2019;
+    month = month > 11 ? month - 12 : month;
+
+    this.setData({
+      year,
+      month,
+      date
+    })
     // 用 当天00:00pm 时间戳 作为条件来从总的活动列表totalActList来筛选活动出来，至于能否预约，是否已经预约，有待后端同学处理
     let t1 = new Date(year, month, date, 0).getTime();
 

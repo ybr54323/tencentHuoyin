@@ -203,7 +203,7 @@ page {
   position: absolute;
   top: 645rpx;
   right: 0;
-  width: 240rpx;
+  width: 180rpx;
   height: 182rpx;
   display: flex;
   flex-direction: column;
@@ -212,7 +212,7 @@ page {
 }
 
 .img-style3-avator {
-  margin-left: 100rpx;
+  /* margin-left: 100rpx; */
 }
 
 .text-record3 {
@@ -265,4 +265,5 @@ page {
   font-size: 28rpx;
   color: #fff6d7;
   font-weight: bold;
+  z-index: 10;
 }

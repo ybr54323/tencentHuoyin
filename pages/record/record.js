@@ -16,8 +16,9 @@ Page({
     style: 1,
     userInfo: app.globalData.mock.userInfo,
     // 建议这里字数不超过6个字，若要更多，该json文件中的fontsize
-    word1: "刷新最231",
-    word2: "最新纪录14场最新纪录14场最新纪录14场",
+    word1: "刷新最高连胜记录!!",
+    word2: "最新纪录14场",
+    word3: "最新纪录14场",
     year: new Date().getFullYear(),
     month: new Date().getMonth(),
     date: new Date().getDate(),
@@ -483,15 +484,15 @@ Page({
     //banner图
     sty3.views[2].text = this.data.userInfo.nickName;
     var j = 0;
-    for (let i = 0; i < word1.length; i++) {
-      if (i <= 5) {
+    for (let i = 0; i < word2.length; i++) {
+      if (i <= 3) {
         sty3.views.push({
           "type": "text",
-          "text": word1[i],
+          "text": word2[i],
           "css": {
             "color": "#7d2a0a",
             "background": "rgba(0,0,0,0)",
-            "width": "233rpx",
+            "width": "40rpx",
             "height": "42.94rpx",
             "top": "348rpx",
             "left": 30 + i * 40 + "rpx",
@@ -512,41 +513,73 @@ Page({
           }
         })
       } else {
-        sty3.views.push({
-          "type": "text",
-          "text": word1[i],
-          "css": {
-            "color": "#7d2a0a",
-            "background": "rgba(0,0,0,0)",
-            "width": "233rpx",
-            "height": "42.94rpx",
-            "top": "405rpx",
-            "left": 30 + j * 40 + "rpx",
-            "rotate": "0",
-            "borderRadius": "",
-            "borderWidth": "",
-            "borderColor": "#000000",
-            "shadow": "",
-            "padding": "0rpx",
-            "fontSize": "38rpx",
-            "fontWeight": "normal",
-            "maxLines": "1",
-            "lineHeight": "42.18000000000001rpx",
-            "textStyle": "fill",
-            "textDecoration": "none",
-            "fontFamily": "",
-            "textAlign": "left"
-          }
-        })
+        // 非数字
+        if (isNaN(word2[i])) {
+          sty3.views.push({
+            "type": "text",
+            "text": word2[i],
+            "css": {
+              "color": "#7d2a0a",
+              "background": "rgba(0,0,0,0)",
+              "width": "40rpx",
+              "height": "42.94rpx",
+              "top": "405rpx",
+              "left": 30 + j * 40 + "rpx",
+              "rotate": "0",
+              "borderRadius": "",
+              "borderWidth": "",
+              "borderColor": "#000000",
+              "shadow": "",
+              "padding": "0rpx",
+              "fontSize": "38rpx",
+              "fontWeight": "normal",
+              "maxLines": "1",
+              "lineHeight": "42.18000000000001rpx",
+              "textStyle": "fill",
+              "textDecoration": "none",
+              "fontFamily": "",
+              "textAlign": "left"
+            }
+          })
+        } else {
+          // 数字
+          sty3.views.push({
+            "type": "text",
+            "text": word2[i],
+            "css": {
+              "color": "#df4900",
+              "background": "rgba(0,0,0,0)",
+              "width": "40rpx",
+              "height": "42.94rpx",
+              "top": "400rpx",
+              "left": 30 + j * 40 + "rpx",
+              "rotate": "0",
+              "borderRadius": "",
+              "borderWidth": "",
+              "borderColor": "#000000",
+              "shadow": "",
+              "padding": "0rpx",
+              "fontSize": "62rpx",
+              "fontWeight": "bold",
+              "maxLines": "1",
+              "lineHeight": "42.18000000000001rpx",
+              "textStyle": "fill",
+              "textDecoration": "none",
+              "fontFamily": "",
+              "textAlign": "left"
+            }
+          })
+        }
         j++;
       }
     }
     var j = 0;
-    for (let i = 0; i < word2.length; i++) {
-      if (i <= 4) {
+    for (let i = 0; i < word1.length; i++) {
+      //第四个字就换行
+      if (i <= 3) {
         sty3.views.push({
           "type": "text",
-          "text": word2[i],
+          "text": word1[i],
           "css": {
             "color": "#7d2a0a",
             "background": "rgba(0,0,0,0)",
@@ -573,7 +606,7 @@ Page({
       } else {
         sty3.views.push({
           "type": "text",
-          "text": word2[i],
+          "text": word1[i],
           "css": {
             "color": "#7d2a0a",
             "background": "rgba(0,0,0,0)",

@@ -1,7 +1,8 @@
 <!--index.wxml-->
-<view class="red-bg"></view>
+<!-- 红色背景 -->
+<!-- <view class="red-bg"></view> -->
+
 <view class="index-container">
-	<!-- 红色背景 -->
 	<!-- 背景图 -->
 	<image class="img-bg" src="../../images/bg.png"></image>
 	<!-- 绑定角色组件 -->
@@ -9,17 +10,13 @@
 	<!-- title	 -->
 	<image class="index-title" src="../../images/index_title.png"></image>
 	<!-- banner图 -->
-	<swiper class="banner-swiper-con" autoplay="{{swiperOption.autoplay}}" interval="{{swiperOption.interval}}" duration="{{swiperOption.duration}}">
-		<swiper-item class="banner-swiper-item" wx:for="{{bannerList}}" wx:key="index">
-			<view class="banner-wrap">
-				<image class="banner-img" src="{{item}}">
-				</image>
-				<view class="banner-img-page1"></view>
-				<view class="banner-img-page2"></view>
-				<view class="banner-img-page3"></view>
-			</view>
-		</swiper-item>
-	</swiper>
+	<view class="banner-wrap">
+		<image class="banner-img" src="{{bannerList[swiperOption.current.month]}}">
+		</image>
+		<view class="banner-img-page1"></view>
+		<view class="banner-img-page2"></view>
+		<view class="banner-img-page3"></view>
+	</view>
 	<view class="role-info-wrap">
 		xx大区，xx角色
 		<view class="text-change-role" bindtap="handleOpenRoleBind">
@@ -27,6 +24,11 @@
 		</view>
 	</view>
 	<!-- 日历 -->
+	<!-- prev -->
+	<image bindtap="prev" class="img-prev-arrow" src="../../images/arrow.png"></image>
+	<!-- next -->
+	<image bindtap="next" class="img-next-arrow" src="../../images/arrow.png"></image>
+
 	<view class="calendar-con">
 		<view class="calendar-wrap">
 			<view class="calendar-header">
@@ -80,11 +82,12 @@
 	</view>
 	<!-- 日程列表 -->
 	<view class="schedule-con">
-		<view class="no-schedule-wrap" wx:if="{{playerInfo.schedules.length == 0}}">
+
+		<view bindtap="handleOrderAct" class="no-schedule-wrap" wx:if="{{playerInfo.schedules.length == 0}}">
 		</view>
 		<view class="schedule-wrap" wx:else>
 			<!-- 绑定事件 点击跳转到内页 -->
-			<view bindtap="toInner" class="schedule-box" wx:for="{{playerInfo.schedules}}" wx:key="index">
+			<view bindtap="toInner" class="schedule-box" wx:for="{{playerInfo.schedules}}" data-act-id="id" wx:key="index">
 				<view class="schedule-title">{{item.title}}</view>
 				<view class="schedule-date">
 					活动时间:{{ item.beginDate}} 至 {{ item.endDate}}
@@ -94,11 +97,4 @@
 			</view>
 		</view>
 	</view>
-	<!-- <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view> -->
 </view>

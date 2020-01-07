@@ -45,7 +45,7 @@ export default class LastMayday {
             "width": "204rpx",
             "height": "24.86rpx",
             "top": "766rpx",
-            "left": "546rpx",
+            "left": "572rpx",
             "rotate": "0",
             "borderRadius": "",
             "borderWidth": "",

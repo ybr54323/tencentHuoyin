@@ -14,35 +14,47 @@ Page({
     bannerList: [
       "../../images/banner_img.png",
       "../../images/banner_img.png",
+      "../../images/banner_img.png",
+      "../../images/banner_img.png",
+      "../../images/banner_img.png",
+      "../../images/banner_img.png",
+      "../../images/banner_img.png",
+      "../../images/banner_img.png",
+      "../../images/banner_img.png",
+      "../../images/banner_img.png",
+      "../../images/banner_img.png",
+      "../../images/banner_img.png",
+      "../../images/banner_img.png",
       "../../images/banner_img.png"
     ],
     //模拟用户/玩家数据
     playerInfo: {
-      schedules: [{
-        id: 1,
-        title: "宇智波佐助【疾风传咒印】登场",
-        beginDate: "2019-11-29-5",
-        endDate: "2019-12-13-5",
-        message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
-      }, {
-        id: 2,
-        title: "宇智波佐助【疾风传咒印】登场",
-        beginDate: "2019-11-29-5",
-        endDate: "2019-12-13-5",
-        message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
-      }, {
-        id: 2,
-        title: "宇智波佐助【疾风传咒印】登场",
-        beginDate: "2019-11-29-5",
-        endDate: "2019-12-13-5",
-        message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
-      }, {
-        id: 2,
-        title: "宇智波佐助【疾风传咒印】登场",
-        beginDate: "2019-11-29-5",
-        endDate: "2019-12-13-5",
-        message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
-      }]
+      schedules: [],
+      // schedules: [{
+      //   id: 1,
+      //   title: "宇智波佐助【疾风传咒印】登场",
+      //   beginDate: "2019-11-29-5",
+      //   endDate: "2019-12-13-5",
+      //   message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
+      // }, {
+      //   id: 2,
+      //   title: "宇智波佐助【疾风传咒印】登场",
+      //   beginDate: "2019-11-29-5",
+      //   endDate: "2019-12-13-5",
+      //   message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
+      // }, {
+      //   id: 2,
+      //   title: "宇智波佐助【疾风传咒印】登场",
+      //   beginDate: "2019-11-29-5",
+      //   endDate: "2019-12-13-5",
+      //   message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
+      // }, {
+      //   id: 2,
+      //   title: "宇智波佐助【疾风传咒印】登场",
+      //   beginDate: "2019-11-29-5",
+      //   endDate: "2019-12-13-5",
+      //   message: "宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场宇智波佐助【疾风传咒印】登场"
+      // }]
     },
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -74,7 +86,7 @@ Page({
       //当前月份,参数
       current: {
         index: 1,
-        month: new Date().getFullYear() == 2019 ? new Date().getMonth() : new Date().getMonth() + 12
+        month: getApp().globalData.currentIndex || new Date().getFullYear() == 2019 ? new Date().getMonth() : new Date().getMonth() + 12
       },
     },
     // 日历的周日至周六
@@ -99,7 +111,30 @@ Page({
     monthList: [],
 
   },
+  // prev next
+  prev: function () {
+    // console.log("prev")
+    var swiperOption = this.data.swiperOption;
+    var month = swiperOption.current.month;
+    var monthList = this.data.monthList;
+    // console.warn(month)
+    swiperOption.current.month = month > 0 ? month - 1 : monthList.length - 1;
+    this.setData({
+      swiperOption,
+    })
+  },
 
+  next: function () {
+    // console.log("next")
+    var swiperOption = this.data.swiperOption;
+    var month = swiperOption.current.month;
+    // console.warn(month)
+    var monthList = this.data.monthList;
+    swiperOption.current.month = month < (monthList.length - 1) ? month + 1 : 0;
+    this.setData({
+      swiperOption,
+    })
+  },
   // 处理swiper的current值
   handleSwiperCurrent() {
     let m = this.month;
@@ -142,12 +177,26 @@ Page({
       m = paramObj.month;
       d = paramObj.date;
     } catch (error) {
-      console.warn(error.message);
+      console.warn(error);
     }
     console.warn(y, m, d);
-
+    // let swiperOption = this.data.swiperOption;
+    // swiperOption.current.month = m;
+    getApp().globalData.currentIndex = m;
     wx.navigateTo({
       url: `../inner/inner?year=${y}&month=${m}&date=${d}`,
+    })
+  },
+  // 没有日程或提醒添加
+  handleOrderAct() {
+    // 去当天的日程
+    let dateObje = new Date();
+    let year = dateObje.getFullYear();
+    let month;
+    month = year == 2019 ? dateObje.getMonth() : dateObje.getMonth() + 12;
+    let date = dateObje.getDate();
+    wx.navigateTo({
+      url: `../inner/inner?year=${2019}&month=${month}&date=${date}`,
     })
   },
   /**
@@ -193,6 +242,18 @@ Page({
     }
     const _this = this;
     wx.request({
+      url: 'https://hyrz.qq.com/zlkdatasys/data_zlk_rzxxlb.json',
+      data: '',
+      header: {},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success(res) {
+        console.log(res);
+        getApp().globalData.ninjaList = res.data.ninjainfo_18;
+      }
+    })
+    wx.request({
       url: `https://hyrz.qq.com/zlkdatasys/data_zlk_nlhdlb.json`,
       data: '',
       header: {},
@@ -214,7 +275,6 @@ Page({
         })
       },
       success: function (res) {
-
         console.warn(res);
         let actList = res.data.actassets_54;
         actList.forEach(act => {

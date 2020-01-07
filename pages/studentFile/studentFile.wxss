@@ -146,7 +146,7 @@ page {
   transform: translateX(-50%);
   filter: drop-shadow(5rpx 5rpx 5rpx #967958);
 }
-
+/* 
 .button-back-home {
   position: absolute;
   right: 0;
@@ -155,7 +155,9 @@ page {
   width: 170rpx;
   max-width: 170rpx;
   height: 137rpx;
-}
+  z-index: 10;
+
+} */
 
 .button-back-home {
   position: absolute;
@@ -165,6 +167,8 @@ page {
   font-size: 28rpx;
   color: #fff6d7;
   font-weight: bold;
+  z-index: 10;
+
 }
 
 .qrcode1,
@@ -175,4 +179,3 @@ page {
   width: 161rpx;
   height: 161rpx;
 }
-

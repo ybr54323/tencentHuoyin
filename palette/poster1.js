@@ -8,7 +8,7 @@ export default class LastMayday {
       "background": "#f8f8f8",
       "views": [{
           "type": "image",
-          "url": "https://h5.intech.gdinsight.com/tencent/a20191225huoying/student_file_bg.png",
+          "url": "",
           "css": {
             "width": "750rpx",
             "height": "1207rpx",
@@ -24,7 +24,7 @@ export default class LastMayday {
         },
         {
           "type": "image",
-          "url": "https://h5.intech.gdinsight.com/tencent/a20191225huoying/user_avator.png",
+          "url": "",
           "css": {
             "width": "88rpx",
             "height": "88rpx",
@@ -40,7 +40,7 @@ export default class LastMayday {
         },
         {
           "type": "image",
-          "url": "https://h5.intech.gdinsight.com/tencent/a20191225huoying/banner_img.png",
+          "url": "",
           "css": {
             "width": "683rpx",
             "height": "397rpx",
