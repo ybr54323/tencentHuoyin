@@ -45,9 +45,11 @@
 }
 
 .button-check {
-  position: absolute;
+  /* position: absolute;
   bottom: 94rpx;
-  left: 231rpx;
+  left: 231rpx; */
+  margin-left: 50%;
+  transform:translateX(-50%);
   width: 199rpx;
   line-height: 44rpx;
   height: 44rpx;
@@ -76,6 +78,7 @@
   left: 94rpx;
   color: #7c2415;
   font-size: 24rpx;
+  font-weight: bold;
 }
 
 .img-record-list-bg {
@@ -92,6 +95,8 @@
   max-height: 490rpx;
   overflow: scroll;
   box-sizing: border-box;
+  font-size: 24rpx;
+  font-weight: bold;
 }
 
 .record-list-text-wrap {
@@ -114,7 +119,7 @@
   color: #fff;
   text-align: center;
   font-size: 25rpx;
-  filter: drop-shadow(5rpx 5rpx 5rpx #967958);
+  filter: drop-shadow(2px 2px 2px #967958);
 }
 
 .text-record-date {
@@ -171,7 +176,7 @@
   border-style: solid;
   opacity: 0.6;
   border-radius: 40rpx;
-  filter: drop-shadow(5rpx 5rpx 5rpx #967958);
+  filter: drop-shadow(2px 2px 2px #967958);
   z-index: 10000;
 }
 
@@ -194,6 +199,7 @@
   padding: 31rpx 56rpx;
   background-color: transparent;
   position: relative;
+  font-weight: bold;
 }
 
 .trigger-button {
@@ -261,7 +267,7 @@
 
 .text-schedule-big-title {
   font-size: 100rpx;
-  color: #4c0e05;
+  color: #772418;
   margin-bottom: 17rpx;
   font-weight: bolder;
 }
@@ -293,4 +299,7 @@
   padding-bottom: 2rpx;
   border-bottom: 1px solid #dd5207;
   margin-bottom: 28rpx;
+}
+.active-bgc {
+  background-color: rgba(223, 201, 150, 0.3);
 }

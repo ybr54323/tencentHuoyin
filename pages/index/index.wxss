@@ -67,7 +67,7 @@ page {
   bottom: -1rpx;
   border-radius: 30rpx;
   background-color: #eaddb3;
-  filter: drop-shadow(5rpx 5rpx 5rpx #967958);
+  filter: drop-shadow(2px 2px 2px #967958);
   z-index: 1;
 }
 
@@ -234,7 +234,7 @@ page {
   border-radius: 50%;
   background-image: linear-gradient(to bottom, #a0350f, #a0350f 50%, #c34512 50%, #c34512 100%);
   color: #fff;
-  filter: drop-shadow(5rpx 5rpx 5rpx #967958);
+  filter: drop-shadow(2px 2px 2px #967958);
 }
 
 /* 大活动 优先级2 */
@@ -251,7 +251,7 @@ page {
   border-radius: 50%;
   background-image: linear-gradient(to bottom, #b57119, #b56f19 50%, #d28b1f 50%, #d28b1f 100%);
   color: #fff;
-  filter: drop-shadow(5rpx 5rpx 5rpx #967958);
+  filter: drop-shadow(2px 2px 2px #967958);
 }
 
 /* 日常 优先级最低 3 */
@@ -268,7 +268,7 @@ page {
   border-radius: 50%;
   background-image: linear-gradient(to bottom, #3e7e4a, #3e7e4a 50%, #4b9756 50%, #4b9756 100%);
   color: #fff;
-  filter: drop-shadow(5rpx 5rpx 5rpx #967958);
+  filter: drop-shadow(2px 2px 2px #967958);
 }
 
 .schedule-con {

@@ -66,14 +66,14 @@
 		<!-- 活动的importance 为1 普通活动，没带图的，为0就是大活动，带活动介绍图 -->
 		<block wx:for="{{todayActList}}" wx:key="index">
 			<block wx:if="{{item.importance==1}}">
-				<view class="schedule-item-wrap">
+				<view class="schedule-item-wrap {{item.show==true?'active-bgc':''}}">
 					<view class="trigger-button img-arrow {{item.show==false?'reverse':''}}" data-index="{{index}}" bindtap="handleOpenDetail">
 					</view>
 					<view class="text-schedule-title">
 						{{item.title}}
 					</view>
 					<view class="text-schedule-time">
-						{{item.actTime}}
+						活动时间: {{item.actTime}}
 					</view>
 					<!-- 详细detail可以切换是否显示 -->
 					<view wx:if="{{item.show}}" class="text-schedule-detail">
@@ -89,7 +89,7 @@
 			</block>
 			<!-- 大活动 -->
 			<block wx:if="{{item.importance==0}}">
-				<view class="schedule-item-wrap">
+				<view class="schedule-item-wrap {{item.show==true?'active-bgc':''}}">
 					<view class="trigger-button img-arrow {{item.show==false?'reverse':''}}" data-index="{{index}}" bindtap="handleOpenDetail">
 					</view>
 					<block wx:if="{{item.show==false}}">
@@ -97,15 +97,15 @@
 							{{item.title}}
 						</view>
 						<view class="text-schedule-time">
-							{{item.actTime}}
+							活动时间: {{item.actTime}}
 						</view>
 					</block>
 					<block wx:if="{{item.show==true}}">
 						<view class="text-schedule-big-title">
-							{{item.title}}
+							木叶情报
 						</view>
 						<view class="text-schedule-big-time">
-							{{item.actTime}}
+							活动时间: {{item.actTime}}
 						</view>
 						<image src="{{item.picture}}" class="img-schedule-poster">
 						</image>

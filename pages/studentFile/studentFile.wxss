@@ -144,7 +144,7 @@ page {
   background-image: linear-gradient(to bottom, #bc741b, #bc741b 50%, #d98e1f 50%, #d98e1f 100%);
   margin-left: 50%;
   transform: translateX(-50%);
-  filter: drop-shadow(5rpx 5rpx 5rpx #967958);
+  filter: drop-shadow(2px 2px 2px #967958);
 }
 /* 
 .button-back-home {
