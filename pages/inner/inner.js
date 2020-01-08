@@ -49,7 +49,7 @@ Page({
     let ninjaname = e.currentTarget.dataset.ninjaname
     let ninjabanner = e.currentTarget.dataset.ninjabanner
     let ninjastory = e.currentTarget.dataset.ninjastory
-    console.log(ninjaname,ninjabanner,ninjastory)
+    console.log(ninjaname, ninjabanner, ninjastory)
     let {
       year,
       month,
@@ -99,7 +99,8 @@ Page({
     let {
       year,
       month,
-      date
+      date,
+      actid
     } = options;
     year = month > 11 ? 2020 : 2019;
     month = month > 11 ? month - 12 : month;
@@ -133,7 +134,7 @@ Page({
         if (act.endtimeStamp >= t2 && act.startTimestamp < t2) {
           act.show = false;
           temp.push(act);
-          console.log(act);
+          // console.log(act);
         }
       })
     })
@@ -146,6 +147,15 @@ Page({
         a[temp[i].id] = true;
       }
     }
+    actid = parseInt(actid);
+    for (let i = 0; i < b.length; i++) {
+      if (b[i].id == actid) {
+        console.log(b[i])
+        b[i].show = true;
+      }
+    }
+    //找出已经预约的活动，首页点击已经预约活动进来的，带有id
+
     this.setData({
       todayActList: b
     })

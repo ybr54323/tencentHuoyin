@@ -153,6 +153,7 @@ Page({
     wx.clearStorageSync();
   },
   onLoad: function () {
+    // 确定swiper 的current的逻辑，如果之前缓存中有currentIndex就用着。没有就用当前的时间new Date()
     let swiperOption = this.data.swiperOption;
     let year;
     let currentIndex = wx.getStorageSync("currentIndex");
@@ -168,8 +169,8 @@ Page({
       year
     })
 
-    // 生成2019年1月至2020年2月的所有日期对象，只拉一次
-    // 先从缓存中拿
+    // 生成2019年1月至2020年2月的所有日期对象
+    // 先从缓存中拿,看看有没有
     let monthList = wx.getStorageSync("monthList");
     let totalActList = wx.getStorageInfoSync("totalActList");
     if (monthList instanceof Array && totalActList instanceof Array) {
@@ -206,7 +207,6 @@ Page({
       console.warn(error);
     }
     console.warn(y, m, d);
-    // let swiperOption = this.data.swiperOption;
     wx.setStorageSync('currentIndex', parseInt(m))
     wx.redirectTo({
       url: `../inner/inner?year=${y}&month=${m}&date=${d}`,
@@ -227,11 +227,24 @@ Page({
   },
   /**
    * 
-   * @param {d} e 跳转内页
+   * @param {d} e 已经预约的活动跳转内页
    */
-  toInner() {
+  toInner(e) {
+    let y, m, d,id;
+    // 当前点击的日期对象
+    let paramObj = e.currentTarget.dataset;
+    try {
+      y = paramObj.year;
+      m = paramObj.month;
+      d = paramObj.date;
+      id = paramObj.actid
+    } catch (error) {
+      console.warn(error);
+    }
+    console.warn(y, m, d,id);
+
     wx.redirectTo({
-      url: '../inner/inner',
+      url: `../inner/inner?year=${y}&month=${m}&date=${d}&actid=${id}`,
     })
   },
 
@@ -265,12 +278,15 @@ Page({
    * 并把对应日期的活动插入到monthList上对应的日期，方便生成日历，标识日期，传参数等
    */
   initCalendar() {
-
     let monthList = [];
     for (let m = 0; m < 14; m++) {
       monthList.push(this.initMonthDays(m));
     }
     const _this = this;
+    _this.setData({
+      monthList,
+    })
+    //请求忍者信息
     wx.request({
       url: 'https://hyrz.qq.com/zlkdatasys/data_zlk_rzxxlb.json',
       data: '',
@@ -305,6 +321,7 @@ Page({
         }
       }
     })
+    // 请求活动信息
     wx.request({
       url: `https://hyrz.qq.com/zlkdatasys/data_zlk_nlhdlb.json`,
       data: '',
@@ -329,6 +346,7 @@ Page({
       success: function (res) {
         // console.warn(res);
         let actList = res.data.actassets_54;
+
         actList.forEach(act => {
           // 活动id，去重
           let id = act.actid_79;
@@ -386,6 +404,24 @@ Page({
           // 改变活动列表
           getApp().globalData.totalActList = tal;
 
+          // **** 用户已经预约的活动。。。没有接口，我先模拟着，用所有的活动来模拟
+          let playerInfo = _this.data.playerInfo;
+          playerInfo.schedules.push(obj);
+
+          // 去个重吧
+          let a = {};
+          let b = [];
+          for (let i = 0; i < playerInfo.schedules.length; i++) {
+            if (!a[playerInfo.schedules[i].id]) {
+              b.push(playerInfo.schedules[i]);
+              a[playerInfo.schedules[i].id] = true;
+            }
+          }
+          playerInfo.schedules = b;
+          _this.setData({
+            playerInfo
+          })
+
           // 总日历数组
           let monthList = _this.data.monthList;
           //再日历数组对应的位置（月份）的活动数组 插入活动
@@ -420,9 +456,6 @@ Page({
         })
       },
       complete: function (res) {},
-    })
-    _this.setData({
-      monthList,
     })
   },
   /**

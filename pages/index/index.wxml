@@ -87,19 +87,20 @@
 	</view>
 	<!-- 日程列表 -->
 	<view class="schedule-con">
-
 		<view bindtap="handleOrderAct" class="no-schedule-wrap" wx:if="{{playerInfo.schedules.length == 0}}">
 		</view>
 		<view class="schedule-wrap" wx:else>
-			<!-- 绑定事件 点击跳转到内页 -->
-			<view bindtap="toInner" class="schedule-box" wx:for="{{playerInfo.schedules}}" data-act-id="id" wx:key="index">
-				<view class="schedule-title">{{item.title}}</view>
-				<view class="schedule-date">
-					活动时间:{{ item.beginDate}} 至 {{ item.endDate}}
+			<scroll-view scroll-y="true" style="height:100%">
+				<!-- 绑定事件 点击跳转到内页 -->
+				<view bindtap="toInner" data-actId="{{item.id}}" data-year="{{item.year}}" data-month="{{item.month}}" data-date="{{item.date}}" class="schedule-box" wx:for="{{playerInfo.schedules}}" wx:key="index">
+					<view class="schedule-title">{{item.title}}</view>
+					<view class="schedule-date">
+						活动时间:{{item.actTime}}
+					</view>
+					<view class="box-border-bottom"></view>
+					<view class="box-border-bottom"></view>
 				</view>
-				<view class="box-border-bottom"></view>
-				<view class="box-border-bottom"></view>
-			</view>
+			</scroll-view>
 		</view>
 	</view>
 </view>
