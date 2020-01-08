@@ -6,7 +6,7 @@
 	}
 	module.exports.myParseInt = myParseInt
 </wxs>
-<view class="inner-container img-bg">
+<view class="inner-container img-bg {{showRecord==true&&mileStoneList.length>0?'no-scrollY':''}}">
 	<!-- //填补底部的红色view块 -->
 	<!-- 背景图 -->
 	<image class="img-bg" src="../../images/bg.png"></image>

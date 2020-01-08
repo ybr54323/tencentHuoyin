@@ -50,7 +50,7 @@ page {
   background-color: #cfa668;
   color: #7d461c;
   line-height: 59rpx;
-  filter: drop-shadow(2px 2px 2px #967958);
+  box-shadow: 2px 2px 2px #967958;
 }
 
 .active {
@@ -135,8 +135,7 @@ page {
   background-image: linear-gradient(to bottom, #bc741b, #bc741b 50%, #d98e1f 50%, #d98e1f 100%);
   margin-left: 50%;
   transform: translateX(-50%);
-  filter: drop-shadow(2px 2px 2px #967958);
-
+  box-shadow: 2px 2px 2px #967958;
 }
 
 .text-year2 {
@@ -266,4 +265,27 @@ page {
   color: #fff6d7;
   font-weight: bold;
   z-index: 10;
+}
+
+.text-year3 {
+  position: absolute;
+  top: 1090rpx;
+  left: 34rpx;
+  font-size: 37rpx;
+  color: #4c0e05;
+  max-width: 195rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.text-month3 {
+  position: absolute;
+  top: 1135rpx;
+  left: 34rpx;
+  color: #4c0e05;
+  font-size: 20rpx;
+  max-width: 195rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

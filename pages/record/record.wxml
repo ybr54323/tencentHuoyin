@@ -103,6 +103,12 @@
 			{{word1}}
 		</view>
 		<image src="../../images/qrcode.png" class="qrcode3" />
+		<view class="text-year3">
+		{{year}}
+		</view>
+		<view class="text-month3">
+		{{month+1}}月{{date}}日 星期{{week}}
+		</view>
 	</block>
 	<view bindtap="handleSavePhoto" class="button-download-poster">
 		保存

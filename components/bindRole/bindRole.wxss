@@ -126,7 +126,7 @@
   margin-top: 31rpx;
   margin-left: 50%;
   transform: translate(-50%);
-  filter: drop-shadow(2rpx 2rpx 2rpx #a47f3f);
+  box-shadow: 2px 2px 2px #a47f3f;
 }
 
 .img-bind-role {

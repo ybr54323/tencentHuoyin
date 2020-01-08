@@ -346,7 +346,7 @@ Page({
     // 插入月，周
     sty1.views.push({
       "type": "text",
-      "text": `${+_this.data.month + 1}月${_this.data.date}日 星期${_this.data.week}`,
+      "text": `${parseInt(_this.data.month) + 1}月${_this.data.date}日 星期${_this.data.week}`,
       "css": {
         "color": "#4c0e05",
         "background": "rgba(0,0,0,0)",
@@ -398,7 +398,7 @@ Page({
     //玩家名称
     sty2.views[2].text = this.data.userInfo.nickName;
     //12月25号 星期三
-    sty2.views[3].text = `${this.data.month + 1}月${this.data.date}号  星期${this.data.week}`;
+    sty2.views[3].text = `${parseInt(this.data.month) + 1}月${this.data.date}号 星期${this.data.week}`;
     //乙亥年 【猪年】
     sty2.views[4].text = this.data.year == 2019 ? "乙亥年【猪年】" : "庚子年【鼠年】";
     sty2.views[5].text = this.data.date.toString();
@@ -642,6 +642,61 @@ Page({
         j++;
       }
     }
+    //插入底下的年份 例如2019
+    sty3.views.push({
+      "type": "text",
+      "text": _this.data.year.toString(),
+      "css": {
+        "color": "#4c0e05",
+        "background": "rgba(0,0,0,0)",
+        "width": "195rpx",
+        "height": "41.809999999999995rpx",
+        "top": "1090rpx",
+        "left": "34rpx",
+        "rotate": "0",
+        "borderRadius": "",
+        "borderWidth": "",
+        "borderColor": "#000000",
+        "shadow": "",
+        "padding": "0rpx",
+        "fontSize": "37rpx",
+        "fontWeight": "normal",
+        "maxLines": "1",
+        "lineHeight": "41.07rpx",
+        "textStyle": "fill",
+        "textDecoration": "none",
+        "fontFamily": "",
+        "textAlign": "left"
+      }
+    })
+    // 插入底下的 mm月dd日 星期w
+    sty3.views.push({
+      "type": "text",
+      "text": `${parseInt(_this.data.month) + 1}月${parseInt(_this.data.date)}号 星期${_this.data.week}`,
+      "css": {
+        "color": "#4c0e05",
+        "background": "rgba(0,0,0,0)",
+        "width": "195rpx",
+        "height": "22.599999999999998rpx",
+        "top": "1135rpx",
+        "left": "34rpx",
+        "rotate": "0",
+        "borderRadius": "",
+        "borderWidth": "",
+        "borderColor": "#000000",
+        "shadow": "",
+        "padding": "0rpx",
+        "fontSize": "20rpx",
+        "fontWeight": "normal",
+        "maxLines": "1",
+        "lineHeight": "22.200000000000003rpx",
+        "textStyle": "fill",
+        "textDecoration": "none",
+        "fontFamily": "",
+        "textAlign": "left"
+      }
+    })
+
     //插入二维码
     // sty3.views[3].url = "qrcodeurl"
     this.setData({

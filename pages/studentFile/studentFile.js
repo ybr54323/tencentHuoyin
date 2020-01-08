@@ -106,10 +106,10 @@ Page({
   onLoad: function (options) {
     console.warn(options)
     this.setData({
-      year: options.year,
-      month: options.month,
-      date: options.date,
-      day: new Date(options.year, options.month, options.date).getDay(),
+      year: parseInt(options.year),
+      month: parseInt(options.month),
+      date: parseInt(options.date),
+      day: parseInt(new Date(options.year, options.month, options.date).getDay()),
       ninjaname: options.ninjaname,
       ninjabanner: options.ninjabanner,
       ninjastory: options.ninjastory
