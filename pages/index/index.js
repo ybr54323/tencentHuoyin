@@ -2,9 +2,7 @@
 //获取应用实例
 const app = getApp()
 // wx.setEnableDebug({
-
 //   enableDebug: true
-
 // })
 Page({
   data: {
@@ -86,9 +84,8 @@ Page({
       circular: true,
       //当前月份,参数
       current: {
-        index: 1,
         //记录上一次点选的月份0-13
-        // month: wx.getStorageSync("currentIndex") || (new Date().getFullYear() == 2019 ? new Date().getMonth() : new Date().getMonth() + 12)
+        // month
       },
     },
     // 日历的周日至周六
@@ -109,12 +106,13 @@ Page({
       name: "六",
       color: true,
     }],
-    // 月份列表
+    // 承载 页面日历 上的 所有 天月份列表
     monthList: [],
-
+    // 是否有忍者宣言记录什么乱七八糟的东西，有的话就在页面上当天标红
+    hasRecord: false
   },
   // prev next
-  prev: function() {
+  prev: function () {
     // console.log("prev")
     var swiperOption = this.data.swiperOption;
     var month = swiperOption.current.month;
@@ -129,7 +127,7 @@ Page({
     })
   },
 
-  next: function() {
+  next: function () {
     // console.log("next")
     var swiperOption = this.data.swiperOption;
     var month = swiperOption.current.month;
@@ -154,7 +152,7 @@ Page({
   onHide() {
     wx.clearStorageSync();
   },
-  onLoad: function() {
+  onLoad: function () {
     let swiperOption = this.data.swiperOption;
     let year;
     let currentIndex = wx.getStorageSync("currentIndex");
@@ -283,6 +281,28 @@ Page({
       success(res) {
         console.log(res);
         getApp().globalData.ninjaList = res.data.ninjainfo_18;
+        // 有获得弹窗记录（忍者、连胜记录之类的
+        if (getApp().globalData.ninjaList.length > 0) {
+          _this.setData({
+            hasRecord: true
+          })
+          // 找到日历上当天的一天
+          let monthList = _this.data.monthList;
+          let y = new Date().getFullYear();
+          let m = y > 2019 ? parseInt(new Date().getMonth()) + 12 : parseInt(new Date().getMonth());
+          let d = new Date().getDate();
+          for (let i = 0; i < monthList[m].length; i++) {
+            let month = monthList[m];
+            if (month[i].month == m && month[i].date == d) {
+              month[i].hasRecord = true;
+              console.log(month[i])
+              _this.setData({
+                monthList
+              })
+              break;
+            }
+          }
+        }
       }
     })
     wx.request({
@@ -306,8 +326,8 @@ Page({
           duration: 2000
         })
       },
-      success: function(res) {
-        console.warn(res);
+      success: function (res) {
+        // console.warn(res);
         let actList = res.data.actassets_54;
         actList.forEach(act => {
           // 活动id，去重
@@ -359,7 +379,6 @@ Page({
             startTimestamp,
             endtimeStamp,
           };
-          console.warn(obj);
           // 总活动数组
           let tal = app.globalData.totalActList;
           // 在总活动数组对应的位置（月份）的活动数组 插入活动
@@ -382,31 +401,29 @@ Page({
           _this.setData({
             monthList
           })
+          wx.setStorageSync("totalActList", app.globalData.totalActList);
+          wx.setStorage({
+            key: "monthList",
+            data: monthList,
+            success() {},
+            fail(res) {
+              wx.showToast({
+                title: res,
+              })
+            }
+          })
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         wx.showToast({
           title: res,
         })
       },
-      complete: function(res) {},
+      complete: function (res) {},
     })
     _this.setData({
       monthList,
-    }, () => {
-      wx.setStorageSync("totalActList", app.globalData.totalActList);
-      wx.setStorage({
-        key: "monthList",
-        data: monthList,
-        success() {},
-        fail(res) {
-          wx.showToast({
-            title: res,
-          })
-        }
-      })
     })
-    //缓存
   },
   /**
    * @param {*} m int 0-13，可生成19年1月到2020年2月所有月份所有日期对象，生成带有查询参数(date,month,year,week)的日期对象

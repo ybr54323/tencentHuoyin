@@ -56,7 +56,9 @@ page {
   z-index: 2;
 }
 
-.banner-img-page1, .banner-img-page2, .banner-img-page3 {
+.banner-img-page1,
+.banner-img-page2,
+.banner-img-page3 {
   position: absolute;
   width: 99.5%;
   left: 0;
@@ -197,6 +199,7 @@ page {
   flex: 1 0 14.28%;
   height: 38rpx;
   line-height: 38rpx;
+  padding: 6rpx 0;
 }
 
 /* 當前月 */

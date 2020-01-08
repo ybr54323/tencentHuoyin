@@ -1,10 +1,11 @@
 <wxs module="tool">
 	function mySubstring(str) {
+		if (!str) return
 		return str.substring(0, 3);
 	}
 	module.exports.mySubstring = mySubstring;
 </wxs>
-<!-- <view class="red-bg"></view> -->
+<view class="red-bg"></view>
 <view class="student-file-container">
 	<!-- 背景图 -->
 	<image class="img-student-file-bg" src="../../images/student_file_bg.png"></image>
@@ -15,9 +16,9 @@
 		</view>
 	</view>
 	<view class="student-file-main-warp">
-		<image class="img-student-file-banner" src="../../images/banner_img.png"></image>
-		<view class="name">宇智波佐助 【疾风传诅咒】</view>
-		<view class="sub-name">“天之咒印！！疾驰的黑色雷电”</view>
+		<image class="img-student-file-banner" src="{{ninjabanner}}"></image>
+		<view class="name">{{ninjaname}}</view>
+		<view class="sub-name">{{ninjastory}}</view>
 		<view class="date">{{monthEnglishName[month]}},{{week[day]}} {{date}},{{year}}</view>
 		<view class="circal-date">
 			<text class="text-week">{{tool.mySubstring(week[day])}}</text>

@@ -1,104 +1,105 @@
 <!--index.wxml-->
 <!-- 红色背景 -->
-<!-- <view class="red-bg"></view> -->
+<view class="red-bg"></view>
 
 <view class="index-container">
-  <!-- 背景图 -->
-  <image class="img-bg" src="../../images/bg.png"></image>
-  <!-- 绑定角色组件 -->
-  <bind-role bind:closeBindRole="handleCloseBindRole" wx:if="{{bindRole}}"></bind-role>
-  <!-- title	 -->
-  <image class="index-title" src="../../images/index_title.png"></image>
-  <!-- banner图 -->
-  <view class="banner-wrap">
-    <image class="banner-img" src="{{bannerList[swiperOption.current.month]}}">
-    </image>
-    <view class="banner-img-page1"></view>
-    <view class="banner-img-page2"></view>
-    <view class="banner-img-page3"></view>
-  </view>
-  <view class="role-info-wrap">
-    xx大区，xx角色
-    <view class="text-change-role" bindtap="handleOpenRoleBind">
-      【切换角色】
-    </view>
-  </view>
-  <!-- 日历 -->
-  <!-- prev -->
-  <view class="prev-warp">
-    <image bindtap="prev" class="img-prev-arrow" src="../../images/arrow.png"></image>
-  </view>
-  <!-- next -->
-  <view class="next-wrap">
-    <image bindtap="next" class="img-next-arrow" src="../../images/arrow.png"></image>
-  </view>
+	<!-- 背景图 -->
+	<image class="img-bg" src="../../images/bg.png"></image>
+	<!-- 绑定角色组件 -->
+	<bind-role bind:closeBindRole="handleCloseBindRole" wx:if="{{bindRole}}"></bind-role>
+	<!-- title	 -->
+	<image class="index-title" src="../../images/index_title.png"></image>
+	<!-- banner图 -->
+	<view class="banner-wrap">
+		<image class="banner-img" src="{{bannerList[swiperOption.current.month]}}">
+		</image>
+		<view class="banner-img-page1"></view>
+		<view class="banner-img-page2"></view>
+		<view class="banner-img-page3"></view>
+	</view>
+	<view class="role-info-wrap">
+		xx大区，xx角色
+		<view class="text-change-role" bindtap="handleOpenRoleBind">
+			【切换角色】
+		</view>
+	</view>
+	<!-- 日历 -->
+	<!-- prev -->
+	<view class="prev-warp" bindtap="prev">
+		<image class="img-prev-arrow" src="../../images/arrow.png"></image>
+	</view>
+	<!-- next -->
+	<view class="next-wrap" bindtap="next">
+		<image class="img-next-arrow" src="../../images/arrow.png"></image>
+	</view>
 
-  <view class="calendar-con">
-    <view class="calendar-wrap">
-      <view class="calendar-header">
-        <text class="text-big-month">{{(swiperOption.current.month>=12?swiperOption.current.month-11:swiperOption.current.month + 1) || ''}}月</text>
-        <view class="date-detail-wrap">
-          <text class="text-mid-eng-month">{{swiperOption.current.month>=12?monthEnglishName[swiperOption.current.month-12]:monthEnglishName[swiperOption.current.month]}}</text>
-          <text class="text-year">{{year}}年 {{year==2019?"己亥":"庚子"}}({{year==2019?"猪年":"鼠年"}})</text>
-        </view>
-      </view>
-      <image class="img-half-head" src="../../images/head.png"></image>
-      <view class="week-wrap">
-        <block wx:for="{{week}}" wx:key="index">
-          <view class="text-week {{item.color?'text-color':''}}">{{item.name}}</view>
-        </block>
-      </view>
-      <swiper current="{{swiperOption.current.month}}" bindchange="changeMonth" class="swiper-wrap" autoplay="{{swiperOption.autoplay}}" interval="{{swiperOption.interval}}" duration="{{swiperOption.duration}}" circular="{{swiperOption.circular}}">
-        <swiper-item class="swiper-item" wx:for="{{monthList}}" wx:key="index">
-          <view class="calendar-main">
-            <view bindtap="handleDateTap" data-year="{{date.year}}" data-month="{{date.month}}" data-date="{{date.date}}" class="text-day-con" wx:for="{{item}}" wx:for-item="date" wx:key="timestamp">
-              <!-- 是当前月 -->
-              <block wx:if="{{date.currentMonth==true}}">
-                <!-- 周末 class:is-saturday-or-sunday 非周末 day-active -->
-                <view class="{{date.week==0||date.week==6?'is-saturday-or-sunday':'day-active'}}">
-                  <!-- 当天有日程，特别标记 -->
-                  <block wx:if="{{date.actList.length>0}}">
-                    <!-- 遍历当天的日程，找出对应的type，有优先级 213 通过改z-index来实现到优先级 -->
-                    <block wx:for="{{date.actList}}" wx:for-item="act" wx:key="index">
-                      <!-- 0普通活动对应daily 1大活动对应big-activity 2对应各种记录？ -->
-                      <view class="{{act.importance==0?'daily':''||act.importance==1?'big-activity':''||act.importance==2?'mile-stone':''}}">
-                        {{act.date}}
-                      </view>
-                    </block>
-                  </block>
-                  <view wx:else>
-                    {{date.date}}
-                  </view>
-                </view>
-              </block>
-              <!-- 不是当前月 class: day-unactive-->
-              <block wx:else>
-                <view class="day-unactive">
-                  {{date.date}}
-                </view>
-              </block>
-            </view>
-          </view>
-        </swiper-item>
-      </swiper>
-    </view>
+	<view class="calendar-con">
+		<view class="calendar-wrap">
+			<view class="calendar-header">
+				<text class="text-big-month">{{(swiperOption.current.month>=12?swiperOption.current.month-11:swiperOption.current.month + 1) || ''}}月</text>
+				<view class="date-detail-wrap">
+					<text class="text-mid-eng-month">{{swiperOption.current.month>=12?monthEnglishName[swiperOption.current.month-12]:monthEnglishName[swiperOption.current.month]}}</text>
+					<text class="text-year">{{year}}年 {{year==2019?"己亥":"庚子"}}({{year==2019?"猪年":"鼠年"}})</text>
+				</view>
+			</view>
+			<image class="img-half-head" src="../../images/head.png"></image>
+			<view class="week-wrap">
+				<block wx:for="{{week}}" wx:key="index">
+					<view class="text-week {{item.color?'text-color':''}}">{{item.name}}</view>
+				</block>
+			</view>
+			<swiper current="{{swiperOption.current.month}}" bindchange="changeMonth" class="swiper-wrap" autoplay="{{swiperOption.autoplay}}" interval="{{swiperOption.interval}}" duration="{{swiperOption.duration}}" circular="{{swiperOption.circular}}">
+				<swiper-item class="swiper-item" wx:for="{{monthList}}" wx:key="index">
+					<view class="calendar-main">
+						<view bindtap="handleDateTap" data-year="{{date.year}}" data-month="{{date.month}}" data-date="{{date.date}}" class="text-day-con" wx:for="{{item}}" wx:for-item="date" wx:key="timestamp">
+							<!-- 是当前月 -->
+							<block wx:if="{{date.currentMonth==true}}">
+								<!-- 周末 class:is-saturday-or-sunday 非周末 day-active -->
+								<!-- 标识出记录 -->
+								<view class="{{date.hasRecord==true?'mile-stone':''}} {{date.week==0||date.week==6?'is-saturday-or-sunday':'day-active'}}">
+									<!-- 当天有日程，特别标记 -->
+									<block wx:if="{{date.actList.length>0}}">
+										<!-- 遍历当天的日程，找出对应的type，有优先级 213 通过改z-index来实现到优先级 -->
+										<block wx:for="{{date.actList}}" wx:for-item="act" wx:key="index">
+											<!-- 0普通活动对应daily 1大活动对应big-activity hasRecord==true对应各种记录？ -->
+											<view class="{{act.importance==1?'daily':''||act.importance==0?'big-activity':''}}">
+												{{act.date}}
+											</view>
+										</block>
+									</block>
+									<view wx:else>
+										{{date.date}}
+									</view>
+								</view>
+							</block>
+							<!-- 不是当前月 class: day-unactive-->
+							<block wx:else>
+								<view class="day-unactive">
+									{{date.date}}
+								</view>
+							</block>
+						</view>
+					</view>
+				</swiper-item>
+			</swiper>
+		</view>
 
-  </view>
-  <!-- 日程列表 -->
-  <view class="schedule-con">
+	</view>
+	<!-- 日程列表 -->
+	<view class="schedule-con">
 
-    <view bindtap="handleOrderAct" class="no-schedule-wrap" wx:if="{{playerInfo.schedules.length == 0}}">
-    </view>
-    <view class="schedule-wrap" wx:else>
-      <!-- 绑定事件 点击跳转到内页 -->
-      <view bindtap="toInner" class="schedule-box" wx:for="{{playerInfo.schedules}}" data-act-id="id" wx:key="index">
-        <view class="schedule-title">{{item.title}}</view>
-        <view class="schedule-date">
-          活动时间:{{ item.beginDate}} 至 {{ item.endDate}}
-        </view>
-        <view class="box-border-bottom"></view>
-        <view class="box-border-bottom"></view>
-      </view>
-    </view>
-  </view>
+		<view bindtap="handleOrderAct" class="no-schedule-wrap" wx:if="{{playerInfo.schedules.length == 0}}">
+		</view>
+		<view class="schedule-wrap" wx:else>
+			<!-- 绑定事件 点击跳转到内页 -->
+			<view bindtap="toInner" class="schedule-box" wx:for="{{playerInfo.schedules}}" data-act-id="id" wx:key="index">
+				<view class="schedule-title">{{item.title}}</view>
+				<view class="schedule-date">
+					活动时间:{{ item.beginDate}} 至 {{ item.endDate}}
+				</view>
+				<view class="box-border-bottom"></view>
+				<view class="box-border-bottom"></view>
+			</view>
+		</view>
+	</view>
 </view>

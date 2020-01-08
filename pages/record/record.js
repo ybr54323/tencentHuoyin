@@ -19,9 +19,9 @@ Page({
     word1: "刷新最高连胜记录!!",
     word2: "最新纪录14场",
     word3: "最新纪录14场",
-    year: new Date().getFullYear(),
-    month: new Date().getMonth(),
-    date: new Date().getDate(),
+    year: '',
+    month: '',
+    date: '',
     week: ["日", "一", "二", "三", "四", "五", "六"][new Date().getDay()],
     // 风格1-3的图片路径
     image1: "",
@@ -150,7 +150,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.warn(options)
+    this.setData({
+      year: parseInt(options.year),
+      month: parseInt(options.month),
+      date: parseInt(options.date),
+      day: parseInt(new Date(options.year, options.month, options.date).getDay()),
+      // ninjaname: options.ninjaname,
+      // ninjabanner: options.ninjabanner,
+      // ninjastory: options.ninjastory
+    })
   },
 
   /**

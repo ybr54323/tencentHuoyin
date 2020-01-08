@@ -9,11 +9,7 @@ Page({
     //模拟用户/玩家数据,活动数据
     todayActList: [],
     // 里程碑，获得忍者或者记录什么的
-    mileStoneList: [{
-      name: 'test',
-    }, {
-      name: 'test1'
-    }],
+    mileStoneList: [],
     // 弹窗状态
     bindRole: false,
     // 记录弹窗显示状态
@@ -47,17 +43,32 @@ Page({
       url: "../index/index",
     })
   },
-  //去学员档案--- 3种风格的那个
-  toStudentFile() {
-    console.log("test")
+  //去学员档案--- 获得佐助XXX
+  toStudentFile(e) {
+    console.log(e);
+    let ninjaname = e.currentTarget.dataset.ninjaname
+    let ninjabanner = e.currentTarget.dataset.ninjabanner
+    let ninjastory = e.currentTarget.dataset.ninjastory
+    console.log(ninjaname,ninjabanner,ninjastory)
+    let {
+      year,
+      month,
+      date
+    } = this.data;
     wx.redirectTo({
-      url: '../record/record',
+      url: `../studentFile/studentFile?year=${year}&month=${month}&date=${date}&ninjabanner=${ninjabanner}&ninjaname=${ninjaname}&ninjastory=${ninjastory}`,
     })
   },
-  // 去学员档案 获得佐助XXX
+  // 去学员档案 3种风格的那个 
   toRecord() {
+    //传什么待定。
+    let {
+      year,
+      month,
+      date
+    } = this.data;
     wx.redirectTo({
-      url: '../studentFile/studentFile',
+      url: `../record/record?year=${year}&month=${month}&date=${date}`,
     })
   },
   // 打开活动详情 trigger
@@ -83,7 +94,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     console.log(options);
     let {
       year,
@@ -96,8 +107,11 @@ Page({
     this.setData({
       year,
       month,
-      date
+      date,
+      mileStoneList: app.globalData.ninjaList
     })
+
+
     // 用 当天00:00pm 时间戳 作为条件来从总的活动列表totalActList来筛选活动出来，至于能否预约，是否已经预约，有待后端同学处理
     let t1 = new Date(year, month, date, 0).getTime();
 
@@ -116,28 +130,12 @@ Page({
         console.log("t2", t2);
         console.log("act.startTimestamp:", act.startTimestamp);
         console.log("act.endtimeStamp:", act.endtimeStamp);
-        //注意。。。。为了应付他给我返回开始时间跟结束时间一样的活动，除个2，以满足条件
-        if (act.endtimeStamp >= (t2 / 2) && act.startTimestamp < t2) {
+        if (act.endtimeStamp >= t2 && act.startTimestamp < t2) {
           act.show = false;
           temp.push(act);
           console.log(act);
         }
       })
-    })
-    //应付无数据，
-    temp.push({
-      actTime: "11月1日23:30至11月5日6:00",
-      date: 31,
-      detail: "文字限制在90个字内",
-      endtimeStamp: 1577773402000,
-      importance: 1,
-      month: 11,
-      picture: "../../images/banner_img.png",
-      startTimestamp: 1577773402000,
-      title: "文字限制在20个字内",
-      year: 2019,
-      show: false,
-      id: "test"
     })
     // 去重处理
     let a = {};
@@ -156,21 +154,21 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
     this.setData({
       // todayActList: []
     })
@@ -179,28 +177,28 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

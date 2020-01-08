@@ -6,7 +6,7 @@
 	module.exports.isNumber = isNumber;
 </wxs>
 <!-- //填补底部的红色view块 -->
-<!-- <view class="red-bg"></view> -->
+<view class="red-bg"></view>
 <view class="record-container">
 	<view class="style-switch-wrap">
 		<view data-style="1" bindtap="switch" class="button-switch-style {{style==1?'active':''}}">风格1</view>

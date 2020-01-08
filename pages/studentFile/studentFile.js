@@ -12,10 +12,10 @@ Page({
     userInfo: {},
     // 监控页面是否已经加载完，可生成海报
     canSave: false,
-    day: new Date().getDay(),
-    date: new Date().getDate(),
-    year: new Date().getFullYear(),
-    month: new Date().getMonth(),
+    day: '',
+    date: '',
+    year: '',
+    month: '',
     monthEnglishName: [
       "January",
       "February",
@@ -103,14 +103,23 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-
+  onLoad: function (options) {
+    console.warn(options)
+    this.setData({
+      year: options.year,
+      month: options.month,
+      date: options.date,
+      day: new Date(options.year, options.month, options.date).getDay(),
+      ninjaname: options.ninjaname,
+      ninjabanner: options.ninjabanner,
+      ninjastory: options.ninjastory
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     const app = getApp();
     console.log(app.globalData);
     let nickName = app.globalData.mock.userInfo.nickName;
@@ -128,16 +137,21 @@ Page({
     //传用户头像图片url
     palette.views[1].url = this.data.userInfo.avatarUrl;
     //banner图
-    palette.views[2].url = "../../images/banner_img.png";
+    // 注意要加上https
+    var banner = this.data.ninjabanner;
+    if (banner[0] == '/') {
+      banner = "https:" + banner;
+    }
+    palette.views[2].url = banner
     //时间，例如 Wednesday,December 25,2019
     // {{monthEnglishName[month]}},{{week[day]}} {{date}},{{year}}
     var data = this.data;
     var timeStr = `${data.monthEnglishName[data.month]}, ${data.week[data.day]} ${data.date}, ${data.year}`
     palette.views[3].text = timeStr;
     //忍者名,例: 宇智波佐助 【疾风传诅咒】
-    // palette.views[4].text = "忍者名字";
+    palette.views[4].text = this.data.ninjaname;
     //subtitle 例: “天之咒印！！疾驰的黑色雷电”
-    // palette.views[5].text = "“天之咒印！！疾驰的黑色雷电”";
+    palette.views[5].text = this.data.ninjastory;
     //星期 例: Wed
     palette.views[6].text = data.week[data.day].substring(0, 3);
     //mm月dd日 例子: 12月25日
@@ -155,42 +169,42 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

@@ -1,10 +1,10 @@
 <!-- 活动内页 -->
-<!-- <view class="red-bg"></view> -->
+<view class="red-bg"></view>
 <wxs module="tool1">
-function myParseInt(month) {
-	return parseInt(month)
-}
-module.exports.myParseInt = myParseInt
+	function myParseInt(month) {
+		return parseInt(month)
+	}
+	module.exports.myParseInt = myParseInt
 </wxs>
 <view class="inner-container img-bg">
 	<!-- //填补底部的红色view块 -->
@@ -18,30 +18,32 @@ module.exports.myParseInt = myParseInt
 				<image class="img-record-bg" src="../../images/record_bg.png"></image>
 				<view class="record-text-wrap">
 					<view class="text-record-date">{{year}}年{{tool1.myParseInt(month)+1}}月{{date}}日</view>
-					<view class="text-record-detail">XXX成功招募宇智波佐助[疾风传咒印]，这是你招募的第192个忍者。</view>
-				</view>
-				<view class="button-check" bindtap="toStudentFile">
-					查看详情
+					<view class="text-record-detail">{{mileStoneList[0].ninjaname_91}}{{mileStoneList[0].ninjastory_02}}</view>
+					<view class="button-check" bindtap="toStudentFile">
+						查看详情
+					</view>
 				</view>
 			</block>
 			<block wx:if="{{mileStoneList.length>1}}">
 				<image class="img-record-list-bg" src="../../images/record_bg2.png"></image>
 				<view class="record-list-wrap">
 					<view class="record-list-text-wrap">
-						<view class="text-record-date">{{year}}年{{tool1.myParseInt(month)+1}}月{{date}}日</view>
-						<view class="text-record-detail">XXX成功招募宇智波佐助[疾风传咒印]，这是你招募的第192个忍者。</view>
-						<view class="button-list-check" bindtap="toRecord">
-							查看详情
+						<block wx:for="{{mileStoneList}}" wx:key="index">
+							<view class="text-record-date">{{year}}年{{tool1.myParseInt(month)+1}}月{{date}}日</view>
+							<view class="text-record-detail">{{item.ninjaname_91}}{{item.ninjastory_02}}</view>
+							<view data-ninjaname="{{item.ninjaname_91}}" data-ninjabanner="{{item.ninjabanner_19}}" data-ninjastory="{{item.ninjastory_02}}" class="button-list-check" bindtap="toStudentFile">
+								查看详情
+							</view>
+							<view class="box-border-bottom"></view>
+						</block>
+						<view class="record-list-text-wrap">
+							<view class="text-record-date">{{year}}年{{tool1.myParseInt(month)+1}}月{{date}}日</view>
+							<view class="text-record-detail">测试去三种风格的学院档案用</view>
+							<view class="button-list-check" bindtap="toRecord">
+								查看详情
+							</view>
+							<view class="box-border-bottom"></view>
 						</view>
-						<view class="box-border-bottom"></view>
-					</view>
-					<view class="record-list-text-wrap">
-						<view class="text-record-date">{{year}}年{{tool1.myParseInt(month)+1}}月{{date}}日</view>
-						<view class="text-record-detail">XXX成功获得超影段位！</view>
-						<view class="button-list-check" bindtap="toStudentFile">
-							查看详情
-						</view>
-						<view class="box-border-bottom"></view>
 					</view>
 				</view>
 			</block>
@@ -61,9 +63,9 @@ module.exports.myParseInt = myParseInt
 	</view>
 	<!-- 活动列表 -->
 	<view class="schedule-list-wrap">
-		<!-- 活动的importance 为0 普通活动，没带图的，为1就是大活动，带活动介绍图 -->
+		<!-- 活动的importance 为1 普通活动，没带图的，为0就是大活动，带活动介绍图 -->
 		<block wx:for="{{todayActList}}" wx:key="index">
-			<block wx:if="{{item.importance==0}}">
+			<block wx:if="{{item.importance==1}}">
 				<view class="schedule-item-wrap">
 					<view class="trigger-button img-arrow {{item.show==false?'reverse':''}}" data-index="{{index}}" bindtap="handleOpenDetail">
 					</view>
@@ -86,7 +88,7 @@ module.exports.myParseInt = myParseInt
 				</view>
 			</block>
 			<!-- 大活动 -->
-			<block wx:if="{{item.importance==1}}">
+			<block wx:if="{{item.importance==0}}">
 				<view class="schedule-item-wrap">
 					<view class="trigger-button img-arrow {{item.show==false?'reverse':''}}" data-index="{{index}}" bindtap="handleOpenDetail">
 					</view>
@@ -100,12 +102,12 @@ module.exports.myParseInt = myParseInt
 					</block>
 					<block wx:if="{{item.show==true}}">
 						<view class="text-schedule-big-title">
-							木叶情报
+							{{item.title}}
 						</view>
 						<view class="text-schedule-big-time">
 							{{item.actTime}}
 						</view>
-						<image src="../../images/banner_img.png" class="img-schedule-poster">
+						<image src="{{item.picture}}" class="img-schedule-poster">
 						</image>
 						<view class="text-schedule-sub-title">
 							{{item.title}}
